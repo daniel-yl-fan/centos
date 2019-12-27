@@ -1,0 +1,29 @@
+[color]
+    ui = true
+[alias]
+    lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    dt = difftool
+    #vd = "!f() { vim -p $(git diff --name-only) +\"tabdo Gdiff $@\" +tabfirst; }; f"
+    vd = "!f() { vim -p $(git diff --name-only) +\"tabdo Gdiff $@\" +tablast; }; f"
+    id = "!f() { git-icdiff; }; f"
+    st = status
+    cm = commit
+    co = checkout
+    br = branch
+[diff]
+    tool = vimdiff
+[difftool]
+    trustExitCode = true     # Be able to abort all diffs with `:cq` or `:cquit`
+    prompt = false
+[merge]
+    tool = vimdiff
+[user]
+    email = daniel_qdcn@hotmail.com
+    name = daniel-yl-fan
+[http]
+    sslVerify = false
+[core]
+    editor = vim
+[push]
+    default = simple
+
