@@ -17,3 +17,4 @@ alias lr="ls --recursive"
 alias cls="clear ; ll"
 
 alias h="cheat"
+
