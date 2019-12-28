@@ -15,3 +15,5 @@ alias mkdir="mkdir --parents"
 alias ll="ls -l -t --almost-all --human-readable --reverse"
 alias lr="ls --recursive"
 alias cls="clear ; ll"
+
+alias h="cheat"
