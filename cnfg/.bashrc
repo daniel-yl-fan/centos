@@ -20,8 +20,7 @@ alias cls="clear ; ll"
 
 alias h="cheat"
 
-alias gcs=" gtags-cscope "
+alias gcs="gtags-cscope"
 
 alias vf='vim $(fzf)'
-
 
