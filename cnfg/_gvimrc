@@ -1,0 +1,172 @@
+set nocompatible
+
+set bs=eol,start,indent
+
+" do not show start up info
+set shortmess=atI
+
+" Default to Unix LF line endings
+set ffs=unix
+
+" Use OS clipboard for copypasta
+set clipboard=unnamed
+
+"set encoding=utf-8
+
+set nobackup 
+
+set noundofile 
+
+set noswapfile 
+
+set bufhidden=hide 
+
+highlight! signcolumn cterm=standout ctermfg=green ctermbg=red
+
+"set signcolumn=yes
+
+set showtabline=2
+
+"set list
+
+set showcmd
+
+set t_Co=256
+
+set timeout timeoutlen=2000 ttimeoutlen=0
+
+autocmd FileType qf wincmd _
+
+au GUIEnter * simalt ~x
+
+set guifont=Fixedsys:h10
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+filetype plugin indent on
+
+" set selection=exclusive
+
+" set paste
+
+" set linespace=0
+
+" set number
+
+set ruler
+
+set laststatus=2
+
+set noshowmode
+
+set cmdheight=2
+
+set ignorecase
+
+set smartcase
+
+set hlsearch
+
+set incsearch
+
+set wildmode=longest,list
+set wildmenu
+
+set lazyredraw
+
+set expandtab
+set softtabstop=4
+set shiftwidth=4
+set tabstop=4
+
+syntax on
+
+syntax enable
+
+"set synmaxcol=0
+"syntax sync minlines=10000
+set redrawtime=10000
+"syntax sync fromstart
+
+set autoindent
+
+set cindent
+
+"set nowrap
+set wrap linebreak nolist
+
+set textwidth=120
+
+set showmatch
+
+set matchtime=2
+
+set display=lastline
+
+set tabpagemax=100
+
+set switchbuf+=usetab,newtab
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+let mapleader=";"
+
+imap <leader><leader> <Esc>
+
+noremap  <leader>ww :write! <CR>
+noremap  <leader>qq :quit! <CR>
+noremap  <leader>xx :exit! <CR>
+
+noremap <leader>nt :tabnew<CR>
+
+noremap <leader>dp :diffput <CR>
+noremap <leader>dg :diffget <CR>
+
+"cscope add C:\N-20HEPF0Y1426-Data\dafan\Documents\cscope.out
+
+colorscheme murphy
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+noremap ]l :lnext<CR>
+noremap [l :lprev<CR>
+
+"TOhtml
+"let g:html_line_ids = 1
+let g:html_dynamic_folds = 1
+let g:html_number_lines = 1
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"let mapleader=";"
+
+"imap <leader><leader> <Esc>
+
+"noremap <leader>dp :diffput <CR>
+"noremap <leader>dg :diffget <CR>
+
+noremap <leader>ee :e! <CR>
+
+noremap <leader>mc :execute "set colorcolumn=" . (&colorcolumn == "" ? "120" : "") <CR>
+
+"noremap <leader>nt :tabnew<CR>
+
+"noremap <leader>qq :quit! <CR>
+
+nmap <leader>sh :belowright terminal <CR>
+
+nmap <leader>vd :vert diffsplit <Space>
+
+map <leader>tm :marks <CR>
+nmap <leader>tr :registers <CR>
+
+"noremap <leader>ww :write! <CR>
+vnoremap <leader>ww :write! C:\N-20HEPF0Y1426-Data\dafan\Documents\daniel.yl.fan.tmp<CR>
+noremap  <leader>rr :read   C:\N-20HEPF0Y1426-Data\dafan\Documents\daniel.yl.fan.tmp<CR>
+
+noremap <leader>xx :exit! <CR>
+"
+" ascii <=> hex
+" vnoremap ; :<c-u>s/\%V./\=printf("%x",char2nr(submatch(0)))/g<cr><c-l>`<
+" vnoremap u :<c-u>s/\%V\x\x/\=nr2char(printf("%d", "0x".submatch(0)))/g<cr><c-l>`<
+
