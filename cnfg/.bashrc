@@ -5,6 +5,8 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
+export PS1="[\u@\h] \n \w \\$ "
+
 set -o vi
 
 alias rm='rm -i'
