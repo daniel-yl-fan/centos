@@ -17,12 +17,16 @@ set width 0
 
 #set substitute-path /path/of/compiling /path/of/source/files
 
-attach pid
-file program
-directory source_file_directory
-break class::method
-break file:line
-run parameters
+#attach pid
+#file program
+#directory source_file_directory
+#break class::method
+#break file:line
+#run parameters
+
+#gdb --quiet --command paht/.gdbinit"
+#gdb -tui --quiet --command 
+#cgdb --quiet --command /root/lab/gdbinit
 
 # gdb program
 # gdb program core
@@ -51,3 +55,4 @@ run parameters
 # p/a Print as an address, both absolute in hexadecimal and as an offset from the nearest preceding symbol. You can use this format used to discover where (in what function) an unknown address is located: (gdb) p/a 0x54320 # $3 = 0x54320 <_initialize_vx+396>
 # p/c Regard as an integer and print it as a character constant.
 # p/f Regard the bits of the value as a floating point number and print using typical floating point syntax.
+
