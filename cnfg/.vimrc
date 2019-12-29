@@ -109,9 +109,7 @@ set tabpagemax=100
 
 set switchbuf+=usetab,newtab
 
-set path+=$ROOT/glob/shared/diam/parser/include
-set path+=$ROOT/glob/shared/diam/transport/include
-set path+=$ROOT/ssp/dfed/include
+"set path+=$ROOT
 
 "set statusline=
 "set statusline+=\ %F
@@ -154,13 +152,13 @@ map <C-\>g :cscope find g <C-R>=expand("<cword>")<CR><CR>
 map <C-\>c :cscope find c <C-R>=expand("<cword>")<CR><CR>
 map <C-\>f :cscope find f <C-R>=expand("<cword>")<CR><CR>
 
-colorscheme desert256v2
+colorscheme desert
 
 set grepprg=ag
 
-call plug#begin('~/local/share/vim/vim81/plugged')
+call plug#begin('/usr/share/vim/vim80/plugged')
 
-Plug 'junegunn/vim-plug'
+"Plug 'junegunn/vim-plug'
 
 "Plug 'scrooloose/nerdtree'
 Plug 'dhruvasagar/vim-zoom'
@@ -175,7 +173,6 @@ Plug 'skywind3000/asyncrun.vim'
 
 Plug 'Yggdroot/LeaderF'
 " ~/local/bin/fzf - fuzzy finder
-Plug '~/local/bin'
 Plug 'junegunn/fzf.vim'
 " conflict with ycm
 "Plug 'junegunn/vim-peekaboo'
@@ -190,7 +187,7 @@ Plug 'kshenoy/vim-signature'
 Plug 'mhinz/vim-signify'
 
 Plug 'dyng/ctrlsf.vim',
-Plug 'Valloric/YouCompleteMe'
+"Plug 'Valloric/YouCompleteMe'
 Plug 'scrooloose/nerdcommenter'
 Plug 'sjl/gundo.vim'
 Plug 'nathanaelkane/vim-indent-guides'
@@ -293,7 +290,7 @@ let g:indent_guides_auto_colors = 0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=3
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
 
-set diffopt+=internal,algorithm:patience
+"set diffopt+=internal,algorithm:patience
 
 highlight PMenu ctermfg=13 ctermbg=4
 highlight PMenuSel ctermfg=10 ctermbg=5
@@ -318,7 +315,7 @@ let g:ycm_complete_in_strings = 1
 "let g:ycm_collect_identifiers_from_tags_files = 1
 "let g:ycm_seed_identifiers_with_syntax = 1
 let g:ycm_use_clangd = "Never"
-let g:ycm_global_ycm_extra_conf='/home/dafan/local/share/vim/vim81/plugged/YouCompleteMe/.ycm_extra_conf.py'
+let g:ycm_global_ycm_extra_conf='/usr/share/vim/vim80/plugged/YouCompleteMe/.ycm_extra_conf.py'
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_max_diagnostics_to_display = 1000
 let g:ycm_semantic_triggers =  { 'c,cpp,bash,python,java,go,erlang,perl': ['re!\w{2}'] }
@@ -467,4 +464,12 @@ nmap <leader>tw <Plug>(zoom-toggle)
 vnoremap <leader>ww :write! /tmp/daniel.yl.fan<CR>
 noremap  <leader>rr :read   /tmp/daniel.yl.fan<CR>
 
-"noremap <leader>xx :exit! <CR>
+noremap <leader>xx :exit! <CR>
+"
+" xxd -r -p file    " convert hex to binary (ascii)
+" xxd -i file    " convert binary file to hex
+"
+" ascii <=> hex
+" vnoremap ; :<c-u>s/\%V./\=printf("%x",char2nr(submatch(0)))/g<cr><c-l>`<
+" vnoremap u :<c-u>s/\%V\x\x/\=nr2char(printf("%d", "0x".submatch(0)))/g<cr><c-l>`<
+
