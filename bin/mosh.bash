@@ -1,1 +1,1 @@
-yum install ShellCheck
+yum --assumeyes install ShellCheck

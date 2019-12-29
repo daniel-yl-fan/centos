@@ -1,1 +1,1 @@
-yum install jq
+yum --assumeyes install jq
