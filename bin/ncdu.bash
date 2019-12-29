@@ -1,0 +1,1 @@
+yum --assumeyes install ncdu
