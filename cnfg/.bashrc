@@ -14,7 +14,7 @@ alias cp='cp -i'
 alias mv='mv -i'
 
 alias mkdir="mkdir --parents"
-alias ll="ls -l -t --almost-all --human-readable"
+alias ll="ls -l -t -c --almost-all --human-readable --reverse"
 alias lr="ls --recursive"
 alias cls="clear ; ll"
 
