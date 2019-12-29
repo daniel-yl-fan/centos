@@ -187,7 +187,7 @@ Plug 'kshenoy/vim-signature'
 Plug 'mhinz/vim-signify'
 
 Plug 'dyng/ctrlsf.vim',
-"Plug 'Valloric/YouCompleteMe'
+Plug 'Valloric/YouCompleteMe'
 Plug 'scrooloose/nerdcommenter'
 Plug 'sjl/gundo.vim'
 Plug 'nathanaelkane/vim-indent-guides'
