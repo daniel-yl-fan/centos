@@ -15,3 +15,6 @@ cmake -G "Unix Makefiles" -DLLVM_ENABLE_PROJECTS="clang" ../llvm
 # 3, -DLLVM_USE_LINKER=gold         # need re-link
 make 
 make install
+
+# uninstall
+xargs rm < install_manifest.txt
