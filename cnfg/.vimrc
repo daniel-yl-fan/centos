@@ -190,7 +190,7 @@ Plug 'mhinz/vim-signify'
 Plug 'dyng/ctrlsf.vim',
 Plug 'Valloric/YouCompleteMe'
 Plug 'scrooloose/nerdcommenter'
-Plug 'sjl/gundo.vim'
+"Plug 'sjl/gundo.vim'
 Plug 'nathanaelkane/vim-indent-guides'
 
 Plug 'vim-scripts/gtags.vim'
@@ -216,15 +216,15 @@ let g:Lf_WindowPosition = 'bottom'
 let g:Lf_ShowRelativePath = 0
 let g:Lf_CacheDiretory = '/tmp'
 
-let NERDTreeWinSize=80          
+"let NERDTreeWinSize=80          
 "let NERDTreeWinPos="right"     
-let NERDTreeShowHidden=1        
+"let NERDTreeShowHidden=1        
 "let "NERDTreeAutoDeleteBuffer=1
-let g:NERDTreeDirArrows=0       
+"let g:NERDTreeDirArrows=0       
 
-let g:gundo_width = 80
-let g:gundo_preview_height = 20
-let g:gundo_right = 1
+"let g:gundo_width = 80
+"let g:gundo_preview_height = 20
+"let g:gundo_right = 1
 
 "let g:ackprg='rg'
 let g:ackprg='ag'
@@ -370,7 +370,7 @@ noremap <silent> <leader>gi :GscopeFind i <C-R>=expand("<cfile>")<cr><cr>
 noremap <silent> <leader>gd :GscopeFind d <C-R><C-W><cr>
 noremap <silent> <leader>ga :GscopeFind a <C-R><C-W><cr>
 
-source vim-quickui.vim
+source /usr/share/vim/vim82/vim-quickui.vim
 
 let g:lightline = {
       \ 'colorscheme': 'powerline',
@@ -423,7 +423,9 @@ noremap <leader>f/ :LeaderfHistorySearch <CR>
 "noremap <silent> <leader>gd :GscopeFind d <C-R><C-W><cr>
 "noremap <silent> <leader>ga :GscopeFind a <C-R><C-W><cr>
 
-noremap <leader>hh :call quickui#menu#open()<cr>
+"vim-quickui.vim
+"noremap <leader>hm :call quickui#menu#open()<cr>
+"noremap <leader>hl :call quickui#listbox#open(content, opts)<cr>
 
 noremap <leader>mc :execute "set colorcolumn=" . (&colorcolumn == "" ? "120" : "") <CR>
 
@@ -442,6 +444,7 @@ noremap <leader>sd :!git dt <CR>
 "nmap <leader>sh :vertical belowright terminal <CR>
 nmap <leader>sh :belowright terminal <CR>
 
+nmap <leader>vd :vert diffsplit <Space>
 nmap <leader>vt :PreviewTag <CR>
 nmap <leader>vs :PreviewSignature <CR>
 "nmap <leader>vq :PreviewQuickfix <CR>
@@ -454,10 +457,9 @@ nmap <leader>vc :PreviewClose <CR>
 map <C-\>u :PreviewScroll -1<CR>
 map <C-\>d :PreviewScroll +1<CR>
 
-nmap <leader>vd :vert diffsplit <Space>
 
-nmap <leader>tt :NERDTreeToggle <CR>
-nmap <leader>tu :GundoToggle <CR>
+"nmap <leader>tt :NERDTreeToggle <CR>
+"nmap <leader>tu :GundoToggle <CR>
 nmap <leader>tf :CtrlSFToggle <CR>
 nmap <leader>tm :marks <CR>
 nmap <leader>tr :registers <CR>
