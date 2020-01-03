@@ -156,7 +156,7 @@ colorscheme desert256
 
 set grepprg=ag
 
-call plug#begin('/usr/share/vim/vim80/plugged')
+call plug#begin('/usr/share/vim/vim82/plugged')
 
 "Plug 'junegunn/vim-plug'
 
