@@ -182,6 +182,7 @@ Plug 'terryma/vim-multiple-cursors'
 "Plug 'dhruvasagar/vim-table-mode'
 
 "Plug 'vim-airline/vim-airline'
+Plug 'skywind3000/vim-quickui'
 Plug 'itchyny/lightline.vim'
 Plug 'kshenoy/vim-signature'
 Plug 'mhinz/vim-signify'
@@ -369,6 +370,8 @@ noremap <silent> <leader>gi :GscopeFind i <C-R>=expand("<cfile>")<cr><cr>
 noremap <silent> <leader>gd :GscopeFind d <C-R><C-W><cr>
 noremap <silent> <leader>ga :GscopeFind a <C-R><C-W><cr>
 
+source vim-quickui.vim
+
 let g:lightline = {
       \ 'colorscheme': 'powerline',
       \ 'active': {
@@ -419,6 +422,8 @@ noremap <leader>f/ :LeaderfHistorySearch <CR>
 "noremap <silent> <leader>gi :GscopeFind i <C-R>=expand("<cfile>")<cr><cr>
 "noremap <silent> <leader>gd :GscopeFind d <C-R><C-W><cr>
 "noremap <silent> <leader>ga :GscopeFind a <C-R><C-W><cr>
+
+noremap <leader>hh :call quickui#menu#open()<cr>
 
 noremap <leader>mc :execute "set colorcolumn=" . (&colorcolumn == "" ? "120" : "") <CR>
 
@@ -473,3 +478,26 @@ noremap <leader>xx :exit! <CR>
 " vnoremap ; :<c-u>s/\%V./\=printf("%x",char2nr(submatch(0)))/g<cr><c-l>`<
 " vnoremap u :<c-u>s/\%V\x\x/\=nr2char(printf("%d", "0x".submatch(0)))/g<cr><c-l>`<
 
+" map ALT key to Meta key, change Alt to ESC+X, means when pressed ALT+X, terminal will send <ESC>x (code 0x27, 0x78)
+" Putty -> Keyboard -> AltGr acts as Compose key  &&  Contro-Alt is different from AltGr,  default is ALT+X sending <ESC>x
+"noremap <ESC>x :echo "ALT-X pressed"<cr>
+noremap <M-1> 1gt<cr>
+exec "set <M-1>=\e1"
+noremap <M-2> 2gt<cr>
+exec "set <M-2>=\e2"
+noremap <M-3> 3gt<cr>
+exec "set <M-3>=\e3"
+noremap <M-4> 4gt<cr>
+exec "set <M-4>=\e4"
+noremap <M-5> 5gt<cr>
+exec "set <M-5>=\e5"
+noremap <M-6> 6gt<cr>
+exec "set <M-6>=\e6"
+noremap <M-7> 7gt<cr>
+exec "set <M-7>=\e7"
+noremap <M-8> 8gt<cr>
+exec "set <M-8>=\e8"
+noremap <M-9> 9gt<cr>
+exec "set <M-9>=\e9"
+noremap <M-0> 0gt<cr>
+exec "set <M-0>=\e0"

@@ -1,4 +1,6 @@
 #git clone https://github.com/vim/vim.git
+#yum install python2-devel
+#yum install python3-devel
 #cd vim/src
 CFLAGS+=-fPIC ./configure --with-features=huge \
             --with-python-config-dir=/usr/lib64/python2.7/config \
