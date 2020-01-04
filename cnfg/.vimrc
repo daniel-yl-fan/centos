@@ -162,7 +162,6 @@ call plug#begin('/usr/share/vim/vim82/plugged')
 
 "Plug 'junegunn/vim-plug'
 
-"Plug 'scrooloose/nerdtree'
 Plug 'dhruvasagar/vim-zoom'
 Plug 'easymotion/vim-easymotion'
 Plug 'roxma/vim-paste-easy'
@@ -174,13 +173,13 @@ Plug 'haya14busa/incsearch-easymotion.vim'
 Plug 'skywind3000/asyncrun.vim'
 
 Plug 'Yggdroot/LeaderF'
-" ~/local/bin/fzf - fuzzy finder
-Plug 'junegunn/fzf.vim'
-" conflict with ycm
-"Plug 'junegunn/vim-peekaboo'
+Plug 'junegunn/vim-peekaboo'
 
 Plug 'terryma/vim-multiple-cursors'
-"Plug 'jiangmiao/auto-pairs'
+"Plug 'mg979/vim-visual-multi', {'branch': 'master'}    " not work
+"Plug 'kien/rainbow_parentheses'    "need installed manually
+Plug 'jiangmiao/auto-pairs'
+Plug 'tpope/vim-surround'
 "Plug 'dhruvasagar/vim-table-mode'
 
 "Plug 'vim-airline/vim-airline'
@@ -188,11 +187,12 @@ Plug 'skywind3000/vim-quickui'
 Plug 'itchyny/lightline.vim'
 Plug 'kshenoy/vim-signature'
 Plug 'mhinz/vim-signify'
+Plug 'junegunn/vim-easy-align'
 
 Plug 'dyng/ctrlsf.vim',
 Plug 'Valloric/YouCompleteMe'
+Plug 'w0rp/ale'
 Plug 'scrooloose/nerdcommenter'
-"Plug 'sjl/gundo.vim'
 Plug 'nathanaelkane/vim-indent-guides'
 
 Plug 'tpope/vim-unimpaired'
@@ -201,6 +201,7 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'skywind3000/gutentags_plus'
 Plug 'skywind3000/vim-preview'
 Plug 'Valloric/ListToggle'
+Plug 'liuchengxu/vista.vim'
 
 Plug 'tpope/vim-fugitive'
 Plug 'octol/vim-cpp-enhanced-highlight'
@@ -231,10 +232,6 @@ let g:Lf_CacheDiretory = '/tmp'
 "let "NERDTreeAutoDeleteBuffer=1
 "let g:NERDTreeDirArrows=0       
 
-"let g:gundo_width = 80
-"let g:gundo_preview_height = 20
-"let g:gundo_right = 1
-
 "let g:ackprg='rg'
 let g:ackprg='ag'
 let g:ctrlsf_regex_pattern=1
@@ -249,6 +246,8 @@ noremap <silent> <F5> :AsyncRun -program=make @ all <CR>
 noremap <silent> <leader>\g :AsyncRun -program=make @ all <CR>
 
 let g:paste_easy_message=0
+
+let g:peekaboo_window = 'aboveleft 30new'
 
 let g:preview#preview_position = "bottom"
 
@@ -300,10 +299,40 @@ let g:indent_guides_auto_colors = 0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=3
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
 
-"set diffopt+=internal,algorithm:patience
 
-highlight PMenu ctermfg=9 ctermbg=4
-highlight PMenuSel ctermfg=10 ctermbg=1
+"vmap <Leader>a <Plug>(EasyAlign)
+"nmap <Leader>a <Plug>(EasyAlign)
+if !exists('g:easy_align_delimiters')
+  let g:easy_align_delimiters = {}
+endif
+let g:easy_align_delimiters['#'] = { 'pattern': '#', 'ignore_groups': ['String'] }
+
+let g:rbpt_colorpairs = [
+    \ ['brown',       'RoyalBlue3'],
+    \ ['Darkblue',    'SeaGreen3'],
+    \ ['darkgray',    'DarkOrchid3'],
+    \ ['darkgreen',   'firebrick3'],
+    \ ['darkcyan',    'RoyalBlue3'],
+    \ ['darkred',     'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['brown',       'firebrick3'],
+    \ ['gray',        'RoyalBlue3'],
+    \ ['black',       'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['Darkblue',    'firebrick3'],
+    \ ['darkgreen',   'RoyalBlue3'],
+    \ ['darkcyan',    'SeaGreen3'],
+    \ ['darkred',     'DarkOrchid3'],
+    \ ['red',         'firebrick3'],
+    \ ]
+let g:rbpt_max = 16
+let g:rbpt_loadcmd_toggle = 0
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+
+"set diffopt+=internal,algorithm:patience
 
 "let g:ycm_keep_logfiles = 1
 "let g:ycm_log_level = 'debug'
@@ -313,6 +342,7 @@ highlight PMenuSel ctermfg=10 ctermbg=1
 " Use installed clangd, not YCM-bundled clangd which doesn't get updates.
 "let g:ycm_clangd_binary_path = exepath("clangd")
 "let g:ycm_clangd_binary_path = "~/local/bin/clangd"
+"let g:ycm_add_preview_to_completeopt = 0
 "let g:ycm_show_diagnostics_ui = 0
 "let g:ycm_error_symbol
 "let g:ycm_warning_symbol
@@ -326,7 +356,7 @@ let g:ycm_complete_in_strings = 1
 "let g:ycm_collect_identifiers_from_tags_files = 1
 "let g:ycm_seed_identifiers_with_syntax = 1
 let g:ycm_use_clangd = "Never"
-let g:ycm_global_ycm_extra_conf='/usr/share/vim/vim80/plugged/YouCompleteMe/.ycm_extra_conf.py'
+let g:ycm_global_ycm_extra_conf='/usr/share/vim/vim82/plugged/YouCompleteMe/.ycm_extra_conf.py'
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_max_diagnostics_to_display = 1000
 let g:ycm_semantic_triggers =  { 'c,cpp,bash,python,java,go,erlang,perl': ['re!\w{2}'] }
@@ -334,6 +364,8 @@ let g:ycm_filetype_whitelist = { 'cpp': 1, 'bash': 1 }
 let g:ycm_filetype_blacklist = { 'tagbar': 1, 'notes': 1, 'markdown': 1, 'netrw': 1, 'unite': 1, 'text': 1, 'vimwiki': 1, 'pandoc': 1, 'infolog': 1, 'mail': 1 }
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
+highlight PMenu ctermfg=9 ctermbg=4
+highlight PMenuSel ctermfg=10 ctermbg=1
 " YcmToggleLogs
 " YcmDebugInfo
 " YcmDiags
@@ -403,6 +435,7 @@ let g:lightline = {
 
 "imap <leader><leader> <Esc>
 
+
 noremap <leader>ar :AsyncRun 
 noremap <leader>as :AsyncStop <CR>
 
@@ -412,6 +445,8 @@ noremap <leader>ce :YcmDiag <CR>
 "noremap <leader>dg :diffget <CR>
 noremap <leader>df :SignifyDiff <CR>
 
+vmap <Leader>ea <Plug>(EasyAlign)
+nmap <Leader>ea <Plug>(EasyAlign)
 noremap <leader>ee :e! <CR>
 
 noremap <leader>fb :LeaderfBuffer <CR>
@@ -469,11 +504,10 @@ map <C-\>u :PreviewScroll -1<CR>
 map <C-\>d :PreviewScroll +1<CR>
 
 
-"nmap <leader>tt :NERDTreeToggle <CR>
-"nmap <leader>tu :GundoToggle <CR>
 nmap <leader>tf :CtrlSFToggle <CR>
 nmap <leader>tm :marks <CR>
 nmap <leader>tr :registers <CR>
+nmap <leader>tv :Vista!!<CR>
 nmap <leader>tw <Plug>(zoom-toggle)
 "let g:lt_quickfix_list_toggle_map = '<leader>tq'
 "let g:lt_location_list_toggle_map = '<leader>tl'
