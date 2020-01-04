@@ -195,6 +195,7 @@ Plug 'scrooloose/nerdcommenter'
 "Plug 'sjl/gundo.vim'
 Plug 'nathanaelkane/vim-indent-guides'
 
+Plug 'tpope/vim-unimpaired'
 Plug 'vim-scripts/gtags.vim'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'skywind3000/gutentags_plus'
@@ -301,8 +302,9 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
 
 "set diffopt+=internal,algorithm:patience
 
-highlight PMenu ctermfg=13 ctermbg=4
-highlight PMenuSel ctermfg=10 ctermbg=5
+highlight PMenu ctermfg=9 ctermbg=4
+highlight PMenuSel ctermfg=10 ctermbg=1
+
 "let g:ycm_keep_logfiles = 1
 "let g:ycm_log_level = 'debug'
 "let g:ycm_use_clangd = "Always"
