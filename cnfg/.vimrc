@@ -402,6 +402,7 @@ noremap <leader>ce :YcmDiag <CR>
 
 "noremap <leader>dp :diffput <CR>
 "noremap <leader>dg :diffget <CR>
+noremap <leader>df :SignifyDiff <CR>
 
 noremap <leader>ee :e! <CR>
 
