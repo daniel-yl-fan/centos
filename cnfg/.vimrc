@@ -152,6 +152,8 @@ map <C-\>g :cscope find g <C-R>=expand("<cword>")<CR><CR>
 map <C-\>c :cscope find c <C-R>=expand("<cword>")<CR><CR>
 map <C-\>f :cscope find f <C-R>=expand("<cword>")<CR><CR>
 
+set tags=./.tags;,.tags
+
 colorscheme desert256
 
 set grepprg=ag
