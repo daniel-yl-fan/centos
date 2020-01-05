@@ -176,14 +176,12 @@ Plug 'Yggdroot/LeaderF'
 Plug 'junegunn/vim-peekaboo'
 
 Plug 'terryma/vim-multiple-cursors'
-"Plug 'mg979/vim-visual-multi', {'branch': 'master'}    " not work
 "Plug 'kien/rainbow_parentheses'    "need installed manually
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
-"Plug 'dhruvasagar/vim-table-mode'
 
-"Plug 'vim-airline/vim-airline'
 Plug 'skywind3000/vim-quickui'
+"Plug 'vim-airline/vim-airline'    "too complex and has confliction
 Plug 'itchyny/lightline.vim'
 Plug 'kshenoy/vim-signature'
 Plug 'mhinz/vim-signify'

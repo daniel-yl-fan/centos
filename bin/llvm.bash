@@ -1,6 +1,6 @@
 mkdir build
 cd build
-cmake -G "Unix Makefiles" -DLLVM_ENABLE_PROJECTS="clang" ../llvm
+cmake -G "Unix Makefiles" -DLLVM_ENABLE_PROJECTS="clang;clang-tools-extra" -DLLVM_USE_LINKER=gold ../llvm
 # -DLLVM_ENABLE_PROJECTS='clang;clang-tools-extra'
     # semicolon-separated list of the LLVM subprojects you'd like to additionally build. clangd is in clang-tools-extra.
 # -DCMAKE_INSTALL_PREFIX=/usr/local  # LLVM tools and libraries to be installed (default /usr/local).
