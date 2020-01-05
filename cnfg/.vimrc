@@ -370,16 +370,16 @@ let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#tabline#show_tab_nr = 1
 let g:airline#extensions#tabline#tab_nr_type = 1
 let g:airline_symbols_ascii = 1
-let g:airline_detect_paste=1
-let g:airline_detect_modified=1
-let g:airline_inactive_collapse=1
+let g:airline_detect_paste = 1
+let g:airline_detect_modified = 1
+let g:airline_inactive_collapse = 1
 let g:airline#extensions#gutentags#enabled = 1
 let g:ale_lint_on_text_changed = 'normal'
 let g:ale_lint_on_insert_leave = 1
 "let g:airline#extensions#tabline#tabs_label = 't'
 "let g:airline#extensions#tabline#buffers_label = 'b'
 
-let g:gutentags_project_root = [ '.git', '.project' ]
+let g:gutentags_project_root = [ '.git', '.project', '.root' ]
 let g:gutentags_add_default_project_roots = 0
 let g:gutentags_exclude_project_root = [ 'obj' ]
 let g:gutentags_ctags_tagfile = '.gutentags'
@@ -389,11 +389,12 @@ let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
 let g:gutentags_modules = [ 'ctags', 'gtags_cscope' ]
 let g:gutentags_plus_switch = 1
 let g:gutentags_plus_nomap = 1
+let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']
+set wildignore=*.a,*.o,*.so,*.sh,*.jar,*.tar,*.gz,*.zip,*.out,*.out*
+let g:gutentags_ctags_exclude_wildignore = 1
 "let g:gutentags_trace = 1
 "let g:gutentags_file_list_command = 'ag --filename-pattern c --files-with-matches'
-"let g:gutentags_ctags_exclude = [ 'obj', 'ssp/tftpboot' ]
-"#set wildignore=*.a,*.o,*.so,*.sh,*.jar,*.tar,*.gz,*.zip,*.out,*.out*
-"let g:gutentags_ctags_exclude_wildignore = 1
+"let g:gutentags_ctags_exclude = [ 'obj' ]
 
 " use global-cscope like cscope
 set cscopeprg=gtags-cscope
