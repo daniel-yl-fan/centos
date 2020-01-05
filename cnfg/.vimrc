@@ -396,7 +396,7 @@ let g:gutentags_plus_nomap = 1
 "let g:gutentags_ctags_exclude_wildignore = 1
 
 " use global-cscope like cscope
-set csprg=gtags-cscope
+set cscopeprg=gtags-cscope
 noremap <silent> <leader>gr :GscopeFind<Space>
 noremap <silent> <leader>gs :GscopeFind s <C-R><C-W><cr>
 noremap <silent> <leader>gg :GscopeFind g <C-R><C-W><cr>
