@@ -1,4 +1,4 @@
-" vim -c command -c 'command option' or vim +command 
+" vim -c command -c 'command option' or vim +command
 
 set nocompatible
 
@@ -19,11 +19,11 @@ set clipboard=unnamed
 
 set encoding=utf-8
 
-set nobackup 
+set nobackup
 
-set noswapfile 
+set noswapfile
 
-set bufhidden=hide 
+set bufhidden=hide
 
 highlight! signcolumn cterm=standout ctermfg=green ctermbg=red
 
@@ -111,13 +111,6 @@ set switchbuf+=usetab,newtab
 
 "set path+=$ROOT
 
-"set statusline=
-"set statusline+=\ %F
-"set statusline+=\ [%1*%M%*%n%R%H]
-"set statusline+=%=
-"set statusline+=\ %y
-"set statusline+=\ %0(%{&fileformat}\ [%{(&fenc==\"\"?&enc:&fenc).(&bomb?\",BOM\":\"\")}]\ %v:%l/%L%)
-
 highlight! clear SpellBad
 highlight! clear SpellCap
 highlight! clear SpellRare
@@ -181,15 +174,15 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
 
 Plug 'skywind3000/vim-quickui'
-"Plug 'vim-airline/vim-airline'    "too complex and has confliction
-Plug 'itchyny/lightline.vim'
+Plug 'vim-airline/vim-airline'
+"Plug 'itchyny/lightline.vim'    "simpler status line
 Plug 'kshenoy/vim-signature'
 Plug 'mhinz/vim-signify'
 Plug 'junegunn/vim-easy-align'
 
 Plug 'dyng/ctrlsf.vim',
 Plug 'Valloric/YouCompleteMe'
-Plug 'w0rp/ale'
+Plug 'dense-analysis/ale'
 Plug 'scrooloose/nerdcommenter'
 Plug 'nathanaelkane/vim-indent-guides'
 
@@ -224,13 +217,6 @@ let g:Lf_WindowPosition = 'bottom'
 let g:Lf_ShowRelativePath = 0
 let g:Lf_CacheDiretory = '/tmp'
 
-"let NERDTreeWinSize=80          
-"let NERDTreeWinPos="right"     
-"let NERDTreeShowHidden=1        
-"let "NERDTreeAutoDeleteBuffer=1
-"let g:NERDTreeDirArrows=0       
-
-"let g:ackprg='rg'
 let g:ackprg='ag'
 let g:ctrlsf_regex_pattern=1
 let g:ctrlsf_position='bottom'
@@ -298,8 +284,8 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=3
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
 
 
-"vmap <Leader>a <Plug>(EasyAlign)
-"nmap <Leader>a <Plug>(EasyAlign)
+"vmap <Leader>ea <Plug>(EasyAlign)
+"nmap <Leader>ea <Plug>(EasyAlign)
 if !exists('g:easy_align_delimiters')
   let g:easy_align_delimiters = {}
 endif
@@ -380,6 +366,18 @@ let g:html_dynamic_folds = 1
 let g:html_number_lines = 1
 
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#ale#enabled = 1
+let g:airline#extensions#tabline#show_tab_nr = 1
+let g:airline#extensions#tabline#tab_nr_type = 1
+let g:airline_symbols_ascii = 1
+let g:airline_detect_paste=1
+let g:airline_detect_modified=1
+let g:airline_inactive_collapse=1
+let g:airline#extensions#gutentags#enabled = 1
+let g:ale_lint_on_text_changed = 'normal'
+let g:ale_lint_on_insert_leave = 1
+"let g:airline#extensions#tabline#tabs_label = 't'
+"let g:airline#extensions#tabline#buffers_label = 'b'
 
 let g:gutentags_project_root = [ '.git', '.project' ]
 let g:gutentags_add_default_project_roots = 0
@@ -434,7 +432,7 @@ let g:lightline = {
 "imap <leader><leader> <Esc>
 
 
-noremap <leader>ar :AsyncRun 
+noremap <leader>ar :AsyncRun
 noremap <leader>as :AsyncStop <CR>
 
 noremap <leader>ce :YcmDiag <CR>
