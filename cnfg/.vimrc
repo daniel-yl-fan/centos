@@ -218,6 +218,7 @@ Plug 'tpope/vim-surround'
 Plug 'skywind3000/vim-quickui'
 Plug 'vim-airline/vim-airline'
 "Plug 'itchyny/lightline.vim'    "simpler status line
+Plug 't9md/vim-choosewin'
 Plug 'kshenoy/vim-signature'
 Plug 'mhinz/vim-signify'
 Plug 'junegunn/vim-easy-align'
@@ -226,6 +227,7 @@ Plug 'junegunn/fzf'
 Plug 'dyng/ctrlsf.vim'
 Plug 'Valloric/YouCompleteMe'
 Plug 'dense-analysis/ale'
+Plug 'Shougo/echodoc.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'nathanaelkane/vim-indent-guides'
 
@@ -238,13 +240,13 @@ Plug 'Valloric/ListToggle'
 Plug 'liuchengxu/vista.vim'
 
 Plug 'tpope/vim-fugitive'
-Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'octol/vim-cpp-enhanced-highlight', { 'for': ['c', 'cpp'] }
 Plug 'chrisbra/vim-diff-enhanced'
 
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-indent'
 Plug 'kana/vim-textobj-syntax'
-Plug 'kana/vim-textobj-function', { 'for':['c', 'cpp', 'vim', 'java'] }
+Plug 'kana/vim-textobj-function', { 'for': ['c', 'cpp'] }
 Plug 'sgur/vim-textobj-parameter'
 
 call plug#end()
@@ -283,6 +285,13 @@ let g:lt_quickfix_list_toggle_map = '<leader>tq'
 "let g:lt_quickfix_list_toggle_map = '<F10>'
 let g:lt_location_list_toggle_map = '<leader>tl'
 "let g:lt_location_list_toggle_map = '<F11>'
+
+let g:choosewin_overlay_enable = 1
+
+let g:echodoc_enable_at_startup = 1
+let g:echodoc#enable_at_startup = 1
+let g:echodoc#type = 'popup'
+highlight link EchoDocPopup Pmenu
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -409,7 +418,6 @@ let g:html_dynamic_folds = 1
 let g:html_number_lines = 1
 
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#tabline#show_tab_nr = 1
 let g:airline#extensions#tabline#tab_nr_type = 1
 let g:airline_symbols_ascii = 1
@@ -417,6 +425,8 @@ let g:airline_detect_paste = 1
 let g:airline_detect_modified = 1
 let g:airline_inactive_collapse = 1
 let g:airline#extensions#gutentags#enabled = 1
+let g:airline#extensions#ale#enabled = 1
+
 let g:ale_lint_on_text_changed = 'normal'
 let g:ale_lint_on_insert_leave = 1
 "let g:airline#extensions#tabline#tabs_label = 't'
@@ -439,10 +449,19 @@ let g:gutentags_ctags_exclude_wildignore = 1
 "let g:gutentags_ctags_exclude = [ 'obj' ]
 "
 noremap <silent> <leader>ld :ALEGoToDefinition<cr>
-noremap <silent> <leader>ls :ALESymbolSearch<cr>
+noremap <silent> <leader>ls :ALESymbolSearch
 noremap <silent> <leader>lc :ALEFindReferences<cr>
 noremap <silent> <leader>lh :ALEHover<cr>
-"
+
+hi! clear SpellBad
+hi! clear SpellCap
+hi! clear SpellRare
+hi! clear SpellLocal
+hi! SpellBad term=standout ctermfg=1 term=underline cterm=underline
+hi! SpellCap term=underline cterm=underline
+hi! SpellRare term=underline cterm=underline
+hi! SpellLocal term=underline cterm=underline
+
 "" use global-cscope like cscope
 set cscopeprg=gtags-cscope
 noremap <silent> <leader>gr :GscopeFind<Space>
@@ -562,6 +581,9 @@ vnoremap <leader>ww :write! /tmp/daniel.yl.fan<CR>
 noremap  <leader>rr :read   /tmp/daniel.yl.fan<CR>
 
 noremap <leader>xx :exit! <CR>
+
+nmap <M-w> <Plug>(choosewin)
+exec "set <M-w>=\ew"
 "
 " xxd -r -p file    " convert hex to binary (ascii)
 " xxd -i file    " convert binary file to hex
