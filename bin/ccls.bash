@@ -16,6 +16,9 @@ mkdir build
 cd build
 cmake -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_EXE_LINKER_FLAGS="-fuse-ld=lld" -DCMAKE_EXE_LINKER_FLAGS=-lpthread -DCMAKE_PREFIX_PATH="/home/llvm-project/llvm;/home/llvm-project/llvm/tools/clang;/home/llvm-project/build;/home/llvm-project/build/lib" ../
 ninja
+ninja install
+ln -s /usr/local/lib/libLLVM-10git.so /usr/lib64/libLLVM-10git.so
+# llvm will install libLLVM-10git.so to /usr/local/lib which can not be found by x86_64, should be in /usr/lib64
 
 #CMakeFiles/CMakeError.log
 #9:ld.lld: error: undefined symbol: pthread_create
