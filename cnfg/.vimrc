@@ -120,6 +120,48 @@ highlight! SpellCap term=underline cterm=underline
 highlight! SpellRare term=underline cterm=underline
 highlight! SpellLocal term=underline cterm=underline
 
+set suffixes=.bak,~,.o,.h,.info,.swp,.obj,.pyc,.pyo,.egg-info,.class
+
+set wildignore=*.a,*.sh,*.out,*.out*
+set wildignore+=*.o,*.obj,*~,*.exe,*.a,*.pdb,*.lib
+set wildignore+=*.so,*.dll,*.swp,*.egg,*.jar,*.class,*.pyc,*.pyo,*.bin,*.dex
+set wildignore+=*.zip,*.7z,*.rar,*.gz,*.tar,*.gzip,*.bz2,*.tgz,*.xz
+set wildignore+=*DS_Store*,*.ipch
+set wildignore+=*.gem
+set wildignore+=*.png,*.jpg,*.gif,*.bmp,*.tga,*.pcx,*.ppm,*.img,*.iso
+set wildignore+=*.swp,*/.Trash/**,*.pdf,*.dmg,*/.rbenv/**
+set wildignore+=*/.nx/**,*.app,*.git,.git
+set wildignore+=*.wav,*.mp3,*.ogg,*.pcm
+set wildignore+=*.mht,*.suo,*.sdf,*.jnlp
+set wildignore+=*.chm,*.epub,*.pdf,*.mobi,*.ttf
+set wildignore+=*.mp4,*.avi,*.flv,*.mov,*.mkv,*.swf,*.swc
+set wildignore+=*.ppt,*.pptx,*.docx,*.xlt,*.xls,*.xlsx,*.odt,*.wps
+set wildignore+=*.msi,*.crx,*.deb,*.vfd,*.apk,*.ipa,*.bin,*.msu
+set wildignore+=*.gba,*.sfc,*.078,*.nds,*.smd,*.smc
+set wildignore+=*.linux2,*.win32,*.darwin,*.freebsd,*.linux,*.android
+
+" map ALT key to Meta key, change Alt to ESC+X, means when pressed ALT+X, terminal will send <ESC>x (code 0x27, 0x78)
+" Putty -> Keyboard -> AltGr acts as Compose key  &&  Contro-Alt is different from AltGr,  default is ALT+X sending <ESC>x
+"noremap <ESC>x :echo "ALT-X pressed"<cr>
+noremap <M-1> :tabn 1<cr>
+exec "set <M-1>=\e1"
+noremap <M-2> :tabn 2<cr>
+exec "set <M-2>=\e2"
+noremap <M-3> :tabn 3<cr>
+exec "set <M-3>=\e3"
+noremap <M-4> :tabn 4<cr>
+exec "set <M-4>=\e4"
+noremap <M-5> :tabn 5<cr>
+exec "set <M-5>=\e5"
+noremap <M-6> :tabn 6<cr>
+exec "set <M-6>=\e6"
+noremap <M-7> :tabn 7<cr>
+exec "set <M-7>=\e7"
+noremap <M-8> :tabn 8<cr>
+exec "set <M-8>=\e8"
+noremap <M-9> :tabn 9<cr>
+exec "set <M-9>=\e9"
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 let mapleader=";"
@@ -180,7 +222,8 @@ Plug 'kshenoy/vim-signature'
 Plug 'mhinz/vim-signify'
 Plug 'junegunn/vim-easy-align'
 
-Plug 'dyng/ctrlsf.vim',
+Plug 'junegunn/fzf'
+Plug 'dyng/ctrlsf.vim'
 Plug 'Valloric/YouCompleteMe'
 Plug 'dense-analysis/ale'
 Plug 'scrooloose/nerdcommenter'
@@ -357,7 +400,7 @@ highlight PMenuSel ctermfg=10 ctermbg=1
 let g:Lf_RootMarkers = ['.project', '.root', '.git']
 
 let g:fzf_tags_command = 'gtags'
-set rtp+=~/local/fzf
+set rtp+=/usr/bin
 let g:fzf_layout = { 'right': '~50%' }
 
 "TOhtml
@@ -390,13 +433,17 @@ let g:gutentags_modules = [ 'ctags', 'gtags_cscope' ]
 let g:gutentags_plus_switch = 1
 let g:gutentags_plus_nomap = 1
 let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']
-set wildignore=*.a,*.o,*.so,*.sh,*.jar,*.tar,*.gz,*.zip,*.out,*.out*
 let g:gutentags_ctags_exclude_wildignore = 1
 "let g:gutentags_trace = 1
 "let g:gutentags_file_list_command = 'ag --filename-pattern c --files-with-matches'
 "let g:gutentags_ctags_exclude = [ 'obj' ]
-
-" use global-cscope like cscope
+"
+noremap <silent> <leader>ld :ALEGoToDefinition<cr>
+noremap <silent> <leader>ls :ALESymbolSearch<cr>
+noremap <silent> <leader>lc :ALEFindReferences<cr>
+noremap <silent> <leader>lh :ALEHover<cr>
+"
+"" use global-cscope like cscope
 set cscopeprg=gtags-cscope
 noremap <silent> <leader>gr :GscopeFind<Space>
 noremap <silent> <leader>gs :GscopeFind s <C-R><C-W><cr>
@@ -455,6 +502,7 @@ noremap <Leader>fs :CtrlSF<Space>
 noremap <Leader>fe :CtrlSF<Space>-R<Space>
 noremap <leader>f: :LeaderfHistoryCmd <CR>
 noremap <leader>f/ :LeaderfHistorySearch <CR>
+noremap <leader>fz :FZF <CR>
 
 "noremap <silent> <leader>gs :GscopeFind s <C-R><C-W><cr>
 "noremap <silent> <leader>gg :GscopeFind g <C-R><C-W><cr>
@@ -522,26 +570,3 @@ noremap <leader>xx :exit! <CR>
 " vnoremap ; :<c-u>s/\%V./\=printf("%x",char2nr(submatch(0)))/g<cr><c-l>`<
 " vnoremap u :<c-u>s/\%V\x\x/\=nr2char(printf("%d", "0x".submatch(0)))/g<cr><c-l>`<
 
-" map ALT key to Meta key, change Alt to ESC+X, means when pressed ALT+X, terminal will send <ESC>x (code 0x27, 0x78)
-" Putty -> Keyboard -> AltGr acts as Compose key  &&  Contro-Alt is different from AltGr,  default is ALT+X sending <ESC>x
-"noremap <ESC>x :echo "ALT-X pressed"<cr>
-noremap <M-1> 1gt<cr>
-exec "set <M-1>=\e1"
-noremap <M-2> 2gt<cr>
-exec "set <M-2>=\e2"
-noremap <M-3> 3gt<cr>
-exec "set <M-3>=\e3"
-noremap <M-4> 4gt<cr>
-exec "set <M-4>=\e4"
-noremap <M-5> 5gt<cr>
-exec "set <M-5>=\e5"
-noremap <M-6> 6gt<cr>
-exec "set <M-6>=\e6"
-noremap <M-7> 7gt<cr>
-exec "set <M-7>=\e7"
-noremap <M-8> 8gt<cr>
-exec "set <M-8>=\e8"
-noremap <M-9> 9gt<cr>
-exec "set <M-9>=\e9"
-noremap <M-0> 0gt<cr>
-exec "set <M-0>=\e0"
