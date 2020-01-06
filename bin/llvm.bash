@@ -15,8 +15,6 @@ cmake -G "Unix Makefiles" -DLLVM_TARGETS_TO_BUILD=X86 -DLLVM_ENABLE_PROJECTS="cl
 # 4, -DLLVM_ENABLE_LLD=ON  # using lld much faster than bfd/gold
 # 5, -DCMAKE_EXE_LINKER_FLAGS=-fuse-ld=lld   # the same as 4
 
-
-
 cmake --build . --target install
 
 #make --jobs=1
