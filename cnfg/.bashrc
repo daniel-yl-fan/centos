@@ -1,6 +1,6 @@
 # .bashrc
 
-export PS1="[\u@\h] \n \w \\$ "
+export PS1="[\u@\h] \w \n \\$ "
 
 set -o vi
 
