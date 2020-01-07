@@ -1,10 +1,5 @@
 # .bashrc
 
-# Source global definitions
-if [ -f /etc/bashrc ]; then
-	. /etc/bashrc
-fi
-
 export PS1="[\u@\h] \n \w \\$ "
 
 set -o vi
@@ -23,4 +18,11 @@ alias h="cheat"
 alias gcs="gtags-cscope"
 
 alias vf='vim $(fzf)'
+
+#export CHEAT_CONFIG_PATH="/root/cheat/config.yaml"
+export CHEAT_CONFIG_PATH="/media/sf_Documents/cheat/config.yaml"
+
+source /usr/bin/z.sh
+
+source /usr/local/bin/wd.sh
 
