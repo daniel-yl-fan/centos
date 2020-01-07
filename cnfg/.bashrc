@@ -1,6 +1,6 @@
 # .bashrc
 
-export PS1="\e[91m [\u@\h] \e[93m \w \n \\$"
+export PS1="\e[91m [\u@\h] \e[93m \w \n \\$ \e[0m"
 
 set -o vi
 
