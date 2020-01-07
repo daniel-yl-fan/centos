@@ -15,6 +15,8 @@ alias cls="clear ; ll"
 
 alias h="cheat"
 
+alias cat="/usr/local/bin/ccat --color-code=Keyword=red --color-code=Plaintext=green --color-code=Punctuation=yellow"
+
 alias gcs="gtags-cscope"
 
 alias vf='vim $(fzf)'
