@@ -1,7 +1,6 @@
 # .bashrc
 
-#PS1="[\u@\h] \w \n \\$ "
-PS1="\e[91m [\u@\h] \e[93m \w \n \\$ "
+PS1="[\u@\h] \w \n \\$ "
 
 set -o vi
 
