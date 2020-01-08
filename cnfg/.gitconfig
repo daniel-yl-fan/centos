@@ -28,3 +28,8 @@
     default = simple
 
 # git clone git@github.com:daniel-yl-fan/work.git
+# git clone /path/to/repository
+# git clone file:///path/to/repository
+# git://example.com[:port]/path/to/repo/project.git
+# ssh://[user@]example.com[:port]/path/to/repo/project.git
+# http[s]://example.com[:port]/path/to/repo/project.git
