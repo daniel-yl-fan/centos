@@ -95,6 +95,8 @@ flags = [
     '-I', '/usr/include',
     '-I', '-',
     '-I', DIR_OF_THIS_SCRIPT + '/.',
+    '-I', DIR_OF_THIS_SCRIPT + '/../include',
+    '-I', DIR_OF_THIS_SCRIPT + '/../inc',
 ]
 
     # '-Wall',
