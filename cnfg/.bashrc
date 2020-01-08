@@ -21,6 +21,8 @@ alias gcs="gtags-cscope"
 
 alias vf='vim $(fzf)'
 
+export CSCOPE_EDITOR=vim
+
 #export CHEAT_CONFIG_PATH="/root/cheat/config.yaml"
 export CHEAT_CONFIG_PATH="/media/sf_Documents/cheat/config.yaml"
 
