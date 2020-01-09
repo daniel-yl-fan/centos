@@ -1,6 +1,6 @@
 # .bashrc
 
-export PATH=/home/bin:$PATH
+export PATH=/home/bin:/usr/local/bin:$PATH
 
 PS1="\e[91m [\u@\h] \e[93m \w \e[0m \n \\$ "
 
@@ -28,4 +28,4 @@ alias vf='vim $(fzf)'
 alias h="cheat"
 export CHEAT_CONFIG_PATH="/home/cheatsheets/config.yaml"
 
-alias cgcs="rm -f ./.gutentags ./GTAGS ./GRTAGS ./GPATH"
+alias ct="rm -f ./.gutentags ./GTAGS ./GRTAGS ./GPATH"
