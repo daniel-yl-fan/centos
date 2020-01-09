@@ -9,7 +9,7 @@ cmake -G "Unix Makefiles" \
       ../
 make
 make install
-# llvm will install libLLVM-10git.so to /usr/local/lib which can not be found by x86_64, should be in /usr/lib64
+# libLLVM-10git.so in /usr/local/lib,  should be in /usr/lib64
 ln -s /usr/local/lib/libLLVM-10git.so /usr/lib64/libLLVM-10git.so
 
 #CMakeFiles/CMakeError.log
