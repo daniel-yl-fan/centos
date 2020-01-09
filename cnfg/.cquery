@@ -1,0 +1,9 @@
+%clang
+%c -std=gnu11
+%cpp -std=gnu++14
+-Iinclude
+-Iinc
+-I../include
+-I../inc
+-pthread
+
