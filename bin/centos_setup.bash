@@ -34,7 +34,5 @@ chmod 500 /home/bin/cheat
 
 cd /home
 git clone https://github.com/daniel-yl-fan/cheatsheets
-sed --in-place --expression="s/.dotfiles\///" /root/cheat/config.yaml
-sed --in-place --expression="\$aexport CHEAT_CONFIG_PATH="/root/cheat/config.yaml"" /root/.bashrc
 # git clone https://github.com/cheat/cheatsheets.git /home/cheatsheets/community
 # git clone https://github.com/skywind3000/awesome-cheatsheets.git /home/cheatsheets/skywind3000
