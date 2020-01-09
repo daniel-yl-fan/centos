@@ -10,4 +10,3 @@ cd /tmp  ;  git clone git://github.com/cgdb/cgdb.git
 cd cgdb  ;  ./autogen.sh && ./configure && make && make install
 rm --force --recursive /tmp/cgdb
 # /usr/local/bin/cgdb /usr/local/share/cgdb/cgdb.txt /usr/local/share/info/cgdb.info 
-

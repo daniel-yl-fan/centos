@@ -1,5 +1,7 @@
 git clone --depth=1 --recursive https://github.com/MaskRay/ccls
+
 cd ccls  &&  mkdir build  &&  cd build
+
 cmake -G "Unix Makefiles" \
       -DCMAKE_BUILD_TYPE=Release \
       -DCMAKE_CXX_FLAGS=-fno-gnu-unique \
@@ -7,8 +9,11 @@ cmake -G "Unix Makefiles" \
       -DCMAKE_EXE_LINKER_FLAGS=-lpthread \
       -DCMAKE_PREFIX_PATH="/home/llvm-project/llvm;/home/llvm-project/llvm/tools/clang;/home/llvm-project/build;/home/llvm-project/build/lib" \
       ../
+
 make
+
 make install
+
 # libLLVM-10git.so in /usr/local/lib,  should be in /usr/lib64
 ln -s /usr/local/lib/libLLVM-10git.so /usr/lib64/libLLVM-10git.so
 
