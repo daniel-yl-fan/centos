@@ -11,3 +11,14 @@ CFLAGS+=-fPIC ./configure --with-features=huge \
             --enable-luainterp=dynamic \
             --enable-cscope=yes \
             --prefix=/usr
+git clone https://github.com/junegunn/vim-plug.git /tmp/vim-plug
+cp /tmp/vim-plug/plug.vim /usr/share/vim/vim80/autoload/plug.vim
+vim -c PlugInstall -c PlugStatus -c qall
+
+mkdir /tmp/ycm-build
+cd /tmp/ycm-build
+# default compile using python2
+cmake -G "Unix Makefiles" -DEXTERNAL_LIBCLANG_PATH=/home/llvm-project/build/lib/libclang.so . /usr/share/vim/vim80/plugged/YouCompleteMe/third_party/ycmd/cpp
+# using python3
+cmake -G "Unix Makefiles" -DUSE_PYTHON2=OFF -DEXTERNAL_LIBCLANG_PATH=/home/llvm-project/build/lib/libclang.so . /usr/share/vim/vim80/plugged/YouCompleteMe/third_party/ycmd/cpp
+make
