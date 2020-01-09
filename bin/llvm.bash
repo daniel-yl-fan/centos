@@ -1,5 +1,11 @@
+# CMake 3.4.3 or higher is required.  You are running version 2.8.12.2 ; 20200110: release-3.16
+cd /tmp
+https://gitlab.kitware.com/cmake/cmake.git
+cd tmp/cmake  &&  ./configure  &&  gmake  && make install
+
+
+
 git clone https://github.com/llvm/llvm-project.git
-# wget https://github.com/llvm/llvm-project/archive/llvmorg-9.0.1.tar.gz
 
 mkdir build  &&  cd build
 

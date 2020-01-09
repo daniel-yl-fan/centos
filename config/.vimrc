@@ -212,10 +212,9 @@ Plug 'junegunn/vim-peekaboo'
 
 Plug 'terryma/vim-multiple-cursors'
 "Plug 'kien/rainbow_parentheses'    "need installed manually
-Plug 'jiangmiao/auto-pairs'
+"Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
 
-Plug 'brafales/vim-desert256', { 'do': 'ln -s /usr/share/vim/vim82/plugged/vim-desert256/colors/desert256.vim /usr/share/vim/vim82/colors/desert256.vim' }
 Plug 'skywind3000/vim-quickui'
 Plug 'vim-airline/vim-airline'
 "Plug 'itchyny/lightline.vim'    "simpler status line
