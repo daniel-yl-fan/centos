@@ -1,10 +1,6 @@
-git clone git@github.com:daniel-yl-fan/centos.git
-
-# todo
-
-ln -s /home/centos/config/.tmux.conf
-ln -s /home/centos/config/.vimrc
-ln -s /home/centos/config/.gitconfig
+ln --force --symbolic /home/centos/config/.tmux.conf ~/.tmux.conf
+ln --force --symbolic /home/centos/config/.vimrc ~/.vimrc
+ln --force --symbolic /home/centos/config/.gitconfig ~/.gitconfig
 
 yum --assumeyes install tmux
 yum --assumeyes install python2-devel
@@ -20,7 +16,6 @@ git clone https://github.com/rupa/z.git /tmp/z
 mv --force /tmp/z/z.sh /home/bin/z.sh
 chmod 444 /home/bin/z.sh
 rm --force --recursive /tmp/z
-# in .bashrc    source /home/bin/z.sh
 
 ####  ccat
 cd /tmp
@@ -36,11 +31,9 @@ cd /tmp
 wget https://github.com/cheat/cheat/releases/download/3.2.1/cheat-linux-amd64
 mv /tmp/cheat-linux-amd64 /home/bin/cheat
 chmod 500 /home/bin/cheat
-cd /root/cheat
-cheat --init > /root/cheat/config.yaml
 
-cd /tmp
-git clone https://github.com/cheat/cheatsheets.git /root/cheat/community
+cd /home
+git clone https://github.com/daniel-yl-fan/cheatsheets
 sed --in-place --expression="s/.dotfiles\///" /root/cheat/config.yaml
 sed --in-place --expression="\$aexport CHEAT_CONFIG_PATH="/root/cheat/config.yaml"" /root/.bashrc
 # git clone https://github.com/cheat/cheatsheets.git /home/cheatsheets/community

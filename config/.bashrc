@@ -1,5 +1,7 @@
 # .bashrc
 
+export PATH=/home/bin;$PATH
+
 PS1="\e[91m [\u@\h] \e[93m \w \e[0m \n \\$ "
 
 set -o vi
@@ -13,7 +15,8 @@ alias ll="ls -l -t -c --almost-all --human-readable --reverse"
 alias lr="ls --recursive"
 alias cls="clear ; ll"
 
-alias h="cheat"
+export CSCOPE_EDITOR=vim
+
 
 alias cat="/home/bin/ccat --color-code=Keyword=red --color-code=Plaintext=green --color-code=Punctuation=yellow"
 
@@ -21,9 +24,7 @@ alias gcs="gtags-cscope"
 
 alias vf='vim $(fzf)'
 
-export CSCOPE_EDITOR=vim
-
-#export CHEAT_CONFIG_PATH="/root/cheat/config.yaml"
+alias h="cheat"
 export CHEAT_CONFIG_PATH="/home/cheatsheets/config.yaml"
 
 source /home/bin/z.sh
