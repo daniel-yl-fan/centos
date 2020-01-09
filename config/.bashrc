@@ -17,6 +17,7 @@ alias cls="clear ; ll"
 
 export CSCOPE_EDITOR=vim
 
+source /home/bin/z.sh
 
 alias cat="/home/bin/ccat --color-code=Keyword=red --color-code=Plaintext=green --color-code=Punctuation=yellow"
 
@@ -27,4 +28,4 @@ alias vf='vim $(fzf)'
 alias h="cheat"
 export CHEAT_CONFIG_PATH="/home/cheatsheets/config.yaml"
 
-source /home/bin/z.sh
+alias cgcs="rm -f ./.gutentags ./GTAGS ./GRTAGS ./GPATH"
