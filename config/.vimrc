@@ -193,9 +193,7 @@ colorscheme desert256
 
 set grepprg=ag
 
-call plug#begin('/usr/share/vim/vim82/plugged')
-
-"Plug 'junegunn/vim-plug'
+call plug#begin('~/local/share/vim/vim82/plugged')
 
 Plug 'dhruvasagar/vim-zoom'
 Plug 'easymotion/vim-easymotion'
@@ -211,7 +209,7 @@ Plug 'Yggdroot/LeaderF'
 Plug 'junegunn/vim-peekaboo'
 
 Plug 'terryma/vim-multiple-cursors'
-"Plug 'kien/rainbow_parentheses'    "need installed manually
+Plug 'luochen1990/rainbow'
 "Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
 
@@ -343,30 +341,12 @@ if !exists('g:easy_align_delimiters')
 endif
 let g:easy_align_delimiters['#'] = { 'pattern': '#', 'ignore_groups': ['String'] }
 
-let g:rbpt_colorpairs = [
-    \ ['brown',       'RoyalBlue3'],
-    \ ['Darkblue',    'SeaGreen3'],
-    \ ['darkgray',    'DarkOrchid3'],
-    \ ['darkgreen',   'firebrick3'],
-    \ ['darkcyan',    'RoyalBlue3'],
-    \ ['darkred',     'SeaGreen3'],
-    \ ['darkmagenta', 'DarkOrchid3'],
-    \ ['brown',       'firebrick3'],
-    \ ['gray',        'RoyalBlue3'],
-    \ ['black',       'SeaGreen3'],
-    \ ['darkmagenta', 'DarkOrchid3'],
-    \ ['Darkblue',    'firebrick3'],
-    \ ['darkgreen',   'RoyalBlue3'],
-    \ ['darkcyan',    'SeaGreen3'],
-    \ ['darkred',     'DarkOrchid3'],
-    \ ['red',         'firebrick3'],
-    \ ]
-let g:rbpt_max = 16
-let g:rbpt_loadcmd_toggle = 0
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
+let g:rainbow_active = 1 
+let g:rainbow_conf = {
+\	'operators': '_,\|+\|-\|*\|\/\|==\|!=\|<=\|>=\|!\|:_',
+\	'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
+\}
+
 
 "set diffopt+=internal,algorithm:patience
 
@@ -377,7 +357,7 @@ au Syntax * RainbowParenthesesLoadBraces
 "let g:ycm_clangd_uses_ycmd_caching = 0
 " Use installed clangd, not YCM-bundled clangd which doesn't get updates.
 "let g:ycm_clangd_binary_path = exepath("clangd")
-"let g:ycm_clangd_binary_path = "~/local/bin/clangd"
+"let g:ycm_clangd_binary_path = "~/bin/clangd"
 "let g:ycm_add_preview_to_completeopt = 0
 "let g:ycm_show_diagnostics_ui = 0
 "let g:ycm_error_symbol
@@ -392,7 +372,7 @@ let g:ycm_complete_in_strings = 1
 "let g:ycm_collect_identifiers_from_tags_files = 1
 "let g:ycm_seed_identifiers_with_syntax = 1
 let g:ycm_use_clangd = "Never"
-let g:ycm_global_ycm_extra_conf='/usr/share/vim/vim82/plugged/YouCompleteMe/.ycm_extra_conf.py'
+let g:ycm_global_ycm_extra_conf='~/local/centos/config/.ycm_extra_conf.py'
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_max_diagnostics_to_display = 1000
 let g:ycm_semantic_triggers =  { 'c,cpp,bash,python,java,go,erlang,perl': ['re!\w{2}'] }
@@ -475,7 +455,7 @@ noremap <silent> <leader>gi :GscopeFind i <C-R>=expand("<cfile>")<cr><cr>
 noremap <silent> <leader>gd :GscopeFind d <C-R><C-W><cr>
 noremap <silent> <leader>ga :GscopeFind a <C-R><C-W><cr>
 
-source /usr/share/vim/vim82/vim-quickui.vim
+source ~/local/share/vim/vim82/plugin/vim-quickui.vim
 
 let g:lightline = {
       \ 'colorscheme': 'powerline',
