@@ -210,7 +210,7 @@ Plug 'junegunn/vim-peekaboo'
 
 Plug 'terryma/vim-multiple-cursors'
 Plug 'luochen1990/rainbow'
-"Plug 'jiangmiao/auto-pairs'
+"Plug 'jiangmiao/auto-pairs'  "conflict with rainbow
 Plug 'tpope/vim-surround'
 
 Plug 'skywind3000/vim-quickui'
@@ -341,12 +341,12 @@ if !exists('g:easy_align_delimiters')
 endif
 let g:easy_align_delimiters['#'] = { 'pattern': '#', 'ignore_groups': ['String'] }
 
-let g:rainbow_active = 1 
+let g:rainbow_active = 1
 let g:rainbow_conf = {
-\	'operators': '_,\|+\|-\|*\|\/\|==\|!=\|<=\|>=\|!\|:_',
-\	'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
+\    'ctermfgs': ['blue', 'red', 'green', 'magenta','cyan', 'yellow', 'darkblue', 'darkred', 'darkgreen', 'darkmagenta', 'darkcyan', 'darkyellow'],
+\    'operators': '_,\|/\|<\|>\|?\|;\|:\|"\|!\|%\|&\|*\|+\|-\|=_',
+\    'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
 \}
-
 
 "set diffopt+=internal,algorithm:patience
 
@@ -371,8 +371,9 @@ let g:ycm_complete_in_strings = 1
 "let g:ycm_collect_identifiers_from_comments_and_strings = 0
 "let g:ycm_collect_identifiers_from_tags_files = 1
 "let g:ycm_seed_identifiers_with_syntax = 1
+let g:ycm_server_python_interpreter = '/usr/bin/python'
 let g:ycm_use_clangd = "Never"
-let g:ycm_global_ycm_extra_conf='~/local/centos/config/.ycm_extra_conf.py'
+let g:ycm_global_ycm_extra_conf = '~/local/centos/config/.ycm_extra_conf.py'
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_max_diagnostics_to_display = 1000
 let g:ycm_semantic_triggers =  { 'c,cpp,bash,python,java,go,erlang,perl': ['re!\w{2}'] }
@@ -427,7 +428,10 @@ let g:gutentags_ctags_exclude_wildignore = 1
 "let g:gutentags_trace = 1
 "let g:gutentags_file_list_command = 'ag --filename-pattern c --files-with-matches'
 "let g:gutentags_ctags_exclude = [ 'obj' ]
-"
+
+let g:vista#executives = ['ale', 'ctags', 'gtags']
+let g:vista#finders = ['fzf', 'ag' ]
+
 noremap <silent> <leader>ld :ALEGoToDefinition<cr>
 noremap <silent> <leader>ls :ALESymbolSearch
 noremap <silent> <leader>lr :ALEFindReferences<cr>
