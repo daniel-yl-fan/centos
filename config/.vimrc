@@ -430,7 +430,7 @@ let g:gutentags_ctags_exclude_wildignore = 1
 "
 noremap <silent> <leader>ld :ALEGoToDefinition<cr>
 noremap <silent> <leader>ls :ALESymbolSearch
-noremap <silent> <leader>lc :ALEFindReferences<cr>
+noremap <silent> <leader>lr :ALEFindReferences<cr>
 noremap <silent> <leader>lh :ALEHover<cr>
 
 hi! clear SpellBad
