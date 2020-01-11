@@ -8,7 +8,7 @@ git clone https://github.com/llvm/llvm-project.git ~/local/llvm-project
 mkdir build  &&  cd build
 
 cmake -G "Unix Makefiles" \
-      --prefix=/home/dafan/local \
+      -DCMAKE_INSTALL_PREFIX=/home/dafan/local \
       -DLLVM_TARGETS_TO_BUILD=X86 \
       -DLLVM_ENABLE_PROJECTS="clang;clang-tools-extra" \
       -DCMAKE_BUILD_TYPE=Release \
