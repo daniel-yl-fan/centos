@@ -23,5 +23,3 @@ alias cat="~/local/bin/ccat --color-code=Keyword=red --color-code=Plaintext=gree
 alias vf='vim $(fzf)'
 
 alias gcs="gtags-cscope"
-
-alias cln="rm -f ./.gutentags ./GTAGS ./GRTAGS ./GPATH"

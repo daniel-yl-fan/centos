@@ -416,6 +416,7 @@ let g:ale_lint_on_insert_leave = 1
 let g:gutentags_project_root = [ '.git', '.project', '.root' ]
 let g:gutentags_add_default_project_roots = 0
 let g:gutentags_exclude_project_root = [ 'obj' ]
+let g:gutentags_cache_dir = expand('~/.cache/tags')
 let g:gutentags_ctags_tagfile = '.gutentags'
 let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extras=+q']
 let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
