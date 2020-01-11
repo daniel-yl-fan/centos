@@ -169,6 +169,22 @@ exec "set <M-8>=\e8"
 noremap <M-9> :tabn 9<cr>
 exec "set <M-9>=\e9"
 
+"<C-%>/<C-]> jump to tag
+"map <C-@><key> :command<CR>  80<yX>
+"map <C-[>/<C-#><key> :command<CR>  ^[ ESC escap
+"map <C-\>/<C-$><key> :command<CR>  ^\
+"map <C-^><key> :command<CR> alternate file ^^
+
+map <C-@>1 :buffer1<CR>
+map <C-@>2 :buffer2<CR>
+map <C-@>3 :buffer3<CR>
+map <C-@>4 :buffer4<CR>
+map <C-@>5 :buffer5<CR>
+map <C-@>6 :buffer6<CR>
+map <C-@>7 :buffer7<CR>
+map <C-@>8 :buffer8<CR>
+map <C-@>9 :buffer9<CR>
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 let mapleader=";"
@@ -578,5 +594,5 @@ noremap  <leader>rr :read   /tmp/daniel.yl.fan<CR>
 
 noremap <leader>xx :exit! <CR>
 
-nmap <M-w> <Plug>(choosewin)
-exec "set <M-w>=\ew"
+nmap <M-0> <Plug>(choosewin)
+exec "set <M-0>=\e0"
