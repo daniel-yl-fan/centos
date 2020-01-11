@@ -25,7 +25,7 @@ cmake -G "Unix Makefiles" \
 
 make --jobs=1
 
-#make install
+make install
 
 #cmake --build . --target install
 
