@@ -411,7 +411,7 @@ let g:airline#extensions#ale#enabled = 1
 "let g:airline#extensions#tabline#tabs_label = 't'
 "let g:airline#extensions#tabline#buffers_label = 'b'
 
-let g:ale_sign_column_always = 1
+let g:ale_sign_column_always = 0
 let g:ale_lint_on_text_changed = 'normal'
 let g:ale_lint_on_insert_leave = 1
 let g:ale_set_loclist = 0
