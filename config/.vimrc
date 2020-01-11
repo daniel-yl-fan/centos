@@ -189,7 +189,7 @@ map <C-\>f :cscope find f <C-R>=expand("<cword>")<CR><CR>
 
 set tags=./.tags;,.tags
 
-colorscheme desert256
+colorscheme desert
 
 set grepprg=ag
 
@@ -407,11 +407,15 @@ let g:airline_detect_modified = 1
 let g:airline_inactive_collapse = 1
 let g:airline#extensions#gutentags#enabled = 1
 let g:airline#extensions#ale#enabled = 1
-
-let g:ale_lint_on_text_changed = 'normal'
-let g:ale_lint_on_insert_leave = 1
+let g:airline#extensions#ale#enabled = 1
 "let g:airline#extensions#tabline#tabs_label = 't'
 "let g:airline#extensions#tabline#buffers_label = 'b'
+
+let g:ale_sign_column_always = 1
+let g:ale_lint_on_text_changed = 'normal'
+let g:ale_lint_on_insert_leave = 1
+let g:ale_set_loclist = 0
+let g:ale_set_quickfix = 1
 
 let g:gutentags_project_root = [ '.git', '.project', '.root' ]
 let g:gutentags_add_default_project_roots = 0
