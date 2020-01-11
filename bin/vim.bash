@@ -39,6 +39,7 @@ vim -c PlugInstall -c PlugStatus -c qall
 mkdir /tmp/ycm-build  &&  cd /tmp/ycm-build
 
 # default python2
-#cmake -G "Unix Makefiles" -DEXTERNAL_LIBCLANG_PATH=/home/llvm-project/build/lib/libclang.so . /usr/share/vim/vim80/plugged/YouCompleteMe/third_party/ycmd/cpp
+cmake -G "Unix Makefiles" -DEXTERNAL_LIBCLANG_PATH=/home/dafan/local/llvm-project-llvmorg-9.0.1/build/lib/libclang.so .  /home/dafan/local/share/vim/vim82/plugged/YouCompleteMe/third_party/ycmd/cpp
 # python3
-cmake -G "Unix Makefiles" -DUSE_PYTHON2=OFF -DEXTERNAL_LIBCLANG_PATH=/home/llvm-project/build/lib/libclang.so . /home/vim/plugged/YouCompleteMe/third_party/ycmd/cpp
+#cmake -G "Unix Makefiles" -DUSE_PYTHON2=OFF -DEXTERNAL_LIBCLANG_PATH=/home/dafan/local/llvm-project-llvmorg-9.0.1/build/lib/libclang.so .  /home/dafan/local/share/vim/vim82/plugged/YouCompleteMe/third_party/ycmd/cpp
+make
