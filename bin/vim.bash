@@ -24,8 +24,6 @@ make  &&  make install
 # cp gvimtutor /usr/bin/gvimtutor
 
 
-git clone https://github.com/brafales/vim-desert256.git ~/local/share/vim/vim82/colors/desert256
-ln --force --symbolic ~/local/share/vim/vim82/colors/desert256/colors/desert256.vim ~/local/share/vim/vim82/colors/desert256.vim
 
 git clone https://github.com/junegunn/vim-plug.git ~/local/share/vim/vim82/plugin/vim-plug
 ln --force --symbolic ~/local/share/vim/vim82/plugin/vim-plug/plug.vim ~/local/share/vim/vim82/autoload/plug.vim

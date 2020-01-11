@@ -140,6 +140,13 @@ set wildignore+=*.msi,*.crx,*.deb,*.vfd,*.apk,*.ipa,*.bin,*.msu
 set wildignore+=*.gba,*.sfc,*.078,*.nds,*.smd,*.smc
 set wildignore+=*.linux2,*.win32,*.darwin,*.freebsd,*.linux,*.android
 
+" xxd -r -p file    " convert hex to binary (ascii)
+" xxd -i file    " convert binary file to hex
+"
+" ascii <=> hex
+" vnoremap ; :<c-u>s/\%V./\=printf("%x",char2nr(submatch(0)))/g<cr><c-l>`<
+" vnoremap u :<c-u>s/\%V\x\x/\=nr2char(printf("%d", "0x".submatch(0)))/g<cr><c-l>`<
+
 " map ALT key to Meta key, change Alt to ESC+X, means when pressed ALT+X, terminal will send <ESC>x (code 0x27, 0x78)
 " Putty -> Keyboard -> AltGr acts as Compose key  &&  Contro-Alt is different from AltGr,  default is ALT+X sending <ESC>x
 "noremap <ESC>x :echo "ALT-X pressed"<cr>
@@ -573,11 +580,3 @@ noremap <leader>xx :exit! <CR>
 
 nmap <M-w> <Plug>(choosewin)
 exec "set <M-w>=\ew"
-"
-" xxd -r -p file    " convert hex to binary (ascii)
-" xxd -i file    " convert binary file to hex
-"
-" ascii <=> hex
-" vnoremap ; :<c-u>s/\%V./\=printf("%x",char2nr(submatch(0)))/g<cr><c-l>`<
-" vnoremap u :<c-u>s/\%V\x\x/\=nr2char(printf("%d", "0x".submatch(0)))/g<cr><c-l>`<
-
