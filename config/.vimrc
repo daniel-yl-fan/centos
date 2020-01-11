@@ -343,7 +343,7 @@ let g:easy_align_delimiters['#'] = { 'pattern': '#', 'ignore_groups': ['String']
 
 let g:rainbow_active = 1
 let g:rainbow_conf = {
-\    'ctermfgs': ['blue', 'red', 'green', 'magenta','cyan', 'yellow', 'darkblue', 'darkred', 'darkgreen', 'darkmagenta', 'darkcyan', 'darkyellow'],
+\    'ctermfgs': ['green', 'magenta', 'cyan', 'yellow', 'blue', 'red', 'darkgreen', 'darkmagenta', 'darkcyan', 'darkyellow', 'darkblue', 'darkred'],
 \    'operators': '_,\|/\|<\|>\|?\|;\|:\|"\|!\|%\|&\|*\|+\|-\|=_',
 \    'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
 \}

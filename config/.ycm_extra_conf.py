@@ -93,6 +93,8 @@ flags = [
     '-D_SIPTRANS_CSCF_CHANGE',
     '-D_SIPIA_BUS_',
     '-I', '/usr/include',
+    '-I', '/usr/include/c++/4.8.5',
+    '-I', '~/local/lib/clang/9.0.1/include',
     '-I', '-',
     '-I', DIR_OF_THIS_SCRIPT + '/.',
     '-I', DIR_OF_THIS_SCRIPT + '/../include',
