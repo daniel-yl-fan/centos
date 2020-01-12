@@ -29,6 +29,8 @@ highlight! signcolumn cterm=standout ctermfg=green ctermbg=red
 
 "set signcolumn=yes
 
+set splitright
+
 set showtabline=2
 
 "set list
@@ -279,7 +281,7 @@ noremap [l :lprev<CR>
 
 let g:Lf_CursorBlink = 1
 let g:Lf_RootMarkers = ['.git', '.root']
-let g:Lf_WindowPosition = 'bottom'
+let g:Lf_WindowPosition = 'right'
 let g:Lf_ShowRelativePath = 0
 let g:Lf_CacheDiretory = '/tmp'
 
@@ -297,9 +299,9 @@ noremap <silent> <leader>\g :AsyncRun -program=make @ all <CR>
 
 let g:paste_easy_message=0
 
-let g:peekaboo_window = 'aboveleft 30new'
+let g:peekaboo_window = 'right 80new'
 
-let g:preview#preview_position = "bottom"
+let g:preview#preview_position = "right"
 
 let g:lt_height = 80
 let g:lt_quickfix_list_toggle_map = '<leader>tq'
@@ -549,7 +551,7 @@ noremap <leader>fz :FZF <CR>
 "noremap <leader>hm :call quickui#menu#open()<cr>
 "noremap <leader>hl :call quickui#listbox#open(content, opts)<cr>
 
-noremap <leader>mc :execute "set colorcolumn=" . (&colorcolumn == "" ? "120" : "") <CR>
+noremap <leader>mc :execute "set colorcolumn=" . (&colorcolumn == "" ? "100" : "") <CR>
 
 "noremap <leader>nt :tabnew<CR>
 
@@ -564,7 +566,7 @@ noremap <leader>sd :!git dt <CR>
 "noremap <leader>sgf :GFiles <CR>
 "noremap <leader>sgs :GFiles? <CR>
 "nmap <leader>sh :vertical belowright terminal <CR>
-nmap <leader>sh :belowright terminal <CR>
+nmap <leader>sh :vertical terminal <CR>
 
 nmap <leader>vd :vert diffsplit <Space>
 nmap <leader>vt :PreviewTag <CR>
