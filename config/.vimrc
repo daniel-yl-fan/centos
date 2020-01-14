@@ -456,13 +456,6 @@ let g:ale_cpp_clang_options = '
     \ -DLINUX
     \ -D_REENTRANT
     \ -D_POSIX_PTHREAD_SEMANTICS
-    \ -DNM_NOT_CONFIGURED
-    \ -DRTP_64BIT
-    \ -DHSS_NODE
-    \ -DTRC_PERF_RELEASE-Werror
-    \ -I/home/dafan/hss2/ims_hss1/inc_blr
-    \ -I/home/dafan/hss2/ims_common/inc_blr
-    \ -I../inc
     \ '
 
 let g:gutentags_project_root = [ '.git', '.project', '.root' ]
