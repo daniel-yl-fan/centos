@@ -30,6 +30,7 @@ highlight! signcolumn cterm=standout ctermfg=green ctermbg=red
 "set signcolumn=yes
 
 set splitright
+set splitbelow
 
 set showtabline=2
 
@@ -287,7 +288,7 @@ let g:Lf_CacheDiretory = '/tmp'
 
 let g:ackprg='ag'
 let g:ctrlsf_regex_pattern=1
-let g:ctrlsf_position='bottom'
+let g:ctrlsf_position='right'
 let g:ctrlsf_winsize = '50%'
 "let g:ctrlsf_winsize = '120'
 
@@ -299,7 +300,7 @@ noremap <silent> <leader>\g :AsyncRun -program=make @ all <CR>
 
 let g:paste_easy_message=0
 
-let g:peekaboo_window = 'right 80new'
+let g:peekaboo_window = 'split botright 30new'
 
 let g:preview#preview_position = "right"
 
@@ -441,21 +442,45 @@ let g:ale_lint_on_text_changed = 'normal'
 let g:ale_lint_on_insert_leave = 1
 let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 1
+let g:ale_cpp_clang_options = '
+    \ -fPIC
+    \ -O2
+    \ -g
+    \ -DDEBUG
+    \ -m64
+    \ -std=c++11
+    \ -Wall
+    \ -Wno-conversion
+    \ -Wno-sign-conversion
+    \ -Wno-reorder
+    \ -DLINUX
+    \ -D_REENTRANT
+    \ -D_POSIX_PTHREAD_SEMANTICS
+    \ -DNM_NOT_CONFIGURED
+    \ -DRTP_64BIT
+    \ -DHSS_NODE
+    \ -DTRC_PERF_RELEASE-Werror
+    \ -I/home/dafan/hss2/ims_hss1/inc_blr
+    \ -I/home/dafan/hss2/ims_common/inc_blr
+    \ -I../inc
+    \ '
 
 let g:gutentags_project_root = [ '.git', '.project', '.root' ]
 let g:gutentags_add_default_project_roots = 0
 let g:gutentags_exclude_project_root = [ 'obj' ]
-let g:gutentags_cache_dir = expand('~/.cache/tags')
+let g:gutentags_cache_dir = expand('/home/dafan/.cache/tags')
 let g:gutentags_ctags_tagfile = '.gutentags'
 let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extras=+q']
 let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
 let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
-let g:gutentags_modules = [ 'ctags', 'gtags_cscope' ]
-let g:gutentags_plus_switch = 1
-let g:gutentags_plus_nomap = 1
+let g:gutentags_modules = [ 'ctags', 'cscope', 'gtags_cscope' ]
 let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']
 let g:gutentags_ctags_exclude_wildignore = 1
-"let g:gutentags_trace = 1
+let g:gutentags_cscope_executable = "gtags-cscope"
+let g:gutentags_define_advanced_commands = 1
+let g:gutentags_trace = 0
+let g:gutentags_plus_switch = 1
+let g:gutentags_plus_nomap = 1
 "let g:gutentags_file_list_command = 'ag --filename-pattern c --files-with-matches'
 "let g:gutentags_ctags_exclude = [ 'obj' ]
 
