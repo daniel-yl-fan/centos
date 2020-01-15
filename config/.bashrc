@@ -18,7 +18,7 @@ alias h="~/local/bin/cheat"
 
 source ~/local/z/z.sh
 
-alias cat="~/local/bin/ccat --color-code=Keyword=red --color-code=Plaintext=green --color-code=Punctuation=yellow"
+alias cat="~/local/bin/ccat --color-code=Keyword=red --color-code=Plaintext=green --color-code=Punctuation=yellow --color-code=Decimal=turquoise"
 
 alias vf='vim $(fzf)'
 

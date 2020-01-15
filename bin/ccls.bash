@@ -7,7 +7,7 @@ cmake -G "Unix Makefiles" \
       -DCMAKE_CXX_FLAGS=-fno-gnu-unique \
       -DCMAKE_EXE_LINKER_FLAGS='-fuse-ld=gold -Wl,--no-gnu-unique' \
       -DCMAKE_EXE_LINKER_FLAGS=-lpthread \
-      -DCMAKE_PREFIX_PATH="/home/llvm-project/llvm;/home/llvm-project/llvm/tools/clang;/home/llvm-project/build;/home/llvm-project/build/lib" \
+      -DCMAKE_PREFIX_PATH="/home/dafan/local/llvm-project/llvm;/home/dafan/local/llvm-project/llvm/tools/clang;/home/dafan/local/llvm-project/build;/home/llvm-project/build/lib" \
       ../
 
 make

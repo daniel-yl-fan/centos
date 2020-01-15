@@ -433,7 +433,6 @@ let g:airline_detect_modified = 1
 let g:airline_inactive_collapse = 1
 let g:airline#extensions#gutentags#enabled = 1
 let g:airline#extensions#ale#enabled = 1
-let g:airline#extensions#ale#enabled = 1
 "let g:airline#extensions#tabline#tabs_label = 't'
 "let g:airline#extensions#tabline#buffers_label = 'b'
 
@@ -442,6 +441,7 @@ let g:ale_lint_on_text_changed = 'normal'
 let g:ale_lint_on_insert_leave = 1
 let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 1
+let b:ale_linters = ['clang']
 let g:ale_cpp_clang_options = '
     \ -fPIC
     \ -O2
