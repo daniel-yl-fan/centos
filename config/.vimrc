@@ -479,6 +479,8 @@ let g:gutentags_plus_nomap = 1
 
 let g:vista#executives = ['ale', 'ctags', 'gtags']
 let g:vista#finders = ['fzf', 'ag' ]
+let g:vista_fzf_preview = ['right:50%']
+let g:vista_sidebar_width  = 120
 
 noremap <silent> <leader>ld :ALEGoToDefinition<cr>
 noremap <silent> <leader>ls :ALESymbolSearch
