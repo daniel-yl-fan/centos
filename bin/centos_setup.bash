@@ -1,5 +1,8 @@
 # ssh-keygen, ~/.ssh/id_rsa.pub github.com/daniel-yl-fan
 
+# VBoxGuestAdditions_6.0.4
+dnf install elfutils-libelf-devel
+
 mkdir -p ~/local
 
 git clone git@github.com:daniel-yl-fan/centos         ~/local/centos
