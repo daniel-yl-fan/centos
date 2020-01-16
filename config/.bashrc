@@ -1,6 +1,9 @@
 # .bashrc
 
+export LS_COLORS="$LS_COLORS:di=1;94"
+
 export PATH=~/local/bin:$PATH
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/dafan/local/lib
 
 PS1="\e[91m [\u@\h] \e[93m \w \e[0m \n \\$ "
 

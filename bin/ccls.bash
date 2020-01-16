@@ -1,21 +1,21 @@
-git clone --depth=1 --recursive https://github.com/MaskRay/ccls
+git clone --depth=1 --recursive https://github.com/MaskRay/ccls ~/local/ccls-build
 
-cd ccls  &&  mkdir build  &&  cd build
+cd ~/local/ccls-build  &&  mkdir build  &&  cd build
 
-cmake -G "Unix Makefiles" \
+cmake -G Ninja \
+      -DCMAKE_INSTALL_PREFIX=/home/dafan/local \
       -DCMAKE_BUILD_TYPE=Release \
-      -DCMAKE_CXX_FLAGS=-fno-gnu-unique \
-      -DCMAKE_EXE_LINKER_FLAGS='-fuse-ld=gold -Wl,--no-gnu-unique' \
+      -DCMAKE_CXX_COMPILER=/home/dafan/local/bin/clang++ \
       -DCMAKE_EXE_LINKER_FLAGS=-lpthread \
-      -DCMAKE_PREFIX_PATH="/home/dafan/local/llvm-project/llvm;/home/dafan/local/llvm-project/llvm/tools/clang;/home/dafan/local/llvm-project/build;/home/llvm-project/build/lib" \
+      -DCMAKE_PREFIX_PATH="/home/dafan/local/llvm-project-build/llvm;/home/dafan/local/llvm-project-build/llvm/tools/clang;/home/dafan/local/llvm-project-build/build;/home/dafan/local/llvm-project-build/build/lib" \
       ../
 
-make
+ninja -v -j 2
 
-make install
+ninja install
 
 # libLLVM-10git.so in /usr/local/lib,  should be in /usr/lib64
-ln -s /usr/local/lib/libLLVM-10git.so /usr/lib64/libLLVM-10git.so
+# ln -s /usr/local/lib/libLLVM-10git.so /usr/lib64/libLLVM-10git.so
 
 #CMakeFiles/CMakeError.log
 #9:ld.lld: error: undefined symbol: pthread_create
