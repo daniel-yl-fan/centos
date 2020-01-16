@@ -239,6 +239,7 @@ Plug 'luochen1990/rainbow'
 "Plug 'jiangmiao/auto-pairs'  "conflict with rainbow
 Plug 'tpope/vim-surround'
 
+Plug 'flazz/vim-colorschemes'
 Plug 'skywind3000/vim-quickui'
 Plug 'vim-airline/vim-airline'
 "Plug 'itchyny/lightline.vim'    "simpler status line
@@ -354,6 +355,18 @@ function! s:config_easyfuzzymotion(...) abort
   \ }), get(a:, 1, {}))
 endfunction
 noremap <silent><expr> <Space>/ incsearch#go(<SID>config_easyfuzzymotion())
+"hi EasyMotionTarget ctermbg=noe ctermfg=green
+"hi EasyMotionShade  ctermbg=none ctermfg=blue
+"hi EasyMotionTarget2First ctermbg=none ctermfg=red
+"hi EasyMotionTarget2Second ctermbg=none ctermfg=lightred
+"hi EasyMotionMoveHL ctermbg=green ctermfg=black
+"hi EasyMotionIncSearch ctermbg=green ctermfg=black
+"hi link EasyMotionTarget ErrorMsg
+"hi link EasyMotionShade  Comment
+"hi link EasyMotionTarget2First MatchParen
+"hi link EasyMotionTarget2Second MatchParen
+"hi link EasyMotionMoveHL Search
+"hi link EasyMotionIncSearch Search
 
 let g:indent_guides_auto_colors = 0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=3
