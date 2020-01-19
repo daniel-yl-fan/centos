@@ -14,7 +14,7 @@ ninja -v -j 2
 
 ninja install
 
-# upgrade gcc
+# upgrade cmake gcc
 
 # cannot find -ltinfo
 # yum install ncurses-devel
