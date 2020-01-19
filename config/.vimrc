@@ -454,9 +454,6 @@ let g:ale_lint_on_text_changed = 'normal'
 let g:ale_lint_on_insert_leave = 1
 let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 1
-"let b:ale_linters = ['clang++', 'ccls']
-"let b:ale_linters = ['gcc', 'ccls']
-let b:ale_linters = ['ccls']
 let g:ale_cpp_clang_options = '
     \ -fPIC
     \ -O2
