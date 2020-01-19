@@ -14,6 +14,17 @@ ninja -v -j 2
 
 ninja install
 
+# cannot find -ltinfo
+# yum install ncurses-devel
+
+#ccls/src/utils.hh:6:10: fatal error: 'optional' file not found
+  # Common GCC/Clang(Linux) options
+#  target_compile_options(ccls PRIVATE
+#                         -Wall
+#                         -Wno-sign-compare
+#                         -I/home/dafan/local/llvm-project-llvmorg-9.0.1/libcxx/include
+#                         )
+
 # libLLVM-10git.so in /usr/local/lib,  should be in /usr/lib64
 # ln -s /usr/local/lib/libLLVM-10git.so /usr/lib64/libLLVM-10git.so
 
