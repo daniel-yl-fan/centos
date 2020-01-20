@@ -273,6 +273,7 @@ Plug 'mhinz/vim-signify'
 Plug 'Yggdroot/LeaderF'
 Plug 'junegunn/fzf'
 
+Plug 'tpope/vim-repeat'
 Plug 'skywind3000/asyncrun.vim'
 
 call plug#end()
