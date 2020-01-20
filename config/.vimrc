@@ -422,9 +422,13 @@ let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
 highlight PMenu ctermfg=9 ctermbg=4
 highlight PMenuSel ctermfg=10 ctermbg=1
+" YcmRestartServer
+" YcmForceCompileAndDiagnostics
+" YcmShowDetailedDiagnostic
 " YcmToggleLogs
 " YcmDebugInfo
 " YcmDiags
+" YcmCompleter
 
 let g:Lf_RootMarkers = ['.project', '.root', '.git']
 
