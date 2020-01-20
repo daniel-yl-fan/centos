@@ -111,3 +111,15 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/dafan/local/lib
 git clone https://github.com/cgdb/cgdb.git ~/local/cgdb-build
 cd ~/local/cgdb-build
 ./autogen.sh  &&  ./configure --prefix=/home/dafan/local --with-readline=/home/dafan/local  &&  make --jobs=2 &&  make install
+
+# CMake
+https://github.com/Kitware/CMake.git
+yum install openssl-devel
+./bootstrap  &&  make   &&   make install
+
+# gcc  (GCC) 4.8.5 20150623 (Red Hat 4.8.5-39)
+yum install glibc++-devel
+git clone https://github.com/gcc-mirror/gcc.git
+./contrib/download_prerequisites
+./configure --disable-multilib
+make
