@@ -5,7 +5,6 @@ yum install perl gcc dkms kernel-devel kernel-headers make bzip2
 yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 
 
-
 # ssh-keygen, ~/.ssh/id_rsa.pub github.com/daniel-yl-fan
 
 mkdir -p ~/local
