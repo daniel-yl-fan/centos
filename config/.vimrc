@@ -221,58 +221,59 @@ set grepprg=ag
 
 call plug#begin('~/local/share/vim/vim82/plugged')
 
-Plug 'dhruvasagar/vim-zoom'
-Plug 'easymotion/vim-easymotion'
-Plug 'roxma/vim-paste-easy'
-Plug 'haya14busa/vim-easyoperator-line'
-Plug 'haya14busa/vim-easyoperator-phrase'
 Plug 'haya14busa/incsearch.vim'
 Plug 'haya14busa/incsearch-fuzzy.vim'
 Plug 'haya14busa/incsearch-easymotion.vim'
-Plug 'skywind3000/asyncrun.vim'
-
-Plug 'Yggdroot/LeaderF'
-Plug 'junegunn/vim-peekaboo'
-
-Plug 'terryma/vim-multiple-cursors'
-Plug 'luochen1990/rainbow'
-"Plug 'jiangmiao/auto-pairs'  "conflict with rainbow
-Plug 'tpope/vim-surround'
-
-Plug 'flazz/vim-colorschemes'
-Plug 'skywind3000/vim-quickui'
-Plug 'vim-airline/vim-airline'
-"Plug 'itchyny/lightline.vim'    "simpler status line
-Plug 't9md/vim-choosewin'
-Plug 'kshenoy/vim-signature'
-Plug 'mhinz/vim-signify'
-Plug 'junegunn/vim-easy-align'
-
-Plug 'junegunn/fzf'
-Plug 'dyng/ctrlsf.vim'
-Plug 'Valloric/YouCompleteMe'
-Plug 'dense-analysis/ale'
-Plug 'Shougo/echodoc.vim'
-Plug 'scrooloose/nerdcommenter'
-Plug 'nathanaelkane/vim-indent-guides'
-
+Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-unimpaired'
-Plug 'vim-scripts/gtags.vim'
-Plug 'ludovicchabant/vim-gutentags'
-Plug 'skywind3000/gutentags_plus'
-Plug 'skywind3000/vim-preview'
-Plug 'Valloric/ListToggle'
-Plug 'liuchengxu/vista.vim'
+Plug 'haya14busa/vim-easyoperator-line'
+Plug 'haya14busa/vim-easyoperator-phrase'
 
-Plug 'tpope/vim-fugitive'
-Plug 'octol/vim-cpp-enhanced-highlight', { 'for': ['c', 'cpp'] }
-Plug 'chrisbra/vim-diff-enhanced'
+Plug 'junegunn/vim-easy-align'
+Plug 'tpope/vim-surround'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'scrooloose/nerdcommenter'
+Plug 'roxma/vim-paste-easy'
+"Plug 'jiangmiao/auto-pairs'  "conflict with rainbow
 
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-indent'
 Plug 'kana/vim-textobj-syntax'
 Plug 'kana/vim-textobj-function', { 'for': ['c', 'cpp'] }
 Plug 'sgur/vim-textobj-parameter'
+
+Plug 'flazz/vim-colorschemes'
+Plug 'kshenoy/vim-signature'
+Plug 'junegunn/vim-peekaboo'
+Plug 'luochen1990/rainbow'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'chrisbra/vim-diff-enhanced'
+Plug 'octol/vim-cpp-enhanced-highlight', { 'for': ['c', 'cpp'] }
+Plug 'vim-airline/vim-airline'
+"Plug 'itchyny/lightline.vim'    "simpler status line
+
+Plug 't9md/vim-choosewin'
+Plug 'dhruvasagar/vim-zoom'
+Plug 'Valloric/ListToggle'
+Plug 'skywind3000/vim-quickui'
+
+Plug 'vim-scripts/gtags.vim'
+Plug 'ludovicchabant/vim-gutentags'
+Plug 'skywind3000/gutentags_plus'
+Plug 'skywind3000/vim-preview'
+Plug 'dyng/ctrlsf.vim'
+Plug 'liuchengxu/vista.vim'
+Plug 'Valloric/YouCompleteMe'
+Plug 'dense-analysis/ale'
+Plug 'Shougo/echodoc.vim'
+
+Plug 'tpope/vim-fugitive'
+Plug 'mhinz/vim-signify'
+
+Plug 'Yggdroot/LeaderF'
+Plug 'junegunn/fzf'
+
+Plug 'skywind3000/asyncrun.vim'
 
 call plug#end()
 
