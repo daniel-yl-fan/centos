@@ -3,39 +3,28 @@ dnf install elfutils-libelf-devel
 
 # ssh-keygen, ~/.ssh/id_rsa.pub github.com/daniel-yl-fan
 
-mkdir -p ~/local
+git clone https://github.com/daniel-yl-fan/centos    /home/centos
 
-git clone git@github.com:daniel-yl-fan/centos         ~/local/centos
+ln --force --symbolic /home/centos/config/.tmux.conf    ~/.tmux.conf
+ln --force --symbolic /home/centos/config/.gitconfig    ~/.gitconfig
 
-ln --force --symbolic ~/local/centos/config/.tmux.conf    ~/.tmux.conf
-ln --force --symbolic ~/local/centos/config/.gitconfig    ~/.gitconfig
-
-sed --in-place --expression="\$asource ~/local/centos/config/.bashrc"   ~/.bashrc
+sed --in-place --expression="\$asource /home/centos/config/.bashrc"   ~/.bashrc
 sed --in-place --expression="\$asource ~/local/centos/config/.vimrc"   ~/.vimrc
 
-
 dnf --assumeyes install python36 python36-devel
+ln --symbolic /usr/bin/python3.6 /usr/bin/python
 
 ####  ninja
-git clone https://github.com/ninja-build/ninja.git ~/local/ninja-build
-cd ~/local/ninja-build
+git clone https://github.com/ninja-build/ninja.git /home/ninja-build
+cd /home/ninja-build
 ./configure.py --bootstrap
-ln --symbolic --force ~/local/ninja-build/ninja ~/local/bin/ninja
-
-####  tmux
-dnf install libevent-devel
-dnf install ncurses-devel
-git clone https://github.com/tmux/tmux.git ~/local/tmux-build
-cd ~/local/tmux-build
-./autogen.sh  &&  ./configure --prefix=/home/dafan/local  &&  make --jobs=2  &&  make install
-hash -r    # disable system tmux
+ln --symbolic --force /home/ninja-build/ninja /usr/bin/ninja
 
 ####  sshfs
-cd ~/local
-wget https://download-ib01.fedoraproject.org/pub/epel/7/x86_64/Packages/f/fuse-sshfs-2.10-1.el7.x86_64.rpm -O ~/local/fuse-sshfs-2.10-1.el7.x86_64.rpm
-rpm2cpio fuse-sshfs-2.10-1.el7.x86_64.rpm | cpio -idmv
-cp --force --recursive ~/local/usr/* ~/local
-rm --force --recursive ~/local/usr
+wget https://download-ib01.fedoraproject.org/pub/epel/7/x86_64/Packages/f/fuse-sshfs-2.10-1.el7.x86_64.rpm -O /tmp/fuse-sshfs-2.10-1.el7.x86_64.rpm
+cd /tmp  &&  rm --force --recursive /tmp/usr  &&  rpm2cpio fuse-sshfs-2.10-1.el7.x86_64.rpm | cpio -idmv
+cp --recursive /tmp/usr/* /usr/
+rm --force --recursive /tmp/usr
 
 ####  ag
 dns --assumeyes install http://ftp.tu-chemnitz.de/pub/linux/dag/redhat/el6/en/x86_64/rpmforge/RPMS/lzma-libs-4.32.7-1.el6.rf.x86_64.rpm
