@@ -1,10 +1,10 @@
-git clone https://github.com/vim/vim.git ~/local/vim-build
+git clone https://github.com/vim/vim.git /home/vim-build
 
-cd ~/local/vim-build/src
+cd /home/vim-build/src
 
 CFLAGS+=-fPIC \
 ./configure \
-    --prefix=/home/dafan/local \
+    --prefix=/home/local \
     --with-features=huge \
     --with-python-config-dir=/usr/lib64/python2.7/config \
     --with-python3-config-dir=/usr/lib64/python3.6/config-3.6m-x86_64-linux-gnu \
