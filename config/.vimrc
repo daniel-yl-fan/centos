@@ -219,7 +219,7 @@ colorscheme desert
 
 set grepprg=ag
 
-call plug#begin('~/local/share/vim/vim82/plugged')
+call plug#begin('/usr/local/share/vim/vim82/plugged')
 
 Plug 'haya14busa/incsearch.vim'
 Plug 'haya14busa/incsearch-fuzzy.vim'
@@ -414,7 +414,7 @@ let g:ycm_complete_in_strings = 1
 "let g:ycm_seed_identifiers_with_syntax = 1
 let g:ycm_server_python_interpreter = '/usr/bin/python'
 let g:ycm_use_clangd = "Never"
-let g:ycm_global_ycm_extra_conf = '~/local/centos/config/.ycm_extra_conf.py'
+let g:ycm_global_ycm_extra_conf = '/home/centos/config/.ycm_extra_conf.py'
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_max_diagnostics_to_display = 1000
 let g:ycm_semantic_triggers =  { 'c,cpp,bash,python,java,go,erlang,perl': ['re!\w{2}'] }
