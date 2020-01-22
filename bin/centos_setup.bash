@@ -27,11 +27,11 @@ cp --recursive /tmp/usr/* /usr/
 rm --force --recursive /tmp/usr
 
 ####  ag
-dns --assumeyes install http://ftp.tu-chemnitz.de/pub/linux/dag/redhat/el6/en/x86_64/rpmforge/RPMS/lzma-libs-4.32.7-1.el6.rf.x86_64.rpm
+dnf --assumeyes install http://ftp.tu-chemnitz.de/pub/linux/dag/redhat/el6/en/x86_64/rpmforge/RPMS/lzma-libs-4.32.7-1.el6.rf.x86_64.rpm
 dnf --assumeyes install http://ftp.tu-chemnitz.de/pub/linux/dag/redhat/el6/en/x86_64/rpmforge/RPMS/lzma-devel-4.32.7-1.el6.rf.x86_64.rpm
 dnf --assumeyes install xz-devel
-git clone https://github.com/ggreer/the_silver_searcher.git ~/local/the_silver_searcher-build
-cd  ~/local/the_silver_searcher-build  &&  ./autogen.sh  &&  ./configure --prefix=/home/dafan/local  &&  make --jobs=2  &&  make install
+git clone https://github.com/ggreer/the_silver_searcher.git /home/the_silver_searcher-build
+cd /home/the_silver_searcher-build  &&  ./autogen.sh  &&  ./configure &&  make --jobs=2  &&  make install
 
 ####  fzf
 cd ~/local
