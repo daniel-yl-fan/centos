@@ -6,7 +6,6 @@ dnf install elfutils-libelf-devel
 mkdir -p ~/local
 
 git clone git@github.com:daniel-yl-fan/centos         ~/local/centos
-git clone git@github.com:daniel-yl-fan/cheatsheets    ~/local/cheatsheets
 
 ln --force --symbolic ~/local/centos/config/.tmux.conf    ~/.tmux.conf
 ln --force --symbolic ~/local/centos/config/.gitconfig    ~/.gitconfig
@@ -14,8 +13,8 @@ ln --force --symbolic ~/local/centos/config/.gitconfig    ~/.gitconfig
 sed --in-place --expression="\$asource ~/local/centos/config/.bashrc"   ~/.bashrc
 sed --in-place --expression="\$asource ~/local/centos/config/.vimrc"   ~/.vimrc
 
-dnf --assumeyes install python2-devel
-dnf --assumeyes install python36-devel
+
+dnf --assumeyes install python36 python36-devel
 
 ####  ninja
 git clone https://github.com/ninja-build/ninja.git ~/local/ninja-build
