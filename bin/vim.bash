@@ -1,3 +1,5 @@
+dnf install perl perl-devel
+
 git clone https://github.com/vim/vim.git /home/vim-build
 
 cd /home/vim-build/src
