@@ -1,13 +1,11 @@
-git clone https://github.com/llvm/llvm-project.git ~/local/llvm-project-build
+git clone https://github.com/llvm/llvm-project.git /home/llvm-project-build
 
-mkdir ~/local/llvm-project-build/build
-
-cd ~/local/llvm-project-build/build
+mkdir /home/llvm-project-build/build  &&  cd /home/llvm-project-build/build
 
 cmake -G Ninja \
-      -DCMAKE_INSTALL_PREFIX=/home/dafan/local \
+      -DCMAKE_INSTALL_PREFIX=/home/local \
       -DLLVM_TARGETS_TO_BUILD=X86 \
-      -DLLVM_ENABLE_PROJECTS="clang;clang-tools-extra" \
+      -DLLVM_ENABLE_PROJECTS="clang;clang-tools-extra;lld" \
       -DCMAKE_BUILD_TYPE=Release \
       -DLLVM_USE_LINKER=gold \
       -DLLVM_INCLUDE_EXAMPLES=OFF \
