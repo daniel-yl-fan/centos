@@ -6,7 +6,6 @@ CFLAGS+=-fPIC \
 ./configure \
     --prefix=/home/local \
     --with-features=huge \
-    --with-python-config-dir=/usr/lib64/python2.7/config \
     --with-python3-config-dir=/usr/lib64/python3.6/config-3.6m-x86_64-linux-gnu \
     --enable-multibyte=yes \
     --enable-rubyinterp=dynamic \
@@ -26,6 +25,8 @@ make install
 # cp xxd/xxd /usr/bin
 # cp gvimtutor /usr/bin/gvimtutor
 
+#    --with-python-config-dir=/usr/lib64/python2.7/config \
+    
 #/usr/bin/perl -e 'unless ( $] >= 5.005 ) { for (qw(na defgv errgv)) { print "#define PL_$_ $_\n" }}' > auto/if_perl.c
 #/usr/bin/perl  -prototypes -typemap \
 #        /usr/share/perl5/ExtUtils/typemap if_perl.xs >> auto/if_perl.c
