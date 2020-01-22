@@ -1,13 +1,13 @@
-git clone --depth=1 --recursive https://github.com/MaskRay/ccls ~/local/ccls-build
+git clone --depth=1 --recursive https://github.com/MaskRay/ccls /home/ccls-build
 
-cd ~/local/ccls-build  &&  mkdir build  &&  cd build
+cd /home/ccls-build  &&  mkdir /home/ccls-build/build  &&  cd /home/ccls-build/build
 
 cmake -G Ninja \
-      -DCMAKE_INSTALL_PREFIX=/home/dafan/local \
+      -DCMAKE_INSTALL_PREFIX=/home/local \
       -DCMAKE_BUILD_TYPE=Release \
-      -DCMAKE_CXX_COMPILER=/home/dafan/local/bin/clang++ \
+      -DCMAKE_CXX_COMPILER=/home/local/bin/clang++ \
       -DCMAKE_EXE_LINKER_FLAGS=-lpthread \
-      -DCMAKE_PREFIX_PATH="/home/dafan/local/llvm-project-build/llvm;/home/dafan/local/llvm-project-build/llvm/tools/clang;/home/dafan/local/llvm-project-build/build;/home/dafan/local/llvm-project-build/build/lib" \
+      -DCMAKE_PREFIX_PATH="/home/local/llvm-project-build/llvm;/home/local/llvm-project-build/llvm/tools/clang;/home/local/llvm-project-build/build;/home/local/llvm-project-build/build/lib" \
       ../
 
 ninja -v -j 2
