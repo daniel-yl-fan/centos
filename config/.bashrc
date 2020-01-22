@@ -19,7 +19,7 @@ export CSCOPE_EDITOR=vim
 export CHEAT_CONFIG_PATH="~/local/cheatsheets/config.yaml"
 alias h="/usr/local/bin/cheat"
 
-source /home/local/z/z.sh
+source /home/z/z.sh
 
 alias cat="/usr/local/bin/ccat --color-code=Keyword=red --color-code=Plaintext=green --color-code=Punctuation=yellow --color-code=Decimal=turquoise"
 
