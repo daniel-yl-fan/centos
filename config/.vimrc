@@ -565,7 +565,15 @@ let g:lightline = {
 noremap <leader>ar :AsyncRun
 noremap <leader>as :AsyncStop <CR>
 
-noremap <leader>ce :YcmDiag <CR>
+noremap <leader>cc :YcmDiag <CR>
+noremap <leader>cf :YcmCompleter FixIt <CR>
+noremap <leader>ct :YcmCompleter GetType <CR>
+noremap <leader>cg :YcmCompleter GoTo <CR>
+noremap <leader>cs :YcmCompleter GoToDeclaration <CR>
+noremap <leader>cd :YcmCompleter GoToDefinition <CR>
+noremap <leader>ci :YcmCompleter GoToInclude <CR>
+noremap <leader>cr :YcmCompleter GoToReferences <CR>
+noremap <leader>cn :YcmCompleter RefactorRename <CR>
 
 "noremap <leader>dp :diffput <CR>
 "noremap <leader>dg :diffget <CR>
