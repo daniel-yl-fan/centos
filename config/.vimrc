@@ -77,7 +77,7 @@ set wildmenu
 
 set lazyredraw
 
-set expandtab=4
+set expandtab
 set softtabstop=4
 set shiftwidth=4
 set tabstop=4
