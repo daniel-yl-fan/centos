@@ -527,7 +527,7 @@ noremap <silent> <leader>gi :GscopeFind i <C-R>=expand("<cfile>")<cr><cr>
 noremap <silent> <leader>gd :GscopeFind d <C-R><C-W><cr>
 noremap <silent> <leader>ga :GscopeFind a <C-R><C-W><cr>
 
-source ~/local/share/vim/vim82/plugin/vim-quickui.vim
+source /home/centos/config/vim-quickui.vim
 
 let g:lightline = {
       \ 'colorscheme': 'powerline',
