@@ -77,7 +77,7 @@ set wildmenu
 
 set lazyredraw
 
-set expandtab
+set expandtab=4
 set softtabstop=4
 set shiftwidth=4
 set tabstop=4
@@ -393,12 +393,12 @@ let g:rainbow_conf = {
 
 "let g:ycm_keep_logfiles = 1
 "let g:ycm_log_level = 'debug'
-"let g:ycm_use_clangd = "Always"
+let g:ycm_use_clangd = "Always"
 " Let clangd fully control code completion
-"let g:ycm_clangd_uses_ycmd_caching = 0
+let g:ycm_clangd_uses_ycmd_caching = 0
 " Use installed clangd, not YCM-bundled clangd which doesn't get updates.
-"let g:ycm_clangd_binary_path = exepath("clangd")
-"let g:ycm_clangd_binary_path = "/home/local/bin/clangd"
+let g:ycm_clangd_binary_path = exepath("clangd")
+let g:ycm_clangd_binary_path = "/home/local/bin/clangd"
 "let g:ycm_add_preview_to_completeopt = 0
 "let g:ycm_show_diagnostics_ui = 0
 "let g:ycm_error_symbol
@@ -431,6 +431,15 @@ highlight PMenuSel ctermfg=10 ctermbg=1
 " YcmDebugInfo
 " YcmDiags
 " YcmCompleter
+" FixIt
+" Format
+" GetType
+" GoTo
+" GoToDeclaration
+" GoToDefinition
+" GoToInclude
+" GoToReferences
+" RefactorRename
 
 let g:Lf_RootMarkers = ['.project', '.root', '.git']
 
