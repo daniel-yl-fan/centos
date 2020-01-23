@@ -112,7 +112,7 @@ set tabpagemax=100
 
 set switchbuf+=usetab,newtab
 
-"set path+=$ROOT
+set path=.,../inc,../include,/usr/include,,**
 
 highlight! clear SpellBad
 highlight! clear SpellCap
