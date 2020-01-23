@@ -649,7 +649,7 @@ noremap <leader>ys :YcmCompleter GoToDeclaration <CR>
 noremap <leader>yd :YcmCompleter GoToDefinition <CR>
 noremap <leader>yi :YcmCompleter GoToInclude <CR>
 noremap <leader>yr :YcmCompleter GoToReferences <CR>
-noremap <leader>yn :YcmCompleter RefactorRename <CR>
+noremap <leader>yn :YcmCompleter RefactorRename 
 
 nmap <M-0> <Plug>(choosewin)
 exec "set <M-0>=\e0"
