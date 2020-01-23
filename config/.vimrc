@@ -219,7 +219,7 @@ colorscheme desert
 
 set grepprg=ag
 
-call plug#begin('/usr/local/share/vim/vim82/plugged')
+call plug#begin('/usr/local/share/vim/vim82/plug')
 
 Plug 'haya14busa/incsearch.vim'
 Plug 'haya14busa/incsearch-fuzzy.vim'
@@ -398,7 +398,7 @@ let g:rainbow_conf = {
 "let g:ycm_clangd_uses_ycmd_caching = 0
 " Use installed clangd, not YCM-bundled clangd which doesn't get updates.
 "let g:ycm_clangd_binary_path = exepath("clangd")
-"let g:ycm_clangd_binary_path = "~/bin/clangd"
+"let g:ycm_clangd_binary_path = "/home/local/bin/clangd"
 "let g:ycm_add_preview_to_completeopt = 0
 "let g:ycm_show_diagnostics_ui = 0
 "let g:ycm_error_symbol
@@ -479,7 +479,7 @@ let g:ale_cpp_clang_options = '
 let g:gutentags_project_root = [ '.git', '.project', '.root' ]
 let g:gutentags_add_default_project_roots = 0
 let g:gutentags_exclude_project_root = [ 'obj' ]
-let g:gutentags_cache_dir = expand('/home/dafan/.cache/tags')
+let g:gutentags_cache_dir = expand('/tmp/.cache/tags')
 let g:gutentags_ctags_tagfile = '.gutentags'
 let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extras=+q']
 let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
