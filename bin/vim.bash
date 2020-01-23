@@ -46,8 +46,6 @@ curl -fLo /usr/local/share/vim/vim82/autoload/plug.vim \
      --create-dirs \
      https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
      
-ln --force --symbolic /home/centos/config/vim-quickui.vim /usr/local/share/vim/vim82/plugin/vim-quickui.vim
-
 vim -c PlugInstall -c PlugStatus -c qall
 
 mkdir /home/ycm-build  &&  cd /home/ycm-build
