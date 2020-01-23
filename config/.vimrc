@@ -561,19 +561,8 @@ let g:lightline = {
 
 "imap <leader><leader> <Esc>
 
-
 noremap <leader>ar :AsyncRun
 noremap <leader>as :AsyncStop <CR>
-
-noremap <leader>cc :YcmDiag <CR>
-noremap <leader>cf :YcmCompleter FixIt <CR>
-noremap <leader>ct :YcmCompleter GetType <CR>
-noremap <leader>cg :YcmCompleter GoTo <CR>
-noremap <leader>cs :YcmCompleter GoToDeclaration <CR>
-noremap <leader>cd :YcmCompleter GoToDefinition <CR>
-noremap <leader>ci :YcmCompleter GoToInclude <CR>
-noremap <leader>cr :YcmCompleter GoToReferences <CR>
-noremap <leader>cn :YcmCompleter RefactorRename <CR>
 
 "noremap <leader>dp :diffput <CR>
 "noremap <leader>dg :diffget <CR>
@@ -638,7 +627,6 @@ nmap <leader>vc :PreviewClose <CR>
 map <C-\>u :PreviewScroll -1<CR>
 map <C-\>d :PreviewScroll +1<CR>
 
-
 nmap <leader>tf :CtrlSFToggle <CR>
 nmap <leader>tm :marks <CR>
 nmap <leader>tr :registers <CR>
@@ -652,6 +640,16 @@ vnoremap <leader>ww :write! /tmp/daniel.yl.fan<CR>
 noremap  <leader>rr :read   /tmp/daniel.yl.fan<CR>
 
 noremap <leader>xx :exit! <CR>
+
+noremap <leader>yc :YcmDiag <CR>
+noremap <leader>yf :YcmCompleter FixIt <CR>
+noremap <leader>yt :YcmCompleter GetType <CR>
+noremap <leader>yg :YcmCompleter GoTo <CR>
+noremap <leader>ys :YcmCompleter GoToDeclaration <CR>
+noremap <leader>yd :YcmCompleter GoToDefinition <CR>
+noremap <leader>yi :YcmCompleter GoToInclude <CR>
+noremap <leader>yr :YcmCompleter GoToReferences <CR>
+noremap <leader>yn :YcmCompleter RefactorRename <CR>
 
 nmap <M-0> <Plug>(choosewin)
 exec "set <M-0>=\e0"
