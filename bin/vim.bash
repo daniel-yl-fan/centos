@@ -39,26 +39,30 @@ make install
 #if_perl.xs:60:10: fatal error: EXTERN.h: No such file or directory
 #    dnf install perl
 
+# ln --symbolic /usr/python2 /usr/python
+# ln --symbolic /usr/python3 /usr/python
 
-
-git clone https://github.com/junegunn/vim-plug.git ~/local/share/vim/vim82/plugin/vim-plug
-ln --force --symbolic ~/local/share/vim/vim82/plugin/vim-plug/plug.vim ~/local/share/vim/vim82/autoload/plug.vim
-
-ln --force --symbolic ~/local/centos/config/vim-quickui.vim ~/local/share/vim/vim82/plugin/vim-quickui.vim
+curl -fLo /usr/local/share/vim/vim82/autoload/plug.vim \
+     --create-dirs \
+     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+     
+ln --force --symbolic /home/centos/config/vim-quickui.vim /usr/local/share/vim/vim82/plugin/vim-quickui.vim
 
 vim -c PlugInstall -c PlugStatus -c qall
 
-
-mkdir ~/local/ycm-build  &&  cd ~/local/ycm-build
+mkdir /home/ycm-build  &&  cd /home/ycm-build
 
 # default python2
-#cmake -G "Unix Makefiles" -DEXTERNAL_LIBCLANG_PATH=/home/dafan/local/llvm-project-llvmorg-9.0.1/build/lib/libclang.so .  /home/dafan/local/share/vim/vim82/plugged/YouCompleteMe/third_party/ycmd/cpp
+#cmake -G "Unix Makefiles" \
+       -DEXTERNAL_LIBCLANG_PATH=/home/local/llvm-project-build/build/lib/libclang.so \
+       .  \
+       /usr/local/share/vim/vim82/plugged/YouCompleteMe/third_party/ycmd/cpp
 
 # python3
 cmake -G Ninja \
     -DUSE_PYTHON2=OFF \
-    -DEXTERNAL_LIBCLANG_PATH=/home/dafan/local/llvm-project-build/build/lib/libclang.so \
-    .  /home/dafan/local/share/vim/vim82/plugged/YouCompleteMe/third_party/ycmd/cpp
+    -DEXTERNAL_LIBCLANG_PATH=/home/local/llvm-project-build/build/lib/libclang.so \
+    .  \
+    /usr/local/share/vim/vim82/plugged/YouCompleteMe/third_party/ycmd/cpp
 
 ninja -v -j 2
-
