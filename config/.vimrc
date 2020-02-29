@@ -228,6 +228,8 @@ Plug 'luochen1990/rainbow'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'flazz/vim-colorschemes'
 
+Plug 'skywind3000/vim-terminal-help'
+
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
