@@ -1324,37 +1324,45 @@ exec "set <M-9>=\e9"
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "Plug 'skywind3000/vim-quickui'
-noremap <leader><space> :call quickui#menu#open()<cr>
-noremap <leader><space>l :call quickui#listbox#open(content, opts)<cr>
-call quickui#menu#reset()
-
-"call quickui#menu#install(section, items ['text', 'command', 'tip']])
-call quickui#menu#install('R',
-\   [
-\       [ 'run' , 'echo "AsyncRun <command>"', 'asynchronously run command' ],
-\       [ 'stop', 'AsyncStop'                , 'stop running command'       ],
-\       [ '--'         , ''                         , ''                           ],
-\   ]
-\)
-
-call quickui#menu#install('T',
-\   [
-\       [ 'tab Alt-n <M-n>', 'echo "tabnext n"', 'switch to tabnext n' ],
-\       [ '--'                    , ''                         , ''    ],
-\   ]
-\)
-
-call quickui#menu#install('B',
-\   [
-\       [ 'buffer Ctrl-@ n', 'bnext', 'buffer n' ],
-\       [ '--'             , ''     , ''         ],
-\   ]
-\)
-noremap <leader>hm :call quickui#menu#open()<cr>
-
-" enable to display tips in the cmdline
 let g:quickui_show_tip = 1
 
+call quickui#menu#reset()
+
+noremap <localleader><space> :call quickui#menu#open()<cr>
+
+"call quickui#menu#install(section, items ['text', 'command', 'tip']])
+call quickui#menu#install('Alt',
+\   [
+\       [ '1  zoom win'     , '', 'zoom-toggle' ],
+\       [ '--', '', '' ],
+\       [ '2  copen'        , '', 'open quickfix window' ],
+\       [ '3  cclose'       , '', 'close quickfix window' ],
+\       [ '4  lopen'        , '', 'open location list' ],
+\       [ '5  lclose'       , '', 'close location list' ],
+\       [ '--', '', '' ],
+\       [ '6  tag close'    , '', 'CtrlSFToggle' ],
+\       [ '7  preview close', '', 'PreviewClose' ],
+\       [ '8  tagbar'       , '', 'toggle tagbar' ],
+\       [ '9  undo'         , '', 'undo list' ],
+\       [ '0  color column' , '', 'color column' ],
+\   ]
+\)
+
+call quickui#menu#install('Ctrl',
+\   [
+\       [ 'g  select all multi cursor', '', 'select all multi cursor' ],
+\       [ '--', '', '' ],
+\       [ 'w  window select', '', 'select window' ],
+\   ]
+\)
+
+call quickui#menu#install('miscellaneous',
+\   [
+\       [ ',,  make', '', 'make' ],
+\       [ '--', '', '' ],
+\   ]
+\)
+noremap <localleader><space><space> :call quickui#listbox#open(content, opts)<cr>
 
 let content = [
     |   ¦   \ [ 'c++11',           '' ],
@@ -1364,9 +1372,34 @@ let content = [
     |   ¦   \ [ '/usr/include',    '' ],
     |   ¦   \ [ 'design patterns', '' ],
     |   ¦   \]
-let opts = {'foo': 'priority'}
+let opts = {'title': 'select'}
 
-noremap <leader>hl :call quickui#listbox#open(content, opts)<cr>
+" display vim messages in the textbox
+function! DisplayMessages()
+    let x = ''
+    redir => x
+    silent! messages
+    redir END
+    let x = substitute(x, '[\n\r]\+\%$', '', 'g')
+    let content = filter(split(x, "\n"), 'v:key != ""')
+    let opts = {"close":"button", "title":"Vim Messages"}
+    call quickui#textbox#open(content, opts)
+endfunc
+
+" call DisplayMessages()
+
+" call quickui#tools#list_buffer('e')
+
+" call quickui#tools#list_function()
+
+" call quickui#tools#display_help('index')
+
+" call quickui#tools#preview_tag('')
+
+" augroup MyQuickfixPreview
+  " au!
+  " au FileType qf noremap <silent><buffer> p :call quickui#tools#preview_quickfix()<cr>
+" augroup END
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
