@@ -415,7 +415,7 @@ let g:asyncrun_rootmarks = [ '.git', '.root', '.project' ]
 "nmap <localleader>q    : call asyncrun#quickfix_toggle(120) <CR>
 "nmap <localleader>build :AsyncRun -mode=terminal -pos=tab -raw -cwd=~/workspace/ims_do <command> <CR>
 "mnemonic maKe
-nmap <C-k> :AsyncRun -cwd=~/workspace/ -program=make @ -f ~/workspace/makefile <CR>
+nmap <C-m> :AsyncRun -cwd=~/workspace/ -program=make @ -f ~/workspace/makefile <CR>
 
 " Gpush and Gfetch in vim-fugitive can be started with asyncrun
 command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
