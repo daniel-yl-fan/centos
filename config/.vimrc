@@ -1453,3 +1453,17 @@ let g:rainbow_conf = {
 "Plug 'flazz/vim-colorschemes'
 "colorscheme molokai
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Plug 'skywind3000/vim-terminal-help'
+"
+" Alt + =  : open terminal
+" ALT+SHIFT+hjkl    switch between windows
+" drop : send file to outer vim
+" <C-\><C-n> switch from insert mode to normal mode
+let g:terminal_key = "<C-t>"
+let g:terminal_height = 120
+" let g:terminal_pos = vertical
+" Alt + - paste content from register 0
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
