@@ -1250,7 +1250,6 @@ exec "set <M-5>=\e5"
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Plug 'majutsushi/tagbar'
-nmap <leader>tt :TagbarToggle<CR>
 nmap <M-8>  :TagbarToggle <CR>
 exec "set <M-8>=\e8"
 
