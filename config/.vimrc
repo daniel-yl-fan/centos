@@ -1358,7 +1358,7 @@ call quickui#menu#install('Ctrl',
 
 call quickui#menu#install('miscellaneous',
 \   [
-\       [ ',,  make', '', 'make' ],
+\       [ '<localleader><localleader>  make', '', 'make' ],
 \       [ '--', '', '' ],
 \   ]
 \)
