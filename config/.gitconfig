@@ -33,3 +33,51 @@
 # git://example.com[:port]/path/to/repo/project.git
 # ssh://[user@]example.com[:port]/path/to/repo/project.git
 # http[s]://example.com[:port]/path/to/repo/project.git
+#
+# git log --grep=dafan
+#
+
+#             git add             git commit           git push
+# working tree  --  staging index  --  local repository  -- remote repository
+#             git rebase / git merge                git fetch
+#   git pull =      git merge             +         git fetch
+#
+#
+# combine git add and git commit in one step
+# git commit --all -m ""   git commit -a -m ""
+#
+# discard changes made by "edit", undo working tree from staging index, -- means current branch
+# git checkout -- <file>
+
+# unstage changes of staging index made by "git add" from local repository, default --mixed
+# git reset HEAD <file>
+#
+# git checkout
+# 1, branch
+# 2, undo file changes
+# 3, move HEAD
+#
+# git reset 
+# 1, file, unstage
+# 2, --soft, staged snapshot and working tree are not altered
+# 3, --mixed, staged snapshot is updated, working tree not changed
+# 4, --hard, staged snapshot and working tree both are undone
+#
+#
+# diff between working tree and staging tree, defaul
+# git diff
+# diff between stage tree and local repository
+# git diff --staged    or    git diff --cached
+#
+# git show <commit>
+#
+# git clean
+#
+# empty_directory/.gitkeep
+#
+# github.com/github/gitignore
+# git config --global core.excludesfile ~/.gitignore-global
+# .gitignore
+# *.out
+# !foo.out    not ignore foo.out
+# bar/   ignore whole directory

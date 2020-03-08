@@ -34,13 +34,13 @@ set splitbelow
 
 set showtabline=2
 
-"set list
+set list
 
 set showcmd
 
 set t_Co=256
 
-set timeout timeoutlen=1500 ttimeoutlen=0
+set timeout timeoutlen=1000 ttimeoutlen=0
 
 "autocmd FileType qf wincmd _
 
@@ -149,6 +149,11 @@ set wildignore+=*.msi,*.crx,*.deb,*.vfd,*.apk,*.ipa,*.bin,*.msu
 set wildignore+=*.gba,*.sfc,*.078,*.nds,*.smd,*.smc
 set wildignore+=*.linux2,*.win32,*.darwin,*.freebsd,*.linux,*.android
 
+" conflict with easyemotion, backgroud will not fade out when selection
+" autocmd! bufwritepost $MYVIMRC source $MYVIMRC
+" autocmd! bufwritepost $HOME/.vimrc source %
+" autocmd! bufwritepost ~/local/centos/config/.vimrc source ~/local/centos/config/.vimrc
+
 " xxd -r -p file    " convert hex to binary (ascii)
 " xxd -i file    " convert binary file to hex
 "
@@ -177,14 +182,13 @@ Plug 'haya14busa/vim-easyoperator-line'
 Plug 'haya14busa/vim-easyoperator-phrase'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'junegunn/vim-easy-align'
-"Plug 'roxma/vim-paste-easy'
+Plug 'roxma/vim-paste-easy'
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdcommenter'
 Plug 'mbbill/undotree'
 "Plug 'jiangmiao/auto-pairs'  "conflict with rainbow
 
 Plug 'kshenoy/vim-signature'
-Plug 'junegunn/vim-peekaboo'
 
 Plug 'tpope/vim-unimpaired'
 Plug 'andymass/vim-matchup'
@@ -192,7 +196,8 @@ Plug 'andymass/vim-matchup'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'Yggdroot/LeaderF'
-"Plug 'liuchengxu/vim-clap'
+Plug 'Yggdroot/LeaderF-marks'
+Plug 'liuchengxu/vim-clap'
 
 Plug 'mhinz/vim-signify'
 Plug 'tpope/vim-fugitive'
@@ -210,13 +215,13 @@ Plug 'vim-scripts/gtags.vim'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'skywind3000/gutentags_plus'
 Plug 'dyng/ctrlsf.vim'
-Plug 'skywind3000/vim-preview'
 Plug 'majutsushi/tagbar'
+Plug 'skywind3000/vim-preview'
 "Plug 'liuchengxu/vista.vim'
 
 Plug 'tpope/vim-repeat'
 Plug 't9md/vim-choosewin'
-"Plug 'Valloric/ListToggle'
+Plug 'Valloric/ListToggle'
 Plug 'dhruvasagar/vim-zoom'
 Plug 'Yggdroot/indentLine'
 "Plug 'nathanaelkane/vim-indent-guides'
@@ -232,39 +237,51 @@ Plug 'skywind3000/vim-terminal-help'
 
 call plug#end()
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 let  mapleader=";"
 let  maplocalleader=","
 
-"imap <leader><leader>   <Esc>
-"imap <localleader><localleader>   <Esc>
-inoremap jk <Esc>
-inoremap kj <Esc>
-"imap ii <Esc>
+imap     <leader><leader>   <Esc>
+" imap     <leader><leader>  <C-c>
+" inoremap <leader><leader>   <Esc>
+" inoremap jk <Esc>
+" inoremap kj <Esc>
+" imap ii <Esc>
 
-nmap <leader>e      : edit!  <CR>
-nmap <leader>w      : write! <CR>
-nmap <leader>q      : quit!  <CR>
-nmap <leader>x      : exit!  <CR>
-nmap <leader>y      : ,, write!  ~/tmp/copy-paste <CR>
-vmap <leader>y      :    write!  ~/tmp/copy-paste <CR>
-nmap <leader>p      : read    ~/tmp/copy-paste <CR>
-nmap <leader><tab>  : tabnew <CR>
-nmap <tab>          : tabnext <CR>
-nmap <leader>sh     : vertical terminal <CR>
+nnoremap \          <C-b>
+nnoremap <space>    <C-f>
+
+nnoremap <leader><CR>      a<Esc>
+nnoremap <leader><space>   a<space><Esc>
+
+nnoremap <leader>e      : edit!  <CR>
+nnoremap <leader>w      : write! <CR>
+nnoremap <leader>q      : quit!  <CR>
+nnoremap <leader>x      : exit!  <CR>
+" mnemonic abort
+nnoremap <leader>a      : quitall!  <CR>
+nnoremap <leader>y      : ,, write!  ~/tmp/copy-paste <CR>
+vnoremap <leader>y      :    write!  ~/tmp/copy-paste <CR>
+nnoremap <leader>p      :    read    ~/tmp/copy-paste <CR>
+nnoremap <leader>t      : tabnew <CR>
+nnoremap <tab>          : tabnext <CR>
+nnoremap <S-tab>        : tabprevious <CR>
+nnoremap .c         : execute "set colorcolumn=" . (&colorcolumn == "" ? "93" : "") <CR>
+"        .l         toggle location list
+"        .q         toggle quick fix
+"        .t         TagbarToggle <CR>
+"        .u         UndotreeToggle<CR>
+"        .z         zoom window
+
 
 " map ALT key to Meta key,
 " change Alt to ESC+X, means when pressed ALT+X, terminal will send <ESC>x (code 0x27, 0x78)
 " Putty -> Keyboard -> AltGr acts as Compose key  &&  Contro-Alt is different from AltGr,
 " default is ALT+X sending <ESC>x
 "noremap <ESC>x :echo "ALT-X pressed"<cr>
-noremap <M-2> : vertical copen 120 <CR>
-exec "set <M-2>=\e2"
-noremap <M-3> : cclose<CR>
-exec "set <M-3>=\e3"
-noremap <M-0> : execute "set colorcolumn=" . (&colorcolumn == "" ? "93" : "") <CR>
-exec "set <M-0>=\e0"
+" noremap <M-c> : execute "set colorcolumn=" . (&colorcolumn == "" ? "93" : "") <CR>
+" exec "set <M-c>=\ec"
 " ALT 1-9a-zA-Zetc
 
 "<C-%>/<C-]> jump to tag
@@ -272,7 +289,6 @@ exec "set <M-0>=\e0"
 "map <C-[>/<C-#><key> :command<CR>  ^[ ESC escap
 "map <C-\>/<C-$><key> :command<CR>  ^\
 "map <C-^><key> :command<CR> alternate file ^^
-"nmap <C-e>      : echo Ctrl<CR>
 "<C-a-zA-Z0-9etc>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -344,7 +360,7 @@ let g:EasyMotion_use_smartsign_us = 1
 "nmap <localleader>l  <Plug>(easymotion-overwin-line)
 "nmap <localleader>w  <Plug>(easymotion-overwin-w)
 "nmap <localleader>j  <Plug>(easymotion-jumptoanywhere)
-nmap  #               <Plug>(easymotion-overwin-f)
+nmap  f    <Plug>(easymotion-overwin-f)
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -353,7 +369,7 @@ nmap  #               <Plug>(easymotion-overwin-f)
 "map z/  <Plug>(incsearch-easymotion-/)
 "map z?  <Plug>(incsearch-easymotion-?)
 "map zg/ <Plug>(incsearch-easymotion-stay)
-map  /   <Plug>(incsearch-easymotion-/)
+nmap  /    <Plug>(incsearch-easymotion-/)
 
 "function! s:config_easyfuzzymotion(...) abort
   "return extend(copy({
@@ -387,7 +403,6 @@ map  /   <Plug>(incsearch-easymotion-/)
 "aF    <Plug>(textobj-function-A)
 "iF    <Plug>(textobj-function-I)
 
-
 "Plug 'sgur/vim-textobj-parameter'
 "
 "let g:vim_textobj_parameter_mapping = ','
@@ -396,17 +411,19 @@ map  /   <Plug>(incsearch-easymotion-/)
 
 "Plug 'kana/vim-textobj-user'
 call textobj#user#plugin('braces', {
-\   'angle': {
-\     'pattern': ['<<', '>>'],
-\     'select-a': 'aA',
-\     'select-i': 'iA',
+\   'angle1': {
+\     'pattern': ['>', '<'],
+\     'select-i': 'i>',
+\   },
+\   'angle4': {
+\     'pattern': ['<', '>'],
+\     'select-i': 'i<',
 \   },
 \ })
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "Plug 'skywind3000/asyncrun.vim'
-"todo
 "Plug 'skywind3000/asynctasks.vim'
 "
 let g:asyncrun_bell = 1
@@ -415,9 +432,9 @@ let g:asyncrun_rootmarks = [ '.git', '.root', '.project' ]
 "let g:asyncrun_status = ''
 "let g:airline_section_error = airline#section#create_right(['%{g:asyncrun_status}'])
 "nmap <localleader>q    : call asyncrun#quickfix_toggle(120) <CR>
-"nmap <localleader>build :AsyncRun -mode=terminal -pos=tab -raw -cwd=~/workspace/ims_do <command> <CR>
-"mnemonic maKe
-nmap <localleader><localleader> :AsyncRun -cwd=~/workspace/ -program=make @ -f ~/workspace/makefile <CR>
+"nmap <localleader>build :AsyncRun -mode=terminal -pos=tab -raw -cwd=~/workspace/ims_do gm libUMSbh -gf -j32 <CR>
+" libUMSs6t    UMSbh     libUMSbh    mt-build    mt-run
+nnoremap <localleader>m :AsyncRun -program=make @ -f ~/workspace/makefile --directory=~/workspace/ims_do
 
 " Gpush and Gfetch in vim-fugitive can be started with asyncrun
 command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
@@ -425,13 +442,12 @@ command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
 ":AsyncRun g++ -O3 "%" -o "%<" -lpthread
 "Macro '%' stands for filename and '%<' represents filename without extension
 "
-":AsyncRun! ag -g xxx.cxx ~
+":AsyncRun! ag -g UMSbh.cxx ~
 "when ! is included, auto-scroll in quickfix will be disabled.
 "<cword> represents current word under cursor.
 "
-"AsyncRun <command>
-
-"AsyncRun -raw <command>
+"AsyncRun gm libUMSbh -cld -gf -j32
+"AsyncRun -raw gm UMSbh -cld -gf -j32
 "option -raw will display the raw output (without matching to errorformat)
 "
 ":AsyncStop[!] "!" job will be stopped by signal KILL.
@@ -508,7 +524,6 @@ command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
 "-focus=?      1        set to 0 to prevent focus changing when working with a split temrinal
 "-hidden=?     0        set to 1 to setup bufhidden to hide for internal terminal
 "All options must start with a minus and position before [cmd].
-
 "
 ":10,20 AsyncRun cat         Range support
 
@@ -518,7 +533,7 @@ command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
 
 "Plug 'mh21/errormarker.vim'
 let g:asyncrun_auto = "make"
-let &errorformat="%f:%l:%c: %t%*[^:]:%m,%f:%l: %t%*[^:]:%m," . &errorformat
+let &errorformat = "%f:%l:%c: %t%*[^:]:%m,%f:%l: %t%*[^:]:%m," . &errorformat
 "AsyncRun -auto=make make
 "both "g:asyncrun_auto" and "-auto=?" can get errormaker to work.
 
@@ -528,8 +543,8 @@ let &errorformat="%f:%l:%c: %t%*[^:]:%m,%f:%l: %t%*[^:]:%m," . &errorformat
 "
 let g:EasyOperator_line_do_mapping = 0
 nmap vl <Plug>(easyoperator-line-select)
-nmap dl <Plug>(easyoperator-line-delete)
-nmap yl <Plug>(easyoperator-line-yank)
+" nmap dl <Plug>(easyoperator-line-delete)
+" nmap yl <Plug>(easyoperator-line-yank)
 
 "Plug 'haya14busa/vim-easyoperator-phrase'
 "
@@ -568,8 +583,8 @@ let g:multi_cursor_select_all_word_key = '<C-g>'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "Plug 'junegunn/vim-easy-align'
-vmap <localLeader>a <Plug>(EasyAlign)
-nmap <localLeader>a <Plug>(EasyAlign)
+xmap <localLeader>a    <Plug>(EasyAlign)
+" nmap <localLeader>a    <Plug>(EasyAlign)
 "if !exists('g:easy_align_delimiters')
   "let g:easy_align_delimiters = {}
 "endif
@@ -640,7 +655,7 @@ nmap <localLeader>a <Plug>(EasyAlign)
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "Plug 'roxma/vim-paste-easy'
-"let g:paste_easy_message=0
+let g:paste_easy_message = 0
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -699,19 +714,49 @@ let g:NERDToggleCheckAllLines = 1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "Plug 'mbbill/undotree'
-nmap <M-7>  :UndotreeToggle <CR>
-exec "set <M-7>=\e7"
+let g:undotree_WindowLayout = 3
+let g:undotree_SplitWidth = 120
+let g:undotree_DiffpanelHeight = 20
+let g:undotree_SetFocusWhenToggle = 1
+let g:undotree_RelativeTimestamp = 0
+let g:undotree_ShortIndicators = 1
+nnoremap .u    : UndotreeToggle<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Plug 'kshenoy/vim-signature'
+  " mx           Toggle mark 'x' and display it in the leftmost column
+  " dmx          Remove mark 'x' where x is a-zA-Z
+  "
+  " m,           Place the next available mark
+  " m.           If no mark on line, place the next available mark. Otherwise, remove (first) existing mark.
+  " m-           Delete all marks from the current line
+  " m<Space>     Delete all marks from the current buffer
+  " ]`           Jump to next mark
+  " [`           Jump to prev mark
+  " ]'           Jump to start of next line containing a mark
+  " ['           Jump to start of prev line containing a mark
+  " `]           Jump by alphabetical order to next mark
+  " `[           Jump by alphabetical order to prev mark
+  " ']           Jump by alphabetical order to start of next line having a mark
+  " '[           Jump by alphabetical order to start of prev line having a mark
+  " m/           Open location list and display marks from current buffer
+  "
+  " m[0-9]       Toggle the corresponding marker !@#$%^&*()
+  " m<S-[0-9]>   Remove all markers of the same type
+  " ]-           Jump to next line having a marker of the same type
+  " [-           Jump to prev line having a marker of the same type
+  " ]=           Jump to next line having a marker of any type
+  " [=           Jump to prev line having a marker of any type
+  " m?           Open location list and display markers from current buffer
+  " m<BS>        Remove all markers
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "Plug 'junegunn/vim-peekaboo'
 " show the contents of the registers on the sidebar
 " when you hit " or @ in normal mode or <CTRL-R> in insert mode.
-let g:peekaboo_window = 'vsplit 30new'
+" let g:peekaboo_window = 'vsplit 30new'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -855,16 +900,16 @@ let g:peekaboo_window = 'vsplit 30new'
 "man page (man fzf) for the full list of options.
 
 "Plug 'junegunn/fzf.vim'
-
-set rtp+=/home/dafan/local/bin
+"
+" set rtp+=/home/dafan/local/bin
 "let g:fzf_layout = { 'right': '~50%' }
 "let g:fzf_layout = { 'window': '10new' }
 "let g:fzf_layout = { 'window': '-tabnew' }
-let g:fzf_layout = { 'window': 'enew' }
-let g:fzf_tags_command = '/home/dafan/local/bin/ctags -R'
-nmap <localleader>~ :FZF ~ <CR>
-nmap <localleader>. :Files <CR>
-nmap <localleader># :History <CR>
+" let g:fzf_layout = { 'window': 'enew' }
+" let g:fzf_tags_command = '/home/dafan/local/bin/ctags -R'
+" nnoremap <localleader>~ :Files ~<CR>
+" nnoremap <localleader>. :Files <CR>
+" nnoremap <localleader># :History <CR>
 "ctrl-t: tab split
 "
 ":Files [PATH]     Files (similar to :FZF)
@@ -894,14 +939,15 @@ nmap <localleader># :History <CR>
 "nmap <localleader><tab> <plug>(fzf-maps-n)
 "xmap <localleader><tab> <plug>(fzf-maps-x)
 "omap <localleader><tab> <plug>(fzf-maps-o)
-nmap ? <plug>(fzf-maps-n)
-xmap ? <plug>(fzf-maps-x)
-omap ? <plug>(fzf-maps-o)
+" nmap ? <plug>(fzf-maps-n)
+" xmap ? <plug>(fzf-maps-x)
+" omap ? <plug>(fzf-maps-o)
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "Plug 'Yggdroot/LeaderF'
-" WARNING: "popup" feature conflict with easymotion,
+" Plug 'Yggdroot/LeaderF-marks'
+" WARNING: "Lf_PopupColorscheme" feature may conflict with easymotion,
 " (indication does not highlighted, that is text does not faded)
 "
 "install C extension of the fuzzy matching algorithm, which is more than 10 times faster.
@@ -934,9 +980,12 @@ let g:Lf_Ctags = "/home/dafan/local/bin/ctags"
 let g:Lf_ShowHidden = 1
 let g:Lf_UseCache = 0
 "let g:Lf_CacheDiretory = '~/.cache/lf'
-"let g:Lf_WindowPosition = 'popup'
-"let g:Lf_PopupColorscheme = 'desert'
-":LeaderfFile [directory]
+let g:Lf_WindowPosition = 'popup'
+" let g:Lf_PopupColorscheme = 'desert'
+nnoremap    <localleader>.    :LeaderfFile <CR>
+nnoremap    <localleader>#    :LeaderfMru <CR>
+nnoremap    <localleader>%    :LeaderfBuffer <CR>
+nnoremap    <localleader>'    :LeaderfMarks <CR>
 "<leader>f                Launch LeaderF to search files.
 ":LeaderfBuffer
 "<leader>b                Launch LeaderF to search buffers.
@@ -1006,6 +1055,7 @@ let g:Lf_UseCache = 0
 " WARNING: default "popup" feature conflict with easymotion,
 " (indication does not highlighted, that is text does not faded)
 "
+nnoremap <localleader>"    :Clap registers <CR>
 "Command                list                                  Requirement
 "Clap bcommits!         Git commits for the current buffer    git
 "Clap blines            Lines in the current buffer           none
@@ -1061,10 +1111,10 @@ let g:Lf_UseCache = 0
 "[c   Jump to the previous hunk.
 "]C   Jump to the last hunk.
 "[C   Jump to the first hunk.
-omap ic <plug>(signify-motion-inner-pending)
-xmap ic <plug>(signify-motion-inner-visual)
-omap ac <plug>(signify-motion-outer-pending)
-xmap ac <plug>(signify-motion-outer-visual)
+" omap ic <plug>(signify-motion-inner-pending)
+" xmap ic <plug>(signify-motion-inner-visual)
+" omap ac <plug>(signify-motion-outer-pending)
+" xmap ac <plug>(signify-motion-outer-visual)
 "nmap <localleader>    :SignifyDiff<CR>
 "nmap <localleader>    :SignifyToggleHighlight<CR>
 "nmap <localleader>    :SignifyFold<CR>
@@ -1075,16 +1125,15 @@ xmap ac <plug>(signify-motion-outer-visual)
 
 "Plug 'tpope/vim-fugitive'
 "man fugitive or Press g? or see fugitive-maps for usage.
-nmap <localleader>g       :Git <CR>
-nmap <localleader>w       :Gwrite <CR>
-nmap <localleader>rebase  :Gfetch <bar> Grebase <CR>
-nmap <localleader>push    :Gpush origin HEAD:refs/for/master <CR>
+nnoremap <localleader>g       :Git <CR>
+nnoremap <localleader>w       :Gwrite <CR>
+nnoremap <localleader>p       :Gpush origin HEAD:refs/for/master <CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "Plug 'Valloric/YouCompleteMe' " Do not update
-noremap <localleader>d :YcmCompleter GoTo <CR>
-noremap <localleader>r :YcmCompleter GoToReferences <CR>
+nnoremap <localleader>d :YcmCompleter GoTo <CR>
+nnoremap <localleader>r :YcmCompleter GoToReferences <CR>
 "let g:ycm_keep_logfiles = 1
 "let g:ycm_log_level = 'debug'
 let g:ycm_use_clangd = "Always"
@@ -1204,6 +1253,7 @@ let g:gutentags_define_advanced_commands = 1
 let g:gutentags_trace = 0
 let g:gutentags_plus_switch = 1
 let g:gutentags_plus_nomap = 1
+let g:gutentags_plus_height = 80
 "let g:gutentags_file_list_command = 'ag --filename-pattern c --files-with-matches'
 "let g:gutentags_ctags_exclude = [ 'obj' ]
 let g:airline#extensions#gutentags#enabled = 1
@@ -1211,7 +1261,7 @@ let g:airline#extensions#gutentags#enabled = 1
 " use global-cscope like cscope
 set cscopeprg=gtags-cscope
 "noremap <silent> <leader>gr :GscopeFind<Space>
-noremap <silent> <localleader>s :GscopeFind s <C-R><C-W><cr>
+nnoremap <silent> <localleader>s :GscopeFind s <C-R><C-W><cr>
 "noremap <silent> <leader>gg :GscopeFind g <C-R><C-W><cr>
 "noremap <silent> <leader>gc :GscopeFind c <C-R><C-W><cr>
 "noremap <silent> <leader>gt :GscopeFind t <C-R><C-W><cr>
@@ -1224,36 +1274,145 @@ noremap <silent> <localleader>s :GscopeFind s <C-R><C-W><cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "Plug 'dyng/ctrlsf.vim'
-noremap <localLeader>t :CtrlSF<Space>
+nnoremap <localLeader>t    :CtrlSF<CR>
+nnoremap <localleader>tt   :CtrlSFToggle <CR>
 let g:ackprg='ag'
-let g:ctrlsf_regex_pattern=1
-let g:ctrlsf_position='right'
+let g:ctrlsf_regex_pattern = 1
+let g:ctrlsf_position = 'right'
 let g:ctrlsf_winsize = '50%'
 "let g:ctrlsf_winsize = '120'
-"nmap <leader>tf :CtrlSFToggle <CR>
-nmap <M-4>  :CtrlSFToggle <CR>
-exec "set <M-4>=\e4"
+"g:ctrlsf_default_root
+
+"Enter, o, double-click - Open corresponding file of current line
+" <C-O> - Like Enter but open file in a horizontal split window.
+" t - Like Enter but open file in a new tab.
+" p - Like Enter but open file in a preview window.
+" P - Like Enter but open file in a preview window and switch focus to it.
+" O - Like Enter but always leave CtrlSF window opening.
+" T - Like t but focus CtrlSF window instead of new opened tab.
+" M - Switch result window between normal view and compact view.
+" q - Quit CtrlSF window.
+" <C-J> - Move cursor to next match.
+" <C-K> - Move cursor to previous match.
+" <C-C> - Stop a background searching process.
+" In preview window:
+" q - Close preview window.
+
+" -R - Use regular expression pattern.
+" -I, -S - Search case-insensitively (-I) or case-sensitively (-S).
+" -C, -A, -B - Specify how many context lines to be printed,
+"     identical to their counterparts in Ag/Ack.
+" -W - Only match whole words.
+" Read :h ctrlsf-arguments for a full list of arguments.
+"
+" Search a regular expression pattern case-insensitively:
+" :CtrlSF -R -I foo.*
+" Search a pattern that contains space:
+" :CtrlSF 'def foo():'
+" Search a pattern with characters requiring escaping:
+" :CtrlSF '"foobar"'  or  :CtrlSF \"foobar\"
+
+" g:ctrlsf_auto_close defines if CtrlSF close itself when you are opening some file.
+" By default, CtrlSF window will close automatically in normal view mode
+" and keep open in compact view mode. You can customize the value as below:
+" let g:ctrlsf_auto_close = {
+"     \ "normal" : 0,
+"     \ "compact": 0
+"     \}
+"
+" g:ctrlsf_auto_focus defines how CtrlSF focuses result pane
+" when working in async search mode. By default, CtrlSF will not focus at all,
+" setting to start makes CtrlSF focus at search starting,
+" setting to done makes CtrlSF focus at search is done,
+" but only for immediately finished search. An additional duration_less_than
+" is used to define max duration of a search can be focused for 'at done',
+" which is an integer value of milliseconds.
+" let g:ctrlsf_auto_focus = {
+"     \ "at": "start"
+"     \ }
+" " or
+let g:ctrlsf_auto_focus = {
+    \ "at": "done",
+    \ "duration_less_than": 1000
+    \ }
+
+" g:ctrlsf_auto_preview defines whether CtrlSF shows the preview window automatically
+" while moving from match to match in the results pane. The default value is 0.
+" let g:ctrlsf_auto_preview = 1
+
+" g:ctrlsf_case_sensitive defines default case-sensitivity in search.
+" Possible values are yes, no and smart, smart works the same as it is in vim.
+" The default value is smart.
+" let g:ctrlsf_case_sensitive = 'no'
+
+" g:ctrlsf_context defines how many context lines will be printed.
+" The default value is -C 3
+" let g:ctrlsf_context = '-B 5 -A 3'
+
+" g:ctrlsf_default_root defines how CtrlSF find search root when no explicit path is given.
+" Two possible values are cwd and project.
+" cwd means current working directory and project means project root.
+" CtrlSF locates project root by searching VCS root (.git, .hg, .svn, etc.)
+" let g:ctrlsf_default_root = 'project'
+
+" g:ctrlsf_default_view_mode defines default view mode which CtrlSF will use.
+" Possible values are normal and compact. The default value is normal.
+" let g:ctrlsf_default_view_mode = 'compact'
+
+" g:ctrlsf_extra_root_markers is a list contains custom root markers.
+" If there exists a file or directory /home/your/project/.root,
+" then /home/your/project will be recognized as project root.
+let g:ctrlsf_extra_root_markers = ['.root']
+
+" let g:ctrlsf_mapping = {
+"     \ "openb": { key: "O", suffix: "<C-w>p" },
+"     \ "next": "n",
+"     \ "prev": "N",
+"     \ }
+
+" g:ctrlsf_populate_qflist defines if CtrlSF will also feed quickfix and location list
+" By default this feature is disabled
+" let g:ctrlsf_populate_qflist = 1
+
+" g:ctrlsf_regex_pattern defines CtrlSF using literal pattern
+" or regular expression pattern as default.
+" Default value is 0, which means literal pattern.
+" let g:ctrlsf_regex_pattern = 1
+
+" g:ctrlsf_search_mode defines whether CtrlSF works in synchronous or asynchronous way.
+" async is the recommendation for users who are using Vim 8.0+.
+let g:ctrlsf_search_mode = 'async'
+
+" g:ctrlsf_position defines where CtrlSf places its window.
+" Possible values are left, right, top and bottom.
+" If nothing specified, the default value is left.
+" let g:ctrlsf_position = 'bottom'
+
+" g:ctrlsf_winsize defines the width (if CtrlSF opens vertically)
+" or height (if CtrlSF opens horizontally) of CtrlSF main window.
+" You can specify it with percent value or absolute value.
+" let g:ctrlsf_winsize = '30%'  or let g:ctrlsf_winsize = '100'
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"Plug 'majutsushi/tagbar'
+let g:tagbar_autofocus = 1
+let g:tagbar_width = 120
+nnoremap .t  :TagbarToggle <CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "Plug 'skywind3000/vim-preview'
 let g:preview#preview_position = "right"
-"nmap <leader>vq :PreviewQuickfix <CR>
-"nmap <leader>vf :PreviewFile <Space>
-"nmap <C->vf :PreviewScroll +1<CR>
-"nmap <leader>vb :PreviewScroll -1<CR>
-"nmap <leader>vs :PreviewSignature <CR>
-nmap <localleader>p :PreviewTag <CR>
-nmap <C-t> :PreviewGoto tabnew <CR>
-nmap <C-k> :PreviewScroll -1<cr>
-nmap <C-j> :PreviewScroll +1<cr>
-nmap <M-5> :PreviewClose <CR>
-exec "set <M-5>=\e5"
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"Plug 'majutsushi/tagbar'
-nmap <M-8>  :TagbarToggle <CR>
-exec "set <M-8>=\e8"
+" nmap <leader>vq :PreviewQuickfix <CR>
+" nmap <leader>vf :PreviewFile <Space>
+" nmap vf :PreviewScroll +1<CR>
+" nmap <leader>vb :PreviewScroll -1<CR>
+" nmap <leader>vs :PreviewSignature <CR>
+" nmap  :PreviewGoto tabnew <CR>
+nnoremap <localleader>v  :PreviewTag <CR>
+nnoremap <localleader>vv :PreviewClose <CR>
+nnoremap <C-k> :PreviewScroll -1<cr>
+nnoremap <C-j> :PreviewScroll +1<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -1271,8 +1430,8 @@ exec "set <M-8>=\e8"
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Plug 't9md/vim-choosewin'
-let g:choosewin_overlay_enable = 1
-nmap <C-w> <Plug>(choosewin)
+" let g:choosewin_overlay_enable = 1
+" nmap <tab>w    <Plug>(choosewin)
 "Key    Action       Description
 "0      tab_first    Select FIRST tab
 "[      tab_prev     Select PREVIOUS tab
@@ -1289,18 +1448,15 @@ nmap <C-w> <Plug>(choosewin)
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "Plug 'Valloric/ListToggle'
-"let g:loaded_listtoggle = 1
-"let g:lt_height = 120
-"let g:lt_quickfix_list_toggle_map = '<M-2>'
-"exec "set <M-2>=\e2"
-"let g:lt_location_list_toggle_map = '<M-8>'
-"exec "set <M-8>=\e8"
+" let g:loaded_listtoggle = 1
+let g:lt_height = 30
+let g:lt_quickfix_list_toggle_map = '.q'
+let g:lt_location_list_toggle_map = '.l'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "Plug 'dhruvasagar/vim-zoom'
-nmap <M-1>  <Plug>(zoom-toggle)
-exec "set <M-1>=\e1"
+nmap .z  <Plug>(zoom-toggle)
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -1309,9 +1465,8 @@ let g:indentLine_enabled = 1
 let g:indentLine_noConcealCursor = 1
 let g:indentLine_color_term = 4
 "let g:indentLine_char = '|'
-let g:indentLine_char_list = ['|', '¦', '┆', '┊']
-nmap <M-9>  :IndentLinesToggle <CR>
-exec "set <M-9>=\e9"
+let g:indentLine_char_list = ['|', '≡', '¦', '∮ ', '┆', '§', '┊', '▓', '‖', '↓ ', '║', '↑']
+" nmap   :IndentLinesToggle <CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -1326,6 +1481,7 @@ exec "set <M-9>=\e9"
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "Plug 'skywind3000/vim-quickui'
+
 let g:quickui_show_tip = 1
 
 call quickui#menu#reset()
@@ -1333,20 +1489,16 @@ call quickui#menu#reset()
 noremap <localleader><space> :call quickui#menu#open()<cr>
 
 "call quickui#menu#install(section, items ['text', 'command', 'tip']])
-call quickui#menu#install('Alt',
+call quickui#menu#install('toggle',
 \   [
-\       [ '1  zoom win'     , '', 'zoom-toggle' ],
+\       [ 'z  zoom win'     , '', 'zoom-toggle' ],
 \       [ '--', '', '' ],
-\       [ '2  copen'        , '', 'open quickfix window' ],
-\       [ '3  cclose'       , '', 'close quickfix window' ],
-\       [ '4  lopen'        , '', 'open location list' ],
-\       [ '5  lclose'       , '', 'close location list' ],
+\       [ 'q  toggle quickfix'  , '', 'copen/cclose' ],
+\       [ 'l  toggle location list'  , '', 'lopen/lclose' ],
+\       [ 't  toggle tagbar'    , '', 'toggle tagbar' ],
+\       [ 'u  toggle undo'      , '', 'toggle undo list' ],
 \       [ '--', '', '' ],
-\       [ '6  tag close'    , '', 'CtrlSFToggle' ],
-\       [ '7  preview close', '', 'PreviewClose' ],
-\       [ '8  tagbar'       , '', 'toggle tagbar' ],
-\       [ '9  undo'         , '', 'undo list' ],
-\       [ '0  color column' , '', 'color column' ],
+\       [ 'c  toggle color column' , '', 'toggle color column' ],
 \   ]
 \)
 
@@ -1354,26 +1506,23 @@ call quickui#menu#install('Ctrl',
 \   [
 \       [ 'g  select all multi cursor', '', 'select all multi cursor' ],
 \       [ '--', '', '' ],
-\       [ 'w  window select', '', 'select window' ],
+\       [ '--', '', '' ],
+\       [ 't  new terminal', '', 'new terminal' ],
 \   ]
 \)
 
-call quickui#menu#install('miscellaneous',
-\   [
-\       [ '<localleader><localleader>  make', '', 'make' ],
-\       [ '--', '', '' ],
-\   ]
-\)
 noremap <localleader><space><space> :call quickui#listbox#open(content, opts)<cr>
 
 let content = [
-    |   ¦   \ [ 'c++11',           '' ],
-    |   ¦   \ [ 'Python3.6',       '' ],
-    |   ¦   \ [ 'Boost',           '' ],
-    |   ¦   \ [ 'STL',             '' ],
-    |   ¦   \ [ '/usr/include',    '' ],
-    |   ¦   \ [ 'design patterns', '' ],
-    |   ¦   \]
+            \ [ 'git',             '' ],
+            \ [ 'vim plug',        '' ],
+            \ [ 'cpp 11',          '' ],
+            \ [ 'Python3.6',       '' ],
+            \ [ 'Boost',           '' ],
+            \ [ 'STL',             '' ],
+            \ [ '/usr/include',    '' ],
+            \ [ 'design patterns', '' ],
+            \ ]
 let opts = {'title': 'select'}
 
 " display vim messages in the textbox
@@ -1464,7 +1613,7 @@ let g:rainbow_conf = {
 " drop : send file to outer vim
 " <C-\><C-n> switch from insert mode to normal mode
 let g:terminal_key = "<C-t>"
-let g:terminal_height = 120
+let g:terminal_height = 30
 " let g:terminal_pos = vertical
 " Alt + - paste content from register 0
 
