@@ -220,9 +220,9 @@ Plug 'Shougo/echodoc.vim'
 Plug 'vim-scripts/gtags.vim'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'skywind3000/gutentags_plus'
-Plug 'dyng/ctrlsf.vim'
+" Plug 'dyng/ctrlsf.vim'
 Plug 'majutsushi/tagbar'
-Plug 'skywind3000/vim-preview'
+" Plug 'skywind3000/vim-preview'
 "Plug 'liuchengxu/vista.vim'
 
 Plug 'tpope/vim-repeat'
@@ -280,8 +280,6 @@ nnoremap [B             'B
 nnoremap [C             'C
 nnoremap [D             'D
 nnoremap [E             'E
-nnoremap [l             : edit ~/tmp/MT_*.log <CR>
-nnoremap ]l             : edit ~/tmp/TC_*.log <CR>
 nnoremap .c             : execute "set colorcolumn=" . (&colorcolumn == "" ? "93" : "") <CR>
 "        .i             :IndentLinesToggle
 "        .q             toggle quick fix
@@ -941,7 +939,7 @@ let g:startify_commands = [ ]
 "     \ { 'header': ['   Commits'],        'type': function('s:list_commits') },
 
 let g:startify_bookmarks = [
-    \ {'a': '~/local/config/.vimrc'},
+    \ {'a': '~/note'},
     \ {'b': '~/workspace' },
     \ ]
 
@@ -1066,7 +1064,7 @@ nnoremap <localleader><localleader>        :Startify<CR>
 "                    library_dirs = ['/opt/python/x86_64/2.7.3-8/lib'])
 "
 let g:Lf_RootMarkers = ['.project', '.root', '.git']
-let g:Lf_GtagsAutoGenerate = 1
+let g:Lf_GtagsAutoGenerate = 0
 let g:Lf_CursorBlink = 1
 let g:Lf_ShowRelativePath = 0
 let g:Lf_PreviewInPopup = 1
@@ -1230,8 +1228,8 @@ nnoremap <localleader>p       :Gpush origin HEAD:refs/for/master%notify=NONE<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "Plug 'Valloric/YouCompleteMe' " Do not update
-nnoremap <localleader>d :YcmCompleter GoTo <CR>
-nnoremap <localleader>r :YcmCompleter GoToReferences <CR>
+nnoremap [d :YcmCompleter GoTo <CR>
+nnoremap [c :YcmCompleter GoToReferences <CR>
 "let g:ycm_keep_logfiles = 1
 "let g:ycm_log_level = 'debug'
 let g:ycm_use_clangd = "Always"
@@ -1351,7 +1349,7 @@ let g:gutentags_project_root = [ '.root', '.git' ]
 let g:gutentags_exclude_filetypes = [ 'make', 'vim', 'log' ]
 let g:gutentags_exclude_project_root = [ 'ims_do' ]
 let g:gutentags_generate_on_empty_buffer = 1
-let g:gutentags_cache_dir = expand('~/.cache/tags')
+let g:gutentags_cache_dir = expand('~/.cache')
 " let g:gutentags_resolve_symlinks = 1
 let g:airline#extensions#gutentags#enabled = 1
 let g:airline#extensions#keymap#enabled = 1
@@ -1377,7 +1375,9 @@ let g:gutentags_plus_height = 80
 " use global-cscope like cscope
 set cscopeprg=gtags-cscope
 "noremap <silent> <leader>gr :GscopeFind<Space>
-nnoremap <silent> <localleader>s :GscopeFind s <C-R><C-W><cr>
+nnoremap <silent> ]d  :GscopeFind g <C-R><C-W><cr>
+nnoremap <silent> ]c  :GscopeFind c <C-R><C-W><cr>
+nnoremap <silent> ]s  :GscopeFind s <C-R><C-W><cr>
 "noremap <silent> <leader>gg :GscopeFind g <C-R><C-W><cr>
 "noremap <silent> <leader>gc :GscopeFind c <C-R><C-W><cr>
 "noremap <silent> <leader>gt :GscopeFind t <C-R><C-W><cr>
@@ -1390,8 +1390,8 @@ nnoremap <silent> <localleader>s :GscopeFind s <C-R><C-W><cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "Plug 'dyng/ctrlsf.vim'
-nnoremap <localLeader>t    :CtrlSF<CR>
-nnoremap <localleader>tt   :CtrlSFToggle <CR>
+" nnoremap <localLeader>t    :CtrlSF<CR>
+" nnoremap <localleader>tt   :CtrlSFToggle <CR>
 let g:ackprg='ag'
 let g:ctrlsf_regex_pattern = 1
 let g:ctrlsf_position = 'right'
@@ -1518,17 +1518,18 @@ nnoremap .t  :TagbarToggle <CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "Plug 'skywind3000/vim-preview'
-let g:preview#preview_position = "right"
+" need ctags formated tags database
+" let g:preview#preview_position = "right"
 " nmap <leader>vq :PreviewQuickfix <CR>
 " nmap <leader>vf :PreviewFile <Space>
 " nmap vf :PreviewScroll +1<CR>
 " nmap <leader>vb :PreviewScroll -1<CR>
 " nmap <leader>vs :PreviewSignature <CR>
 " nmap  :PreviewGoto tabnew <CR>
-nnoremap <localleader>v  :PreviewTag <CR>
-nnoremap <localleader>vv :PreviewClose <CR>
-nnoremap <C-k> :PreviewScroll -1<cr>
-nnoremap <C-j> :PreviewScroll +1<cr>
+" nnoremap <localleader>v  :PreviewTag <CR>
+" nnoremap <localleader>vv :PreviewClose <CR>
+" nnoremap <C-k> :PreviewScroll -1<cr>
+" nnoremap <C-j> :PreviewScroll +1<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -1605,12 +1606,14 @@ call quickui#menu#reset()
 noremap <localleader><space> :call quickui#menu#open()<cr>
 
 "call quickui#menu#install(section, items ['text', 'command', 'tip']])
-call quickui#menu#install('menu',
-\   [
-\       [ 'files'     , '', 'files' ],
-\       [ '--', '', '' ],
-\   ]
-\)
+" call quickui#menu#install('menu',
+" \   [
+" \       [ 'files'     , '', 'files' ],
+" \       [ '--', '', '' ],
+" \   ]
+" \)
+
+source ~/note/todo.vim
 
 noremap <localleader><space><space> :call quickui#listbox#open(content, opts)<cr>
 
