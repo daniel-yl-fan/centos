@@ -1,1 +1,57 @@
+# Esc      :    command mode
+# i        :    GDB mode.
+# s        :    scroll mode in the GDB mode.
+# Ctrl-W   : Toggle the window orientation (horizontal <-> vertical).
+# spacebar : Sets a breakpoint
+# t        : Sets a temporary breakpoint
+# -        : Shrink source window 1 line or column (depending on split orientation).
+# =        : Grow source window 1 line or column (depending on split orientation).
+# _        : Shrink source window 25%
+# +        : Grow source window 25%
+# Ctrl-l   : Clear and redraw the screen.
+# F5       : Send a run command to GDB.
+# F6       : Send a continue command to GDB.
+# F7       : Send a finish command to GDB.
+# F8       : Send a next command to GDB.
 map <F9> :until<cr>
+# F10      : Send a step command to GDB.
+map <Space> :next<cr>
+
+set autosourcereload
+set color
+set debugwincolor
+set hlsearch
+set ignorecase
+set showmarks
+# set winsplit=src_big
+#‘src_full, ‘src_big, ‘even, ‘gdb_big, and ‘gdb_full.
+set winsplitorientation=vertical
+#‘horizontal‘vertical
+# set wrapscan
+
+
+# notation	meaning
+# <Esc>	escape key
+# <Up>	cursor up key
+# <Down>	cursor down key
+# <Left>	cursor left key
+# <Right>	cursor right key
+# <Home>	home key
+# <End>	end key
+# <PageUp>	page up key
+# <PageDown>	page down key
+# <Del>	delete key
+# <Insert>	insert key
+# <Nul>	zero
+# <Bs>	backspace key
+# <Tab>	tab key
+# <NL>	linefeed
+# <FF>	formfeed
+# <CR>	carriage return
+# <Space>	space
+# <Lt>	less-than
+# <Bslash>	backslash
+# <Bar>	vertical bar
+# <F1> - <F12>	function keys 1 to 12
+# <C-...>	control keys
+# <S-...>	shift keys

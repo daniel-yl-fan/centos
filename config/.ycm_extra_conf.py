@@ -41,17 +41,40 @@ SOURCE_EXTENSIONS = [ '.cpp', '.c', 'xml' ]
 # These are the compilation flags that will be used in case there's no
 # compilation database set (by default, one is not set).
 # CHANGE THIS LIST OF FLAGS. YES, THIS IS THE DROID YOU HAVE BEEN LOOKING FOR.
+    #  '-Wno-all',
 flags = [
+    '-x', 'c++',
+    '-ferror-limit=0',
+    '-Wall',
+    '-fPIC',
+    '-g',
+    '-std=c++11',
+    '-DUMS_MT',
+    '-Wno-deprecated-register',
+    '-Wno-deprecated-declarations',
+    '-Wno-gnu-designator',
+    '-Wno-conversion',
+    '-Wno-sign-conversion',
+    '-Wno-reorder',
+    '-DDEBUG',
+    '-m64',
+    '-DLINUX',
+    '-D_REENTRANT',
+    '-D_POSIX_PTHREAD_SEMANTICS',
+    '-DNM_NOT_CONFIGURED',
+    '-DHAVE_POSIX_MEMALIGN_SYMBOL=1',
+    '-DRTP_64BIT',
+    '-DHSS_NODE',
+    '-DTRC_PERF_RELEASE',
+    '-DUMSNSR_MT',
     '-I', '/usr/include',
     '-I', '/usr/include/c++/4.8.5',
     '-I', '/usr/include/c++/4.8.2',
-    '-I', '~/local/lib/clang/9.0.1/include',
-    '-I', '-',
+    '-I', '/home/dafan/local/lib/clang/9.0.1/include',
     '-I', DIR_OF_THIS_SCRIPT + '/.',
     '-I', DIR_OF_THIS_SCRIPT + '/../include',
     '-I', DIR_OF_THIS_SCRIPT + '/../inc',
 ]
-
 # Clang automatically sets the '-std=' flag to 'c++14' for MSVC 2015 or later,
 # which is required for compiling the standard library, and to 'c++11' for older
 # versions.

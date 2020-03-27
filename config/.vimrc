@@ -88,8 +88,8 @@ syntax enable
 "syntax sync minlines=10000
 set redrawtime=10000
 "syntax sync fromstart
-
-au BufRead,BufNewFile *.diam set filetype=Diameter
+syn keyword Todo TODO todo dafan
+au BufRead,BufNewFile *.log set filetype=log
 
 set autoindent
 
@@ -152,7 +152,12 @@ set wildignore+=*.linux2,*.win32,*.darwin,*.freebsd,*.linux,*.android
 " conflict with easyemotion, backgroud will not fade out when selection
 " autocmd! bufwritepost $MYVIMRC source $MYVIMRC
 " autocmd! bufwritepost $HOME/.vimrc source %
-" autocmd! bufwritepost ~/local/centos/config/.vimrc source ~/local/centos/config/.vimrc
+" autocmd! bufwritepost ~/local/config/.vimrc source ~/local/config/.vimrc
+"
+" regex non-greedy
+" If a "-" appears immediately after the "{", then a shortest match
+" first algorithm is used (see example below).  In particular, "\{-}" is
+" the same as "*" but uses the shortest match first algorithm.
 
 " xxd -r -p file    " convert hex to binary (ascii)
 " xxd -i file    " convert binary file to hex
@@ -182,7 +187,7 @@ Plug 'haya14busa/vim-easyoperator-line'
 Plug 'haya14busa/vim-easyoperator-phrase'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'junegunn/vim-easy-align'
-Plug 'roxma/vim-paste-easy'
+" Plug 'roxma/vi-paste-easy'
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdcommenter'
 Plug 'mbbill/undotree'
@@ -193,6 +198,7 @@ Plug 'kshenoy/vim-signature'
 Plug 'tpope/vim-unimpaired'
 Plug 'andymass/vim-matchup'
 
+Plug 'mhinz/vim-startify'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'Yggdroot/LeaderF'
@@ -241,38 +247,47 @@ call plug#end()
 
 let  mapleader=";"
 let  maplocalleader=","
-
-imap     <leader><leader>   <Esc>
-" imap     <leader><leader>  <C-c>
-" inoremap <leader><leader>   <Esc>
-" inoremap jk <Esc>
-" inoremap kj <Esc>
-" imap ii <Esc>
+inoremap <leader><leader>             <Esc>
 
 nnoremap \          <C-b>
 nnoremap <space>    <C-f>
 
-nnoremap <leader><CR>      a<Esc>
-nnoremap <leader><space>   a<space><Esc>
+nnoremap <leader><CR>                 a<Esc>
+nnoremap <leader><space>              a<space><Esc>
+nnoremap <localleader><leader>        $a;<Esc>
+inoremap <localleader><leader>        <End>;<Esc>
 
 nnoremap <leader>e      : edit!  <CR>
 nnoremap <leader>w      : write! <CR>
 nnoremap <leader>q      : quit!  <CR>
 nnoremap <leader>x      : exit!  <CR>
-" mnemonic abort
-nnoremap <leader>a      : quitall!  <CR>
-nnoremap <leader>y      : ,, write!  ~/tmp/copy-paste <CR>
-vnoremap <leader>y      :    write!  ~/tmp/copy-paste <CR>
-nnoremap <leader>p      :    read    ~/tmp/copy-paste <CR>
+nnoremap <leader>y      : ,, write!  ~/tmp/clipboard <CR>
+vnoremap <leader>y      :    write!  ~/tmp/clipboard <CR>
+nnoremap <leader>p      :    read    ~/tmp/clipboard <CR>
 nnoremap <leader>t      : tabnew <CR>
 nnoremap <tab>          : tabnext <CR>
 nnoremap <S-tab>        : tabprevious <CR>
-nnoremap .c         : execute "set colorcolumn=" . (&colorcolumn == "" ? "93" : "") <CR>
-"        .l         toggle location list
-"        .q         toggle quick fix
-"        .t         TagbarToggle <CR>
-"        .u         UndotreeToggle<CR>
-"        .z         zoom window
+nnoremap <              : diffget /3 <CR>
+nnoremap >              : diffget /2 <CR>
+nnoremap <<             : bprevious <CR>
+nnoremap >>             : bnext <CR>
+nnoremap ^^             : bdelete <CR>
+
+nnoremap [[             'Z
+nnoremap ]]             'Y
+nnoremap [A             'A
+nnoremap [B             'B
+nnoremap [C             'C
+nnoremap [D             'D
+nnoremap [E             'E
+nnoremap [l             : edit ~/tmp/MT_*.log <CR>
+nnoremap ]l             : edit ~/tmp/TC_*.log <CR>
+nnoremap .c             : execute "set colorcolumn=" . (&colorcolumn == "" ? "93" : "") <CR>
+"        .i             :IndentLinesToggle
+"        .q             toggle quick fix
+"        .t             TagbarToggle <CR>
+"        .u             UndotreeToggle<CR>
+"        .z             zoom window
 
 
 " map ALT key to Meta key,
@@ -432,9 +447,16 @@ let g:asyncrun_rootmarks = [ '.git', '.root', '.project' ]
 "let g:asyncrun_status = ''
 "let g:airline_section_error = airline#section#create_right(['%{g:asyncrun_status}'])
 "nmap <localleader>q    : call asyncrun#quickfix_toggle(120) <CR>
-"nmap <localleader>build :AsyncRun -mode=terminal -pos=tab -raw -cwd=~/workspace/ims_do gm libUMSbh -gf -j32 <CR>
-" libUMSs6t    UMSbh     libUMSbh    mt-build    mt-run
-nnoremap <localleader>m :AsyncRun -program=make @ -f ~/workspace/makefile --directory=~/workspace/ims_do
+"nmap <localleader>make :AsyncRun -mode=terminal -pos=tab -raw -cwd=~ make <CR>
+nnoremap !m    :AsyncRun -program=make @ build -f ~/workspace/makefile --directory=~/workspace/ims_do<CR>
+nnoremap !e    :AsyncRun -mode=term -pos=thelp module-test.bash<CR>
+nnoremap !d    :AsyncRun -mode=term -pos=thelp module-test.bash --debug_tool=Gdb<CR>
+nnoremap !u    :AsyncRun -mode=term -pos=thelp update-repositories.bash<CR>
+nnoremap !s    :AsyncRun -mode=term -pos=thelp status-repositories.bash<CR>
+nnoremap !c    :AsyncRun -mode=term -pos=thelp module-test-coverage.bash<CR>
+nnoremap !x    :AsyncStop<CR>
+autocmd FileType qf syn match qfFilename ">>> gm ok"
+autocmd FileType qf syn match qfError ">>> gm : ERROR !!!"
 
 " Gpush and Gfetch in vim-fugitive can be started with asyncrun
 command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
@@ -442,12 +464,11 @@ command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
 ":AsyncRun g++ -O3 "%" -o "%<" -lpthread
 "Macro '%' stands for filename and '%<' represents filename without extension
 "
-":AsyncRun! ag -g UMSbh.cxx ~
+":AsyncRun! ag -g foo ~
 "when ! is included, auto-scroll in quickfix will be disabled.
 "<cword> represents current word under cursor.
 "
-"AsyncRun gm libUMSbh -cld -gf -j32
-"AsyncRun -raw gm UMSbh -cld -gf -j32
+"AsyncRun -raw exe
 "option -raw will display the raw output (without matching to errorformat)
 "
 ":AsyncStop[!] "!" job will be stopped by signal KILL.
@@ -543,8 +564,8 @@ let &errorformat = "%f:%l:%c: %t%*[^:]:%m,%f:%l: %t%*[^:]:%m," . &errorformat
 "
 let g:EasyOperator_line_do_mapping = 0
 nmap vl <Plug>(easyoperator-line-select)
-" nmap dl <Plug>(easyoperator-line-delete)
-" nmap yl <Plug>(easyoperator-line-yank)
+nmap dl <Plug>(easyoperator-line-delete)
+nmap yl <Plug>(easyoperator-line-yank)
 
 "Plug 'haya14busa/vim-easyoperator-phrase'
 "
@@ -655,14 +676,42 @@ xmap <localLeader>a    <Plug>(EasyAlign)
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "Plug 'roxma/vim-paste-easy'
+let g:paste_easy_enable = 0
 let g:paste_easy_message = 0
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "Plug 'tpope/vim-surround'
 
-"Delete surroundings is *ds*
-"Change surroundings is *cs*
+nmap <localleader>(    ysiwb
+nmap <localleader>)    ysiWb
+" Delete surroundings is *ds*
+" Change surroundings is *cs*
+" Wrap surroundings is *ys*
+" *yss* operates on the current line
+" *ySS* which indent the surrounded text and place it on a line of its own.
+" In linewise visual mode, "S" the surroundings are placed on separate lines and indented.
+" In blockwise visual mode, "S" each line is surrounded.
+
+" Targets: (, ), {, }, [, ], <, >, other symbols
+" If the opening mark is used, contained whitespace is also trimmed.
+" The targets b, B, r, and a are aliases for ), }, ], and >
+" "t" is a pair of HTML or XML tags.
+" specify a numerical argument if you want to get to a tag other than the innermost one.
+" "w", "W", "s", "p" correspond to a word, a WORD, a sentence, a paragraph
+" If f, F, or <C-F> is used, Vim prompts for a function name to insert
+" If s is used, a leading but not trailing space is added.
+
+" Old text                  Command     New text ~
+" "Hello *world!"           ds"         Hello world!
+" [123+4*56]/2              cs])        (123+456)/2
+" "Look ma, I'm *HTML!"     cs"<q>      <q>Look ma, I'm HTML!</q>
+" if *x>3 {                 ysW(        if ( x>3 ) {
+" my $str = *whee!;         vllllS'     my $str = 'whee!';
+" Hello w*orld!             yssB        {Hello world!}
+" foo                       ySS"        "
+"                                       foo
+"                                       "
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -683,6 +732,8 @@ let g:NERDCommentEmptyLines = 1
 let g:NERDTrimTrailingWhitespace = 1
 " Enable NERDCommenterToggle to check all selected lines is commented or not
 let g:NERDToggleCheckAllLines = 1
+
+vmap    ;c#    I#if 0<C-c>gv=gv$<C-c>A#endif<C-c>
 
 "[count]<leader>cc |NERDCommenterComment|
 "Comment out the current line or text selected in visual mode.
@@ -865,10 +916,53 @@ nnoremap .u    : UndotreeToggle<CR>
 "]y{motion}              C String decode.
 "]yy
 "{Visual}]y
-
+"abc\n"
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "Plug 'andymass/vim-matchup'
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Plug 'mhinz/vim-startify'
+"
+let g:startify_disable_at_vimenter = 1
+let g:startify_files_number = 5
+" Show <empty buffer> and <quit>
+let g:startify_enable_special = 0
+
+let g:startify_custom_header = []
+let g:startify_commands = [ ]
+" function! s:list_commits()
+    " let git = 'git -C .'
+    " let commits = systemlist(git .' log --oneline | head -n3')
+    " let git = 'G'. git[1:]
+    " return map(commits, '{"line": matchstr(v:val, "\\s\\zs.*"), "cmd": "'. git .' show ". matchstr(v:val, "^\\x\\+") }')
+" endfunction
+"     \ { 'header': ['   Commits'],        'type': function('s:list_commits') },
+
+let g:startify_bookmarks = [
+    \ {'a': '~/local/config/.vimrc'},
+    \ {'b': '~/workspace' },
+    \ ]
+
+let g:startify_lists = [
+    \ { 'type': 'sessions',  'header': ['   Sessions']       },
+    \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+    \ { 'type': 'files',     'header': ['   MRU']            },
+    \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
+    \ ]
+    " \ { 'type': 'commands',  'header': ['   Commands']       },
+" `b` (open in same window),
+" `s` (open in split),
+" `v` (open in vertical split)
+" `t` (open in tab).
+" Afterwards execute these actions via `<cr>`.
+" The uppercase variants of b/s/v/t enable the batchmode
+nnoremap <localleader><localleader>        :Startify<CR>
+" :SLoad       load a session    |startify-:SLoad|
+" :SSave[!]    save a session    |startify-:SSave|
+" :SDelete[!]  delete a session  |startify-:SDelete|
+" :SClose      close a session   |startify-:SClose|
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -978,9 +1072,11 @@ let g:Lf_ShowRelativePath = 0
 let g:Lf_PreviewInPopup = 1
 let g:Lf_Ctags = "/home/dafan/local/bin/ctags"
 let g:Lf_ShowHidden = 1
-let g:Lf_UseCache = 0
-"let g:Lf_CacheDiretory = '~/.cache/lf'
+let g:Lf_UseCache = 1
+let g:Lf_CacheDiretory = '~/.cache/lf'
 let g:Lf_WindowPosition = 'popup'
+let g:Lf_PopupHeight = 0.8
+let g:Lf_PopupWidth = 0.8
 " let g:Lf_PopupColorscheme = 'desert'
 nnoremap    <localleader>.    :LeaderfFile <CR>
 nnoremap    <localleader>#    :LeaderfMru <CR>
@@ -1126,8 +1222,10 @@ nnoremap <localleader>"    :Clap registers <CR>
 "Plug 'tpope/vim-fugitive'
 "man fugitive or Press g? or see fugitive-maps for usage.
 nnoremap <localleader>g       :Git <CR>
+nnoremap <localleader>l       :Gclog <CR>
 nnoremap <localleader>w       :Gwrite <CR>
-nnoremap <localleader>p       :Gpush origin HEAD:refs/for/master <CR>
+nnoremap <localleader>p       :Gpush origin HEAD:refs/for/master%notify=NONE<CR>
+" %notify=NONE    OWNER    OWNER_REVIEWERS    ALL    %private    remove-private    %wip    ready
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -1157,7 +1255,7 @@ let g:ycm_complete_in_strings = 1
 "let g:ycm_seed_identifiers_with_syntax = 1
 let g:ycm_server_python_interpreter = '/usr/bin/python'
 let g:ycm_use_clangd = "Never"
-let g:ycm_global_ycm_extra_conf = '~/local/centos/config/.ycm_extra_conf.py'
+let g:ycm_global_ycm_extra_conf = '~/local/config/.ycm_extra_conf.py'
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_max_diagnostics_to_display = 1000
 let g:ycm_semantic_triggers =  { 'c,cpp,bash,python,java,go,erlang,perl': ['re!\w{2}'] }
@@ -1235,28 +1333,46 @@ Plug 'vim-scripts/gtags.vim'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'skywind3000/gutentags_plus'
 "
-let g:gutentags_project_root = [ '.git', '.project', '.root' ]
+"gtags --config
+"
+" ag --filename-pattern "^.*\.h$|^.*\.hpp$|^.*\.hxx$|^.*\.hh$|^.*\.H$|^.*\.c$|^.*\.cpp$|^.*\.cxx$|^.*\.c++$|^.*\.cc$|^.*\.C$" ~/workspace > ~/workspace/gtags.files
+"gtags --incremental --file ~/workspace/gtags.files   or    gtags --skip-unreadable    or    gtags-cscope -b
+"        GTAGS    definition database
+"        GRTAGS   reference database
+"        GPATH    path name database
+"
+let g:gutentags_trace = 0
+" 'cscope' will polute current directory with GTAGS GPATH GRTAGS
+" let g:gutentags_modules = [ 'ctags', 'cscope', 'gtags_cscope' ]
+let g:gutentags_modules = [ 'gtags_cscope' ]
 let g:gutentags_add_default_project_roots = 0
-let g:gutentags_exclude_project_root = [ 'obj' ]
+" let g:gutentags_project_root = [ '.git', '.project', '.root' ]
+let g:gutentags_project_root = [ '.root', '.git' ]
+let g:gutentags_exclude_filetypes = [ 'make', 'vim', 'log' ]
+let g:gutentags_exclude_project_root = [ 'ims_do' ]
+let g:gutentags_generate_on_empty_buffer = 1
 let g:gutentags_cache_dir = expand('~/.cache/tags')
-let g:gutentags_ctags_tagfile = '.gutentags'
+" let g:gutentags_resolve_symlinks = 1
+let g:airline#extensions#gutentags#enabled = 1
+let g:airline#extensions#keymap#enabled = 1
+
+" let g:gutentags_file_list_command = 'ag --filename-pattern "^.*\.h$|^.*\.hpp$|^.*\.hxx$|^.*\.hh$|^.*\.H$|^.*\.c$|^.*\.cpp$|^.*\.cxx$|^.*\.c++$|^.*\.cc$|^.*\.C$"'
+" let g:gutentags_file_list_command = 'ag --filename-pattern c --files-with-matches'
+" let g:gutentags_file_list_command = {
+    " \ 'markers': {
+    " \ '.git': 'git ls-files',
+    " \ },
+" \ }
+let g:gutentags_ctags_exclude = [ 'makefile', '.vimrc', '*.log' ]
 let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extras=+q']
 let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
 let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
-" 'cscope' will polute current directory with GTAGS GPATH GRTAGS
-"let g:gutentags_modules = [ 'ctags', 'cscope', 'gtags_cscope' ]
-let g:gutentags_modules = [ 'ctags', 'gtags_cscope' ]
 let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']
-let g:gutentags_ctags_exclude_wildignore = 1
-let g:gutentags_cscope_executable = "gtags-cscope"
-let g:gutentags_define_advanced_commands = 1
-let g:gutentags_trace = 0
-let g:gutentags_plus_switch = 1
+let g:gutentags_ctags_exclude = [ 'ims_do' ]
+
 let g:gutentags_plus_nomap = 1
+let g:gutentags_plus_switch = 1
 let g:gutentags_plus_height = 80
-"let g:gutentags_file_list_command = 'ag --filename-pattern c --files-with-matches'
-"let g:gutentags_ctags_exclude = [ 'obj' ]
-let g:airline#extensions#gutentags#enabled = 1
 
 " use global-cscope like cscope
 set cscopeprg=gtags-cscope
@@ -1451,7 +1567,7 @@ nnoremap <C-j> :PreviewScroll +1<cr>
 " let g:loaded_listtoggle = 1
 let g:lt_height = 30
 let g:lt_quickfix_list_toggle_map = '.q'
-let g:lt_location_list_toggle_map = '.l'
+" let g:lt_location_list_toggle_map = '.l'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -1466,7 +1582,7 @@ let g:indentLine_noConcealCursor = 1
 let g:indentLine_color_term = 4
 "let g:indentLine_char = '|'
 let g:indentLine_char_list = ['|', '≡', '¦', '∮ ', '┆', '§', '┊', '▓', '‖', '↓ ', '║', '↑']
-" nmap   :IndentLinesToggle <CR>
+nnoremap   .i    :IndentLinesToggle<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -1489,53 +1605,36 @@ call quickui#menu#reset()
 noremap <localleader><space> :call quickui#menu#open()<cr>
 
 "call quickui#menu#install(section, items ['text', 'command', 'tip']])
-call quickui#menu#install('toggle',
+call quickui#menu#install('menu',
 \   [
-\       [ 'z  zoom win'     , '', 'zoom-toggle' ],
+\       [ 'files'     , '', 'files' ],
 \       [ '--', '', '' ],
-\       [ 'q  toggle quickfix'  , '', 'copen/cclose' ],
-\       [ 'l  toggle location list'  , '', 'lopen/lclose' ],
-\       [ 't  toggle tagbar'    , '', 'toggle tagbar' ],
-\       [ 'u  toggle undo'      , '', 'toggle undo list' ],
-\       [ '--', '', '' ],
-\       [ 'c  toggle color column' , '', 'toggle color column' ],
-\   ]
-\)
-
-call quickui#menu#install('Ctrl',
-\   [
-\       [ 'g  select all multi cursor', '', 'select all multi cursor' ],
-\       [ '--', '', '' ],
-\       [ '--', '', '' ],
-\       [ 't  new terminal', '', 'new terminal' ],
 \   ]
 \)
 
 noremap <localleader><space><space> :call quickui#listbox#open(content, opts)<cr>
 
 let content = [
-            \ [ 'git',             '' ],
-            \ [ 'vim plug',        '' ],
-            \ [ 'cpp 11',          '' ],
             \ [ 'Python3.6',       '' ],
-            \ [ 'Boost',           '' ],
-            \ [ 'STL',             '' ],
+            \ [ 'cpp 11',          '' ],
             \ [ '/usr/include',    '' ],
+            \ [ 'STL',             '' ],
+            \ [ 'Boost',           '' ],
             \ [ 'design patterns', '' ],
             \ ]
 let opts = {'title': 'select'}
 
 " display vim messages in the textbox
-function! DisplayMessages()
-    let x = ''
-    redir => x
-    silent! messages
-    redir END
-    let x = substitute(x, '[\n\r]\+\%$', '', 'g')
-    let content = filter(split(x, "\n"), 'v:key != ""')
-    let opts = {"close":"button", "title":"Vim Messages"}
-    call quickui#textbox#open(content, opts)
-endfunc
+" function! DisplayMessages()
+"     let x = ''
+"     redir => x
+"     silent! messages
+"     redir END
+"     let x = substitute(x, '[\n\r]\+\%$', '', 'g')
+"     let content = filter(split(x, "\n"), 'v:key != ""')
+"     let opts = {"close":"button", "title":"Vim Messages"}
+"     call quickui#textbox#open(content, opts)
+" endfunc
 
 " call DisplayMessages()
 
@@ -1562,6 +1661,8 @@ let g:airline_symbols_ascii = 1
 let g:airline_detect_paste = 1
 let g:airline_detect_modified = 1
 let g:airline_inactive_collapse = 1
+let g:airline#extensions#fugitiveline#enabled = 1
+let g:airline#extensions#hunks#enabled = 1
 "let g:airline#extensions#tabline#tabs_label = 't'
 "let g:airline#extensions#tabline#buffers_label = 'b'
 
@@ -1608,10 +1709,12 @@ let g:rainbow_conf = {
 
 " Plug 'skywind3000/vim-terminal-help'
 "
-" Alt + =  : open terminal
-" ALT+SHIFT+hjkl    switch between windows
 " drop : send file to outer vim
-" <C-\><C-n> switch from insert mode to normal mode
+" <C-w> hjklp switch from window to terminal
+" <C-\><C-n> terminal switch from insert mode to normal mode
+" i terminal switch from normal mode to insert mode
+" <C-_> hjklp switch from terminal to window
+" <C-_>"0-9a-zA-Z paster from register
 let g:terminal_key = "<C-t>"
 let g:terminal_height = 30
 " let g:terminal_pos = vertical
