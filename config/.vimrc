@@ -160,7 +160,9 @@ set wildignore+=*.linux2,*.win32,*.darwin,*.freebsd,*.linux,*.android
 " the same as "*" but uses the shortest match first algorithm.
 
 " xxd -r -p file    " convert hex to binary (ascii)
-" xxd -i file    " convert binary file to hex
+"echo '34322069732074686520736f6c7574696f6e0a' | xxd -r -p
+" xxd -i file    " convert binary file to hex, output in C include file style
+"echo '42 is the solution' | xxd -ps    " output in postscript plain hexdump style
 "
 " ascii <=> hex
 " vnoremap ; :<c-u>s/\%V./\=printf("%x",char2nr(submatch(0)))/g<cr><c-l>`<
@@ -180,18 +182,19 @@ Plug 'sgur/vim-textobj-parameter'
 Plug 'kana/vim-textobj-user'
 
 Plug 'skywind3000/asyncrun.vim'
-Plug 'skywind3000/asynctasks.vim'
+" Plug 'skywind3000/asynctasks.vim'
 Plug 'mh21/errormarker.vim'
 
 Plug 'haya14busa/vim-easyoperator-line'
-Plug 'haya14busa/vim-easyoperator-phrase'
+" Plug 'haya14busa/vim-easyoperator-phrase'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'junegunn/vim-easy-align'
-" Plug 'roxma/vi-paste-easy'
+" Plug 'dhruvasagar/vim-table-mode'
+Plug 'roxma/vi-paste-easy'
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdcommenter'
 Plug 'mbbill/undotree'
-"Plug 'jiangmiao/auto-pairs'  "conflict with rainbow
+" Plug 'jiangmiao/auto-pairs'  "conflict with rainbow
 
 Plug 'kshenoy/vim-signature'
 
@@ -210,35 +213,35 @@ Plug 'tpope/vim-fugitive'
 Plug 'chrisbra/vim-diff-enhanced'
 Plug 'octol/vim-cpp-enhanced-highlight', { 'for': ['c', 'cpp'] }
 
-
 Plug 'Valloric/YouCompleteMe' " Do not update
-"Plug 'dense-analysis/ale'
-"Plug 'prabirshrestha/vim-lsp'
-"Plug 'natebosch/vim-lsc'
+" Plug 'dense-analysis/ale'
+" Plug 'prabirshrestha/vim-lsp'
+" Plug 'natebosch/vim-lsc'
 Plug 'Shougo/echodoc.vim'
 
 Plug 'vim-scripts/gtags.vim'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'skywind3000/gutentags_plus'
-" Plug 'dyng/ctrlsf.vim'
+Plug 'dyng/ctrlsf.vim'
 Plug 'majutsushi/tagbar'
-" Plug 'skywind3000/vim-preview'
-"Plug 'liuchengxu/vista.vim'
+Plug 'skywind3000/vim-preview'
+" Plug 'liuchengxu/vista.vim'
 
 Plug 'tpope/vim-repeat'
-Plug 't9md/vim-choosewin'
+" Plug 't9md/vim-choosewin'
 Plug 'Valloric/ListToggle'
 Plug 'dhruvasagar/vim-zoom'
 Plug 'Yggdroot/indentLine'
-"Plug 'nathanaelkane/vim-indent-guides'
+" Plug 'nathanaelkane/vim-indent-guides'
 Plug 'skywind3000/vim-quickui'
 
 Plug 'vim-airline/vim-airline'
-"Plug 'itchyny/lightline.vim'    "simpler status line
+" Plug 'itchyny/lightline.vim'    "simpler status line
 Plug 'luochen1990/rainbow'
 Plug 'ntpeters/vim-better-whitespace'
-Plug 'flazz/vim-colorschemes'
+" Plug 'flazz/vim-colorschemes'
 
+" need private change to unmap alt to avoid mess up escape
 Plug 'skywind3000/vim-terminal-help'
 
 call plug#end()
@@ -455,6 +458,7 @@ nnoremap !c    :AsyncRun -mode=term -pos=thelp module-test-coverage.bash<CR>
 nnoremap !x    :AsyncStop<CR>
 autocmd FileType qf syn match qfFilename ">>> gm ok"
 autocmd FileType qf syn match qfError ">>> gm : ERROR !!!"
+autocmd FileType qf syn match qfError "Killed"
 
 " Gpush and Gfetch in vim-fugitive can be started with asyncrun
 command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
@@ -670,6 +674,28 @@ xmap <localLeader>a    <Plug>(EasyAlign)
 "| `<Bar>`   | Table markdown                                                       |
 
 "define your own rules with `g:easy_align_delimiters`
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Plug 'dhruvasagar/vim-table-mode'
+" :TableModeToggle  mapped to <Leader>tm
+" Enter the first line, delimiting columns by the | symbol.
+" In the second line (without leaving Insert mode), enter | twice.
+" When you enter the subsequent lines, the plugin will automatically adjust the formatting
+" to match the text you’re entering every time you press |
+" Then you can return to the first line and above it enter ||
+let g:table_mode_disable_mappings = 1
+" let g:table_mode_corner='|'
+let g:table_mode_corner_corner='+'
+let g:table_mode_header_fillchar='='
+" You can also define in a table header border how it's content should be aligned, whether center, right or left by
+" using a : character defined by g:table_mode_align_char option.
+" TableModeRealign  mapped to <Leader>tr
+" Tableize  mapped to <Leader>tt
+" move between cells using table mode motions [|, ]|, {| & }| to move left | right | up | down cells
+" Cell Text Object i| & a|
+" <Leader>tdd
+" <Leader>tdc
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -1222,7 +1248,7 @@ nnoremap <localleader>"    :Clap registers <CR>
 nnoremap <localleader>g       :Git <CR>
 nnoremap <localleader>l       :Gclog <CR>
 nnoremap <localleader>w       :Gwrite <CR>
-nnoremap <localleader>p       :Gpush origin HEAD:refs/for/master%notify=NONE<CR>
+nnoremap <localleader>p       :Gpush origin HEAD:refs/for/master<CR>
 " %notify=NONE    OWNER    OWNER_REVIEWERS    ALL    %private    remove-private    %wip    ready
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1718,9 +1744,14 @@ let g:rainbow_conf = {
 " i terminal switch from normal mode to insert mode
 " <C-_> hjklp switch from terminal to window
 " <C-_>"0-9a-zA-Z paster from register
+let g:terminal_skip_key_init = 1
 let g:terminal_key = "<C-t>"
 let g:terminal_height = 30
 " let g:terminal_pos = vertical
+" 0: vim's current working directory (which :pwd returns)
+" 1: file path of current file.
+" 2: project root of current file.
+let g:terminal_cwd = 2
 " Alt + - paste content from register 0
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
