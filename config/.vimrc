@@ -264,9 +264,9 @@ nnoremap <leader>e      : edit!  <CR>
 nnoremap <leader>w      : write! <CR>
 nnoremap <leader>q      : quit!  <CR>
 nnoremap <leader>x      : exit!  <CR>
-nnoremap <leader>y      : ,, write!  ~/tmp/clipboard <CR>
-vnoremap <leader>y      :    write!  ~/tmp/clipboard <CR>
-nnoremap <leader>p      :    read    ~/tmp/clipboard <CR>
+nnoremap <leader>y      : ,, write!  ~/.clipboard <CR>
+vnoremap <leader>y      :    write!  ~/.clipboard <CR>
+nnoremap <leader>p      :    read    ~/.clipboard <CR>
 nnoremap <leader>t      : tabnew <CR>
 nnoremap <tab>          : tabnext <CR>
 nnoremap <S-tab>        : tabprevious <CR>

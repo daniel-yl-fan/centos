@@ -4,6 +4,7 @@ HISTCONTROL=ignorespace:ignoredups:erasedups
 shopt -s histappend
 PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
 
+
 export PATH=$PATH:~/local/bin
 export CDPATH=.:~
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/local/lib:~/local/lib64
@@ -11,6 +12,7 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/local/lib:~/local/lib64
 # PS1="\[\033[36m\]\`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/{\1} /'\`\e[91m [\u@\h] \e[93m \w \e[0m \n \\$ "
 export PS1="\e[36m \`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/{ \1 } /'\` \e[31m \u@\h \e[93m ( \`git branch --no-color --list 2> /dev/null | sed --regexp-extended 's/\*//g' | tr '\n' ' '\` ) \e[32m ( \w ) \e[0m \n $ "
 
+shopt -s cdspell
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
