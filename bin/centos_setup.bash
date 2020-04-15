@@ -101,3 +101,11 @@ git clone https://github.com/gcc-mirror/gcc.git
 ./contrib/download_prerequisites
 ./configure --disable-multilib
 make
+
+# docker
+curl https://download.docker.com/linux/centos/docker-ce.repo -o /etc/yum.repos.d/docker-ce.repo
+yum install https://download.docker.com/linux/fedora/30/x86_64/stable/Packages/containerd.io-1.2.6-3.3.fc30.x86_64.rpm
+yum install docker-ce
+systemctl start docker
+systemctl enable docker
+docker run hello-world
