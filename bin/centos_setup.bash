@@ -1,6 +1,12 @@
 # VBoxGuestAdditions_6.0.4
 dnf install elfutils-libelf-devel
 
+# run-level
+systemctl get-default
+graphical.target
+systemctl set-default multi-user.target
+multi-user.target
+
 # ssh-keygen, ~/.ssh/id_rsa.pub github.com/daniel-yl-fan
 
 git clone https://github.com/daniel-yl-fan/centos    /home/centos
