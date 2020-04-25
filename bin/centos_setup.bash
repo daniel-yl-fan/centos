@@ -115,3 +115,12 @@ yum install docker-ce
 systemctl start docker
 systemctl enable docker
 docker run hello-world
+
+# docker move /var/lib/docker to another location
+docker ps -f "status=exited"
+docker stop <container_id> && docker rm -v <container_id>
+docker volume rm $(docker volume ls -qf dangling=true)
+docker rmi $(docker images -qf dangling=true)
+docker stop $(docker ps -q)
+docker rm -v $(docker ps -aq)
+systemctl stop docker

@@ -29,7 +29,7 @@ export EDITOR=vim
 export VISUAL=vim
 export CSCOPE_EDITOR=vim
 set -o vi
-alias vim="~/local/bin/vim"
+#alias vim="~/local/bin/vim"
 
 export LESSOPEN="| ~/local/bin/src-hilite-lesspipe.sh %s"
 export LESS=' -R '
@@ -37,7 +37,7 @@ alias l="less -r"
 
 alias t='trash'
 
-source ~/local/z/z.sh
+source /usr/local/bin/z.sh
 
 alias cat="~/local/bin/ccat --color-code=Keyword=red --color-code=Plaintext=green --color-code=Punctuation=yellow --color-code=Decimal=turquoise"
 
