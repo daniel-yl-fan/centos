@@ -90,6 +90,7 @@ set redrawtime=10000
 "syntax sync fromstart
 syn keyword Todo TODO todo dafan
 au BufRead,BufNewFile *.log set filetype=log
+au BufRead,BufNewFile *.txt set filetype=log
 
 set autoindent
 
@@ -190,7 +191,7 @@ Plug 'haya14busa/vim-easyoperator-line'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'junegunn/vim-easy-align'
 " Plug 'dhruvasagar/vim-table-mode'
-Plug 'roxma/vi-paste-easy'
+" Plug 'roxma/vi-paste-easy'
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdcommenter'
 Plug 'mbbill/undotree'
@@ -225,6 +226,7 @@ Plug 'skywind3000/gutentags_plus'
 Plug 'dyng/ctrlsf.vim'
 Plug 'majutsushi/tagbar'
 Plug 'skywind3000/vim-preview'
+Plug 'sk1418/QFGrep'
 " Plug 'liuchengxu/vista.vim'
 
 Plug 'tpope/vim-repeat'
@@ -270,24 +272,23 @@ nnoremap <leader>p      :    read    ~/.clipboard <CR>
 nnoremap <leader>t      : tabnew <CR>
 nnoremap <tab>          : tabnext <CR>
 nnoremap <S-tab>        : tabprevious <CR>
-nnoremap <              : diffget /3 <CR>
-nnoremap >              : diffget /2 <CR>
-nnoremap <<             : bprevious <CR>
-nnoremap >>             : bnext <CR>
+nnoremap 1              : tabnext1 <CR>
+nnoremap 2              : tabnext2 <CR>
+nnoremap 3              : tabnext3 <CR>
+nnoremap 4              : tabnext4 <CR>
+nnoremap 5              : tabnext5 <CR>
+nnoremap 6              : tabnext6 <CR>
+nnoremap 7              : tabnext7 <CR>
+nnoremap 8              : tabnext8 <CR>
+nnoremap 9              : tabnext9 <CR>
+nnoremap -              : bnext <CR>
 nnoremap ^^             : bdelete <CR>
 
 nnoremap [[             'Z
-nnoremap ]]             'Y
-nnoremap [A             'A
-nnoremap [B             'B
-nnoremap [C             'C
-nnoremap [D             'D
-nnoremap [E             'E
+nnoremap ]]             /_dafan_<CR>
+nnoremap ..             @:
 nnoremap .c             : execute "set colorcolumn=" . (&colorcolumn == "" ? "93" : "") <CR>
-"        .i             :IndentLinesToggle
 "        .q             toggle quick fix
-"        .t             TagbarToggle <CR>
-"        .u             UndotreeToggle<CR>
 "        .z             zoom window
 
 
@@ -449,12 +450,10 @@ let g:asyncrun_rootmarks = [ '.git', '.root', '.project' ]
 "let g:airline_section_error = airline#section#create_right(['%{g:asyncrun_status}'])
 "nmap <localleader>q    : call asyncrun#quickfix_toggle(120) <CR>
 "nmap <localleader>make :AsyncRun -mode=terminal -pos=tab -raw -cwd=~ make <CR>
-nnoremap !m    :AsyncRun -program=make @ build -f ~/workspace/makefile --directory=~/workspace/ims_do<CR>
-nnoremap !e    :AsyncRun -mode=term -pos=thelp module-test.bash<CR>
-nnoremap !d    :AsyncRun -mode=term -pos=thelp module-test.bash --debug_tool=Gdb<CR>
-nnoremap !u    :AsyncRun -mode=term -pos=thelp update-repositories.bash<CR>
-nnoremap !s    :AsyncRun -mode=term -pos=thelp status-repositories.bash<CR>
-nnoremap !c    :AsyncRun -mode=term -pos=thelp module-test-coverage.bash<CR>
+nnoremap !m    :AsyncRun -program=make @ build --makefile=~/workspace/makefile --directory=~/workspace/ims_do<CR>
+nnoremap !e    :AsyncRun -mode=term -pos=thelp module-test<CR>
+nnoremap !d    :AsyncRun -mode=term -pos=thelp module-test --debug_tool=Gdb<CR>
+nnoremap !c    :AsyncRun -mode=term -pos=thelp module-test-coverage<CR>
 nnoremap !x    :AsyncStop<CR>
 autocmd FileType qf syn match qfFilename ">>> gm ok"
 autocmd FileType qf syn match qfError ">>> gm : ERROR !!!"
@@ -709,6 +708,12 @@ let g:paste_easy_message = 0
 
 nmap <localleader>(    ysiwb
 nmap <localleader>)    ysiWb
+nmap <localleader>{    ysiwB
+nmap <localleader>}    ysiWB
+nmap <localleader>[    ysiwr
+nmap <localleader>]    ysiWr
+nmap <localleader><    ysiwa
+nmap <localleader>>    ysiWa
 " Delete surroundings is *ds*
 " Change surroundings is *cs*
 " Wrap surroundings is *ys*
@@ -757,7 +762,7 @@ let g:NERDTrimTrailingWhitespace = 1
 " Enable NERDCommenterToggle to check all selected lines is commented or not
 let g:NERDToggleCheckAllLines = 1
 
-vmap    ;c#    I#if 0<C-c>gv=gv$<C-c>A#endif<C-c>
+vmap    <leader>c#    I#if _dafan_<C-c>gv=gv$<C-c>A#endif<C-c>
 
 "[count]<leader>cc |NERDCommenterComment|
 "Comment out the current line or text selected in visual mode.
@@ -795,7 +800,7 @@ let g:undotree_DiffpanelHeight = 20
 let g:undotree_SetFocusWhenToggle = 1
 let g:undotree_RelativeTimestamp = 0
 let g:undotree_ShortIndicators = 1
-nnoremap .u    : UndotreeToggle<CR>
+" nnoremap .u    : UndotreeToggle<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -982,7 +987,7 @@ let g:startify_lists = [
 " `t` (open in tab).
 " Afterwards execute these actions via `<cr>`.
 " The uppercase variants of b/s/v/t enable the batchmode
-nnoremap <localleader><localleader>        :Startify<CR>
+" nnoremap <localleader><localleader>        :Startify<CR>
 " :SLoad       load a session    |startify-:SLoad|
 " :SSave[!]    save a session    |startify-:SSave|
 " :SDelete[!]  delete a session  |startify-:SDelete|
@@ -1106,6 +1111,8 @@ nnoremap    <localleader>.    :LeaderfFile <CR>
 nnoremap    <localleader>#    :LeaderfMru <CR>
 nnoremap    <localleader>%    :LeaderfBuffer <CR>
 nnoremap    <localleader>'    :LeaderfMarks <CR>
+nnoremap    <localleader>:    :LeaderfHistoryCmd <CR>
+nnoremap    <localleader>/    :LeaderfHistorySearch <CR>
 "<leader>f                Launch LeaderF to search files.
 ":LeaderfBuffer
 "<leader>b                Launch LeaderF to search buffers.
@@ -1237,7 +1244,7 @@ nnoremap <localleader>"    :Clap registers <CR>
 " xmap ac <plug>(signify-motion-outer-visual)
 "nmap <localleader>    :SignifyDiff<CR>
 "nmap <localleader>    :SignifyToggleHighlight<CR>
-"nmap <localleader>    :SignifyFold<CR>
+nmap <localleader>f    :SignifyFold<CR>
 "nmap <localleader>    :SignifyHunkDiff<CR>
 "nmap <localleader>    :SignifyHunkUndo<CR>
 
@@ -1245,17 +1252,16 @@ nnoremap <localleader>"    :Clap registers <CR>
 
 "Plug 'tpope/vim-fugitive'
 "man fugitive or Press g? or see fugitive-maps for usage.
-nnoremap <localleader>g       :Git <CR>
-nnoremap <localleader>l       :Gclog <CR>
-nnoremap <localleader>w       :Gwrite <CR>
 nnoremap <localleader>p       :Gpush origin HEAD:refs/for/master<CR>
+nnoremap <localleader>w       :Gwrite <CR>
+" nnoremap <localleader>l       :Gclog <CR>
 " %notify=NONE    OWNER    OWNER_REVIEWERS    ALL    %private    remove-private    %wip    ready
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "Plug 'Valloric/YouCompleteMe' " Do not update
 nnoremap [d :YcmCompleter GoTo <CR>
-nnoremap [c :YcmCompleter GoToReferences <CR>
+nnoremap [r :YcmCompleter GoToReferences <CR>
 "let g:ycm_keep_logfiles = 1
 "let g:ycm_log_level = 'debug'
 let g:ycm_use_clangd = "Always"
@@ -1371,7 +1377,7 @@ let g:gutentags_trace = 0
 let g:gutentags_modules = [ 'gtags_cscope' ]
 let g:gutentags_add_default_project_roots = 0
 " let g:gutentags_project_root = [ '.git', '.project', '.root' ]
-let g:gutentags_project_root = [ '.root', '.git' ]
+let g:gutentags_project_root = [ '.git' ]
 let g:gutentags_exclude_filetypes = [ 'make', 'vim', 'log' ]
 let g:gutentags_exclude_project_root = [ 'ims_do' ]
 let g:gutentags_generate_on_empty_buffer = 1
@@ -1402,8 +1408,7 @@ let g:gutentags_plus_height = 80
 set cscopeprg=gtags-cscope
 "noremap <silent> <leader>gr :GscopeFind<Space>
 nnoremap <silent> ]d  :GscopeFind g <C-R><C-W><cr>
-nnoremap <silent> ]c  :GscopeFind c <C-R><C-W><cr>
-nnoremap <silent> ]s  :GscopeFind s <C-R><C-W><cr>
+nnoremap <silent> ]r  :GscopeFind s <C-R><C-W><cr>
 "noremap <silent> <leader>gg :GscopeFind g <C-R><C-W><cr>
 "noremap <silent> <leader>gc :GscopeFind c <C-R><C-W><cr>
 "noremap <silent> <leader>gt :GscopeFind t <C-R><C-W><cr>
@@ -1539,7 +1544,7 @@ let g:ctrlsf_search_mode = 'async'
 "Plug 'majutsushi/tagbar'
 let g:tagbar_autofocus = 1
 let g:tagbar_width = 120
-nnoremap .t  :TagbarToggle <CR>
+" nnoremap .t  :TagbarToggle <CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -1556,6 +1561,13 @@ nnoremap .t  :TagbarToggle <CR>
 " nnoremap <localleader>vv :PreviewClose <CR>
 " nnoremap <C-k> :PreviewScroll -1<cr>
 " nnoremap <C-j> :PreviewScroll +1<cr>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Plug 'sk1418/QFGrep'
+" <Leader>g input pattern to do further filtering
+" <Leader>v input pattern to do further inverted filtering (like grep -v)
+" <Leader>r restore the Quickfix/location-list with original entries
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -1609,7 +1621,7 @@ let g:indentLine_noConcealCursor = 1
 let g:indentLine_color_term = 4
 "let g:indentLine_char = '|'
 let g:indentLine_char_list = ['|', '≡', '¦', '∮ ', '┆', '§', '┊', '▓', '‖', '↓ ', '║', '↑']
-nnoremap   .i    :IndentLinesToggle<CR>
+" nnoremap   .i    :IndentLinesToggle<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -1684,8 +1696,12 @@ let opts = {'title': 'select'}
 
 "Plug 'vim-airline/vim-airline'
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#show_tab_nr = 1
+let g:airline#extensions#tabline#tabs_label = ''
+let g:airline#extensions#tabline#buffers_label = ''
 let g:airline#extensions#tabline#tab_nr_type = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline#extensions#tabline#show_tab_nr = 1
+let g:airline#extensions#tabline#show_tab_count = 0
 let g:airline_symbols_ascii = 1
 let g:airline_detect_paste = 1
 let g:airline_detect_modified = 1
