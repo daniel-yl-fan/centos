@@ -182,9 +182,9 @@ Plug 'kana/vim-textobj-function', { 'for': ['c', 'cpp'] }
 Plug 'sgur/vim-textobj-parameter'
 Plug 'kana/vim-textobj-user'
 
-Plug 'skywind3000/asyncrun.vim'
+" Plug 'skywind3000/asyncrun.vim'
 " Plug 'skywind3000/asynctasks.vim'
-Plug 'mh21/errormarker.vim'
+" Plug 'mh21/errormarker.vim'
 
 Plug 'haya14busa/vim-easyoperator-line'
 " Plug 'haya14busa/vim-easyoperator-phrase'
@@ -214,11 +214,11 @@ Plug 'tpope/vim-fugitive'
 Plug 'chrisbra/vim-diff-enhanced'
 Plug 'octol/vim-cpp-enhanced-highlight', { 'for': ['c', 'cpp'] }
 
-Plug 'Valloric/YouCompleteMe' " Do not update
+" Plug 'Valloric/YouCompleteMe' " Do not update
 " Plug 'dense-analysis/ale'
 " Plug 'prabirshrestha/vim-lsp'
 " Plug 'natebosch/vim-lsc'
-Plug 'Shougo/echodoc.vim'
+" Plug 'Shougo/echodoc.vim'
 
 Plug 'vim-scripts/gtags.vim'
 Plug 'ludovicchabant/vim-gutentags'
@@ -460,7 +460,7 @@ autocmd FileType qf syn match qfError ">>> gm : ERROR !!!"
 autocmd FileType qf syn match qfError "Killed"
 
 " Gpush and Gfetch in vim-fugitive can be started with asyncrun
-command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
+" command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
 
 ":AsyncRun g++ -O3 "%" -o "%<" -lpthread
 "Macro '%' stands for filename and '%<' represents filename without extension
@@ -554,8 +554,8 @@ command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "Plug 'mh21/errormarker.vim'
-let g:asyncrun_auto = "make"
-let &errorformat = "%f:%l:%c: %t%*[^:]:%m,%f:%l: %t%*[^:]:%m," . &errorformat
+" let g:asyncrun_auto = "make"
+" let &errorformat = "%f:%l:%c: %t%*[^:]:%m,%f:%l: %t%*[^:]:%m," . &errorformat
 "AsyncRun -auto=make make
 "both "g:asyncrun_auto" and "-auto=?" can get errormaker to work.
 
