@@ -4,7 +4,9 @@ HISTCONTROL=ignorespace:ignoredups:erasedups
 shopt -s histappend
 PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
 
+export PATH=$PATH:/
 CDPATH=.:~
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/
 
 # PS1="\[\033[36m\]\`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/{\1} /'\`\e[91m [\u@\h] \e[93m \w \e[0m \n \\$ "
 PS1="\e[36m \`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/{ \1 } /'\` \e[31m \u@\h \e[93m ( \`git branch --no-color --list 2> /dev/null | sed --regexp-extended 's/\*//g' | tr '\n' ' '\` ) \e[32m ( \w ) \e[0m \n $ "
@@ -24,9 +26,10 @@ alias c="reset"
 
 EDITOR=vim
 VISUAL=vim
-CSCOPE_EDITOR=vim
+export CSCOPE_EDITOR=vim
 set -o vi
 
+export PAGER="less -R"
 LESSOPEN="| /usr/local/bin/src-hilite-lesspipe.sh %s"
 LESS=' -R '
 alias l="less -r"
