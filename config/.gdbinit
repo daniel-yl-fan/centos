@@ -1,6 +1,8 @@
 set height 0
 set width 0
 
+set logging on
+
 set verbose off
 define hook-quit
     set confirm off
@@ -23,9 +25,15 @@ set output-radix 0x10
 set input-radix 0x10
 set disassembly-flavor intel
 
+# set debug-file-directory ~/local/gdb-debug-file-directory
+
 # set prompt \033[31m gdb-dafan#  \033[0m
 
 #set substitute-path /path/of/compiling /path/of/source/files
+
+set breakpoint pending on
+
+set pagination on
 
 define xxd
     dump binary memory ~/tmp/gdb-dump.bin $arg0 $arg0+$arg1
@@ -149,3 +157,9 @@ end
 # call <function>
 # watch <watchpoint>
 # macro expand <macro>
+
+# ps -C program_name -o pid
+# gdb -p pid
+# pidof -s program_name
+# gdb program_name program_pid
+# gdb program_name `pidof program_pid`
