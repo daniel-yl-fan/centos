@@ -182,9 +182,9 @@ Plug 'kana/vim-textobj-function', { 'for': ['c', 'cpp'] }
 Plug 'sgur/vim-textobj-parameter'
 Plug 'kana/vim-textobj-user'
 
-" Plug 'skywind3000/asyncrun.vim'
+Plug 'skywind3000/asyncrun.vim'
 " Plug 'skywind3000/asynctasks.vim'
-" Plug 'mh21/errormarker.vim'
+Plug 'mh21/errormarker.vim'
 
 Plug 'haya14busa/vim-easyoperator-line'
 " Plug 'haya14busa/vim-easyoperator-phrase'
@@ -194,7 +194,7 @@ Plug 'junegunn/vim-easy-align'
 " Plug 'roxma/vi-paste-easy'
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdcommenter'
-Plug 'mbbill/undotree'
+" Plug 'mbbill/undotree'
 " Plug 'jiangmiao/auto-pairs'  "conflict with rainbow
 
 Plug 'kshenoy/vim-signature'
@@ -214,11 +214,11 @@ Plug 'tpope/vim-fugitive'
 Plug 'chrisbra/vim-diff-enhanced'
 Plug 'octol/vim-cpp-enhanced-highlight', { 'for': ['c', 'cpp'] }
 
-" Plug 'Valloric/YouCompleteMe' " Do not update
+Plug 'Valloric/YouCompleteMe' " Do not update
 " Plug 'dense-analysis/ale'
 " Plug 'prabirshrestha/vim-lsp'
 " Plug 'natebosch/vim-lsc'
-" Plug 'Shougo/echodoc.vim'
+Plug 'Shougo/echodoc.vim'
 
 Plug 'vim-scripts/gtags.vim'
 Plug 'ludovicchabant/vim-gutentags'
@@ -460,7 +460,7 @@ autocmd FileType qf syn match qfError ">>> gm : ERROR !!!"
 autocmd FileType qf syn match qfError "Killed"
 
 " Gpush and Gfetch in vim-fugitive can be started with asyncrun
-" command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
+command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
 
 ":AsyncRun g++ -O3 "%" -o "%<" -lpthread
 "Macro '%' stands for filename and '%<' represents filename without extension
@@ -554,8 +554,8 @@ autocmd FileType qf syn match qfError "Killed"
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "Plug 'mh21/errormarker.vim'
-" let g:asyncrun_auto = "make"
-" let &errorformat = "%f:%l:%c: %t%*[^:]:%m,%f:%l: %t%*[^:]:%m," . &errorformat
+let g:asyncrun_auto = "make"
+let &errorformat = "%f:%l:%c: %t%*[^:]:%m,%f:%l: %t%*[^:]:%m," . &errorformat
 "AsyncRun -auto=make make
 "both "g:asyncrun_auto" and "-auto=?" can get errormaker to work.
 
@@ -970,8 +970,10 @@ let g:startify_commands = [ ]
 "     \ { 'header': ['   Commits'],        'type': function('s:list_commits') },
 
 let g:startify_bookmarks = [
-    \ {'a': '~/note'},
-    \ {'b': '~/workspace' },
+    \ {'a': '~/workspace/ims_hss1/slm/eps/s6t/src' },
+    \ {'b': '~/workspace/ims_hss1/moduletest/testcases/HSS/LTE/S6T' },
+    \ {'c': '~/workspace' },
+    \ {'d': '~/note' },
     \ ]
 
 let g:startify_lists = [
@@ -1244,14 +1246,15 @@ nnoremap <localleader>"    :Clap registers <CR>
 " xmap ac <plug>(signify-motion-outer-visual)
 "nmap <localleader>    :SignifyDiff<CR>
 "nmap <localleader>    :SignifyToggleHighlight<CR>
-nmap <localleader>f    :SignifyFold<CR>
+" nmap <localleader>f    :SignifyFold!<CR>
 "nmap <localleader>    :SignifyHunkDiff<CR>
-"nmap <localleader>    :SignifyHunkUndo<CR>
+" nmap <localleader>u    :SignifyHunkUndo<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "Plug 'tpope/vim-fugitive'
 "man fugitive or Press g? or see fugitive-maps for usage.
+nnoremap <localleader>g       :Git<CR>
 nnoremap <localleader>p       :Gpush origin HEAD:refs/for/master<CR>
 nnoremap <localleader>w       :Gwrite <CR>
 " nnoremap <localleader>l       :Gclog <CR>
@@ -1359,9 +1362,9 @@ highlight link EchoDocPopup Pmenu
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-Plug 'vim-scripts/gtags.vim'
-Plug 'ludovicchabant/vim-gutentags'
-Plug 'skywind3000/gutentags_plus'
+" Plug 'vim-scripts/gtags.vim'
+" Plug 'ludovicchabant/vim-gutentags'
+" Plug 'skywind3000/gutentags_plus'
 "
 "gtags --config
 "
@@ -1372,19 +1375,29 @@ Plug 'skywind3000/gutentags_plus'
 "        GPATH    path name database
 "
 let g:gutentags_trace = 0
+let g:gutentags_auto_add_gtags_cscope = 0
 " 'cscope' will polute current directory with GTAGS GPATH GRTAGS
 " let g:gutentags_modules = [ 'ctags', 'cscope', 'gtags_cscope' ]
 let g:gutentags_modules = [ 'gtags_cscope' ]
 let g:gutentags_add_default_project_roots = 0
 " let g:gutentags_project_root = [ '.git', '.project', '.root' ]
 let g:gutentags_project_root = [ '.git' ]
-let g:gutentags_exclude_filetypes = [ 'make', 'vim', 'log' ]
-let g:gutentags_exclude_project_root = [ 'ims_do' ]
+let g:gutentags_exclude_filetypes = [ 'makefile', '*.sh', '*.log' ]
+" let g:gutentags_exclude_project_root = [ ]
+
 let g:gutentags_generate_on_empty_buffer = 1
 let g:gutentags_cache_dir = expand('~/.cache')
 " let g:gutentags_resolve_symlinks = 1
 let g:airline#extensions#gutentags#enabled = 1
 let g:airline#extensions#keymap#enabled = 1
+
+
+" gutentags: [job stderr]: 'gtags: cannot read file ''.'
+" gutentags: Finished gtags_cscope job.
+" /home/dafan/local/share/vim/vim82/plugged/vim-gutentags/autoload/gutentags/gtags_cscope.vim
+" _dafan_
+" let l:cmd += ['--incremental', '"'.l:db_path.'"']
+" let l:cmd += ['--incremental', '--skip-unreadable', '"'.l:db_path.'"']
 
 " let g:gutentags_file_list_command = 'ag --filename-pattern "^.*\.h$|^.*\.hpp$|^.*\.hxx$|^.*\.hh$|^.*\.H$|^.*\.c$|^.*\.cpp$|^.*\.cxx$|^.*\.c++$|^.*\.cc$|^.*\.C$"'
 " let g:gutentags_file_list_command = 'ag --filename-pattern c --files-with-matches'
@@ -1393,12 +1406,12 @@ let g:airline#extensions#keymap#enabled = 1
     " \ '.git': 'git ls-files',
     " \ },
 " \ }
-let g:gutentags_ctags_exclude = [ 'makefile', '.vimrc', '*.log' ]
-let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extras=+q']
-let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
-let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
-let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']
-let g:gutentags_ctags_exclude = [ 'ims_do' ]
+" let g:gutentags_ctags_exclude = [ 'makefile', '.vimrc', '*.log' ]
+" let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extras=+q']
+" let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
+" let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
+" let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']
+" let g:gutentags_ctags_exclude = [ 'ims_do' ]
 
 let g:gutentags_plus_nomap = 1
 let g:gutentags_plus_switch = 1
@@ -1421,8 +1434,8 @@ nnoremap <silent> ]r  :GscopeFind s <C-R><C-W><cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "Plug 'dyng/ctrlsf.vim'
-" nnoremap <localLeader>t    :CtrlSF<CR>
-" nnoremap <localleader>tt   :CtrlSFToggle <CR>
+nnoremap ]t    :CtrlSF<CR>
+" nnoremap [t   :CtrlSFToggle <CR>
 let g:ackprg='ag'
 let g:ctrlsf_regex_pattern = 1
 let g:ctrlsf_position = 'right'
@@ -1641,7 +1654,24 @@ let g:quickui_show_tip = 1
 
 call quickui#menu#reset()
 
-noremap <localleader><space> :call quickui#menu#open()<cr>
+noremap <localleader><space> :call quickui#listbox#open(content, opts)<cr>
+
+let content = [
+            \ [ 'backup bashrc, cheatsheet vimrc', '' ],
+            \ ]
+
+let opts = {'title': 'select'}
+
+" let content = [
+"             \ [ 'Python3.6',       '' ],
+"             \ [ 'cpp 11',          '' ],
+"             \ [ '/usr/include',    '' ],
+"             \ [ 'STL',             '' ],
+"             \ [ 'Boost',           '' ],
+"             \ [ 'design patterns', '' ],
+"             \ ]
+
+" noremap <localleader><space> :call quickui#menu#open()<cr>
 
 "call quickui#menu#install(section, items ['text', 'command', 'tip']])
 " call quickui#menu#install('menu',
@@ -1651,19 +1681,11 @@ noremap <localleader><space> :call quickui#menu#open()<cr>
 " \   ]
 " \)
 
-source ~/note/todo.vim
-
-noremap <localleader><space><space> :call quickui#listbox#open(content, opts)<cr>
-
-let content = [
-            \ [ 'Python3.6',       '' ],
-            \ [ 'cpp 11',          '' ],
-            \ [ '/usr/include',    '' ],
-            \ [ 'STL',             '' ],
-            \ [ 'Boost',           '' ],
-            \ [ 'design patterns', '' ],
-            \ ]
-let opts = {'title': 'select'}
+" call quickui#menu#install('todo',
+" \   [
+" \       [ '', '', '' ],
+" \   ]
+" \)
 
 " display vim messages in the textbox
 " function! DisplayMessages()
@@ -1762,7 +1784,7 @@ let g:rainbow_conf = {
 " <C-_>"0-9a-zA-Z paster from register
 let g:terminal_skip_key_init = 1
 let g:terminal_key = "<C-t>"
-let g:terminal_height = 30
+let g:terminal_height = 40
 " let g:terminal_pos = vertical
 " 0: vim's current working directory (which :pwd returns)
 " 1: file path of current file.
